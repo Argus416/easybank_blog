@@ -1,0 +1,49 @@
+main.loginSignUpForm {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(-45deg, $LimeGreen 0%, rgba(40, 186, 206, 1) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: 400% 400%;
+    animation: backgroundAnimation 70s ease infinite;
+}
+.form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: $White;
+    width: 40%;
+    min-width: 350px;
+    height: 70vh;
+    min-height: 450px;
+    margin: auto;
+    border-radius: 10px;
+    .logo {
+        margin-bottom: 5em;
+        width: 250px;
+    }
+    form {
+        .label {
+            label {
+                display: block;
+            }
+        }
+        .btn-submit {
+            margin-top: 1em;
+        }
+    }
+}
+
+@keyframes backgroundAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

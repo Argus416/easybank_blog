@@ -1,6 +1,8 @@
 @import "_var";
 @import "_conf";
+@import "_btns";
 @import "pages/_home";
+@import "pages/_loginSignUp";
 
 h1,
 h2,
@@ -28,28 +30,6 @@ p {
     }
 }
 
-.btn-primary-cus {
-    text-decoration: none;
-    background: linear-gradient(90deg, $LimeGreen 0%, rgba(40, 186, 206, 1) 100%);
-    color: $White;
-    padding: 0.7em 2em !important;
-    border-radius: 20px;
-}
-
-.btn-secondary-cus {
-    display: inline-block;
-    text-decoration: none;
-    background: $LimeGreen;
-    color: $White !important;
-    padding: 0.6em 2em;
-    border-radius: 20px;
-}
-.nav-item-cus {
-    background: $LimeGreen;
-    color: $White;
-    padding: 0em 1em !important;
-    border-radius: 20px;
-}
 .card-cus {
     width: calc(96% / 4);
     min-width: 300px;

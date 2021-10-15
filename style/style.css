@@ -7,6 +7,39 @@ body {
   padding: 4em 0;
 }
 
+.btn-primary-cus {
+  text-decoration: none;
+  background: -webkit-gradient(linear, left top, right top, from(#31d35c), to(#28bace));
+  background: linear-gradient(90deg, #31d35c 0%, #28bace 100%);
+  color: white;
+  padding: 0.7em 2em !important;
+  border-radius: 20px;
+  border: none;
+}
+
+.btn-secondary-cus {
+  display: inline-block;
+  text-decoration: none;
+  background: #31d35c;
+  color: white !important;
+  padding: 0.6em 2em;
+  border-radius: 20px;
+  border: none;
+}
+
+.nav-item-cus {
+  background: #31d35c;
+  color: white;
+  padding: 0em 1em !important;
+  border-radius: 20px;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.nav-item-cus:hover {
+  opacity: 0.7;
+}
+
 .test {
   overflow: hidden;
 }
@@ -77,6 +110,84 @@ body {
   margin-top: 1em;
 }
 
+main.loginSignUpForm {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(-45deg, #31d35c 0%, #28bace 100%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-size: 400% 400%;
+  -webkit-animation: backgroundAnimation 70s ease infinite;
+          animation: backgroundAnimation 70s ease infinite;
+}
+
+.form-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: white;
+  width: 40%;
+  min-width: 350px;
+  height: 70vh;
+  min-height: 450px;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.form-container .logo {
+  margin-bottom: 5em;
+  width: 250px;
+}
+
+.form-container form .label label {
+  display: block;
+}
+
+.form-container form .btn-submit {
+  margin-top: 1em;
+}
+
+@-webkit-keyframes backgroundAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 h1,
 h2,
 h3,
@@ -105,31 +216,6 @@ p {
 .link:hover {
   color: #31d35c;
   opacity: 0.5;
-}
-
-.btn-primary-cus {
-  text-decoration: none;
-  background: -webkit-gradient(linear, left top, right top, from(#31d35c), to(#28bace));
-  background: linear-gradient(90deg, #31d35c 0%, #28bace 100%);
-  color: white;
-  padding: 0.7em 2em !important;
-  border-radius: 20px;
-}
-
-.btn-secondary-cus {
-  display: inline-block;
-  text-decoration: none;
-  background: #31d35c;
-  color: white !important;
-  padding: 0.6em 2em;
-  border-radius: 20px;
-}
-
-.nav-item-cus {
-  background: #31d35c;
-  color: white;
-  padding: 0em 1em !important;
-  border-radius: 20px;
 }
 
 .card-cus {

@@ -1,0 +1,132 @@
+@import "_var";
+@import "_conf";
+@import "pages/_home";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $darkBlue;
+}
+h1 {
+    font-size: 50px;
+    font-weight: 300;
+}
+p {
+    color: $GrayishBlue;
+}
+
+.link {
+    display: inline-block;
+    color: $LimeGreen;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        color: $LimeGreen;
+        opacity: 0.5;
+    }
+}
+
+.btn-primary-cus {
+    text-decoration: none;
+    background: linear-gradient(90deg, $LimeGreen 0%, rgba(40, 186, 206, 1) 100%);
+    color: $White;
+    padding: 0.7em 2em !important;
+    border-radius: 20px;
+}
+
+.btn-secondary-cus {
+    display: inline-block;
+    text-decoration: none;
+    background: $LimeGreen;
+    color: $White !important;
+    padding: 0.6em 2em;
+    border-radius: 20px;
+}
+.nav-item-cus {
+    background: $LimeGreen;
+    color: $White;
+    padding: 0em 1em !important;
+    border-radius: 20px;
+}
+.card-cus {
+    width: calc(96% / 4);
+    min-width: 300px;
+    display: block;
+    text-decoration: none;
+    background-color: $White;
+    margin-bottom: 1.5em;
+    .writer-name {
+        color: $GrayishBlue;
+        font-size: 12px;
+    }
+    h5 {
+        margin: 0.7em 0;
+    }
+    .card-img-top {
+        height: 230px;
+        object-fit: cover;
+    }
+}
+
+header {
+    .navbar {
+        z-index: 999;
+        padding: 0;
+    }
+
+    .navbar-nav {
+        display: flex;
+        align-items: center;
+    }
+    .nav-item {
+        padding: 1.3em 0;
+        margin-right: 1em;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+footer {
+    padding: 3em 0;
+    background-color: $darkBlue;
+    .fisrt-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .icons {
+            margin-bottom: 15px;
+            a {
+                margin-right: 10px;
+            }
+        }
+    }
+    .sec-col,
+    .third-col {
+        ul {
+            li {
+                list-style: none;
+                margin-bottom: 0.6em;
+                a {
+                    text-decoration: none;
+                    color: $White;
+                    transition: all 0.3s ease-in-out;
+                    &:hover {
+                        color: $LimeGreen;
+                    }
+                }
+            }
+        }
+    }
+    .sec-col {
+    }
+    .third-col {
+    }
+    .forth-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

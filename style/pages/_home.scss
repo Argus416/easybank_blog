@@ -1,0 +1,58 @@
+.test {
+    overflow: hidden;
+}
+.presentation-header {
+    position: relative;
+    background-image: url(images/bg-intro-desktop.svg);
+    background-position: 146% -182px;
+    background-repeat: no-repeat;
+    background-size: 58%;
+    .row {
+        align-items: center;
+        height: 70vh;
+        p {
+            margin: 1.5em 0 3em;
+        }
+        .imgs {
+            .bg-intro-desktop {
+                position: absolute;
+                right: 0;
+                top: 0;
+                min-width: 700px;
+                width: 50%;
+            }
+            .img-mockup {
+                position: absolute;
+                top: -24%;
+                right: -6%;
+            }
+        }
+    }
+}
+
+.why-us {
+    background-color: $LightGrayishBlue;
+    p {
+        margin-top: 1.6em;
+        margin-bottom: 2.5em;
+    }
+    .cards {
+        h3 {
+            margin: 1em 0;
+        }
+    }
+}
+
+.latest-articles {
+    background-color: $VeryLightGray;
+    h2 {
+        margin-bottom: 1.6em;
+    }
+    .d-flex {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .link {
+        margin-top: 1em;
+    }
+}

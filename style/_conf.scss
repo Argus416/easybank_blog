@@ -20,7 +20,11 @@ h6 {
 h1 {
     font-size: 50px;
     font-weight: 300;
+    &.page-title {
+        margin: 1em 0;
+    }
 }
+
 p {
     color: $GrayishBlue;
 }

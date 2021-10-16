@@ -7,7 +7,7 @@
     <?php require_once 'template/nav.php' ?>
     <main class="contact_us">
         <div class="container">
-            <h1>Nous contacter</h1>
+            <h1 class="page-title">Nous contacter</h1>
 
             <div class="d-flex">
                 <div class="left">

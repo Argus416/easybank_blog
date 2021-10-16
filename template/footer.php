@@ -31,3 +31,5 @@
         </div>
     </div>
 </footer>
+
+<script src="script/sandbox.js"></script>

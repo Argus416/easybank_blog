@@ -23,6 +23,10 @@ h1 {
   font-weight: 300;
 }
 
+h1.page-title {
+  margin: 1em 0;
+}
+
 p {
   color: #9698a6;
 }
@@ -325,10 +329,6 @@ main.contact_us {
   padding-bottom: 4em;
 }
 
-main.contact_us h1 {
-  margin: 1em 0;
-}
-
 main.contact_us .d-flex {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
@@ -395,6 +395,23 @@ main.contact_us .d-flex .right .btn-container {
 
 main.contact_us .d-flex .right .btn-container .btn-submit {
   width: 70%;
+}
+
+main.blogs .d-flex .left {
+  width: 75%;
+}
+
+main.blogs .d-flex .left .article {
+  margin-bottom: 1.8em;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+main.blogs .d-flex .left .article a {
+  text-decoration: none;
+}
+
+main.blogs .d-flex .left .article p {
+  padding-bottom: 0.2em;
 }
 
 header .navbar {

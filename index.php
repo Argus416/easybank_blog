@@ -127,7 +127,7 @@
                     </a>
                 </div>
                 <div class="text-center">
-                    <a href="#" class="link"> Tous nos articles </a>
+                    <a href="blogs.php" class="link"> Tous nos articles </a>
                 </div>
             </div>
         </section>

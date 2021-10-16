@@ -1,0 +1,17 @@
+main.blogs {
+    .d-flex {
+        .left {
+            width: 75%;
+            .article {
+                margin-bottom: 1.8em;
+                border-bottom: 1px solid $LightGrayishBlue;
+                a {
+                    text-decoration: none;
+                }
+                p {
+                    padding-bottom: 0.2em;
+                }
+            }
+        }
+    }
+}

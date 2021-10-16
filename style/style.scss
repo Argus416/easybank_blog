@@ -4,6 +4,7 @@
 @import "pages/_home";
 @import "pages/_loginSignUp";
 @import "pages/_contact_us";
+@import "pages/_blogs";
 
 header {
     .navbar {
@@ -55,10 +56,7 @@ footer {
             }
         }
     }
-    .sec-col {
-    }
-    .third-col {
-    }
+
     .forth-col {
         display: flex;
         flex-direction: column;

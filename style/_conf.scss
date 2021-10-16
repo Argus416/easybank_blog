@@ -1,9 +1,64 @@
 @import url("https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 
+input,
+button,
+textarea {
+    outline: none !important;
+}
+
 body {
     font-family: "Public Sans", sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $darkBlue;
+}
+h1 {
+    font-size: 50px;
+    font-weight: 300;
+}
+p {
+    color: $GrayishBlue;
 }
 
 .section-main {
     padding: 4em 0;
+}
+
+.fontAwesome {
+    font-family: "Helvetica", FontAwesome, sans-serif;
+}
+
+.link {
+    display: inline-block;
+    color: $LimeGreen;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        color: $LimeGreen;
+        opacity: 0.5;
+    }
+}
+
+.card-cus {
+    width: calc(96% / 4);
+    min-width: 300px;
+    display: block;
+    text-decoration: none;
+    background-color: $White;
+    margin-bottom: 1.5em;
+    .writer-name {
+        color: $GrayishBlue;
+        font-size: 12px;
+    }
+    h5 {
+        margin: 0.7em 0;
+    }
+    .card-img-top {
+        height: 230px;
+        object-fit: cover;
+    }
 }

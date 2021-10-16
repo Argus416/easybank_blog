@@ -1,10 +1,74 @@
 @import url("https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+input,
+button,
+textarea {
+  outline: none !important;
+}
+
 body {
   font-family: "Public Sans", sans-serif;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #2d314d;
+}
+
+h1 {
+  font-size: 50px;
+  font-weight: 300;
+}
+
+p {
+  color: #9698a6;
+}
+
 .section-main {
   padding: 4em 0;
+}
+
+.fontAwesome {
+  font-family: "Helvetica", FontAwesome, sans-serif;
+}
+
+.link {
+  display: inline-block;
+  color: #31d35c;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.link:hover {
+  color: #31d35c;
+  opacity: 0.5;
+}
+
+.card-cus {
+  width: calc(96% / 4);
+  min-width: 300px;
+  display: block;
+  text-decoration: none;
+  background-color: white;
+  margin-bottom: 1.5em;
+}
+
+.card-cus .writer-name {
+  color: #9698a6;
+  font-size: 12px;
+}
+
+.card-cus h5 {
+  margin: 0.7em 0;
+}
+
+.card-cus .card-img-top {
+  height: 230px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .btn-primary-cus {
@@ -25,6 +89,28 @@ body {
   padding: 0.6em 2em;
   border-radius: 20px;
   border: none;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.btn-secondary-cus:hover {
+  opacity: 0.7;
+}
+
+.btn-third-cus {
+  display: inline-block;
+  text-decoration: none;
+  background: #2d314d;
+  color: white !important;
+  padding: 0.6em 2em;
+  border-radius: 20px;
+  border: none;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.btn-third-cus:hover {
+  opacity: 0.8;
 }
 
 .nav-item-cus {
@@ -124,44 +210,91 @@ main.loginSignUpForm {
       -ms-flex-align: center;
           align-items: center;
   background-size: 400% 400%;
-  -webkit-animation: backgroundAnimation 70s ease infinite;
-          animation: backgroundAnimation 70s ease infinite;
+  -webkit-animation: backgroundAnimation 7s ease infinite;
+          animation: backgroundAnimation 7s ease infinite;
 }
 
-.form-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+main.loginSignUpForm .form-container {
+  position: relative;
+  text-align: center;
+  padding: 3em 3.5em;
   background-color: white;
-  width: 40%;
-  min-width: 350px;
+  width: 34%;
+  min-width: 380px;
   height: 70vh;
   min-height: 450px;
   margin: auto;
   border-radius: 10px;
 }
 
-.form-container .logo {
-  margin-bottom: 5em;
+main.loginSignUpForm .form-container .logo {
+  margin: 1em 0em 3em;
   width: 250px;
 }
 
-.form-container form .label label {
+main.loginSignUpForm .form-container .link-parent {
+  position: absolute;
+  text-align: center;
+  bottom: 30px;
+  width: 100%;
+  left: 0;
+}
+
+main.loginSignUpForm .form-container form {
+  text-align: left;
+}
+
+main.loginSignUpForm .form-container form .label {
+  position: relative;
+}
+
+main.loginSignUpForm .form-container form .label:first-child .input-parent::before, main.loginSignUpForm .form-container form .label:nth-child(2) .input-parent::before {
+  font-family: "Helvetica", FontAwesome, sans-serif;
+  font-size: 1.2em;
+  margin-left: 10px;
+  color: #9698a6;
+}
+
+main.loginSignUpForm .form-container form .label:first-child .input-parent {
+  margin-bottom: 1.5em;
+}
+
+main.loginSignUpForm .form-container form .label:first-child .input-parent::before {
+  content: "\f0e0";
+}
+
+main.loginSignUpForm .form-container form .label:nth-child(2) .input-parent::before {
+  content: "\f023";
+}
+
+main.loginSignUpForm .form-container form .label label {
   display: block;
 }
 
-.form-container form .btn-submit {
-  margin-top: 1em;
+main.loginSignUpForm .form-container form .label .input-parent {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main.loginSignUpForm .form-container form .label .input-parent::before {
+  position: absolute;
+}
+
+main.loginSignUpForm .form-container form .label .input-parent input[type="text"],
+main.loginSignUpForm .form-container form .label .input-parent input[type="password"] {
+  width: 100%;
+  padding: 0.3em 0 0.3em 2.8em;
+  border: none;
+  border-bottom: 1px solid #9698a6;
+}
+
+main.loginSignUpForm .form-container form .btn-submit {
+  margin-top: 1.5em;
 }
 
 @-webkit-keyframes backgroundAnimation {
@@ -188,58 +321,80 @@ main.loginSignUpForm {
   }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: #2d314d;
+main.contact_us {
+  padding-bottom: 4em;
 }
 
-h1 {
-  font-size: 50px;
-  font-weight: 300;
+main.contact_us h1 {
+  margin: 1em 0;
 }
 
-p {
-  color: #9698a6;
+main.contact_us .d-flex {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
-.link {
-  display: inline-block;
-  color: #31d35c;
-  -webkit-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+main.contact_us .d-flex > * {
+  min-width: 320px;
+  width: 48%;
 }
 
-.link:hover {
-  color: #31d35c;
-  opacity: 0.5;
+main.contact_us .d-flex .left .icons {
+  margin-bottom: 1em;
 }
 
-.card-cus {
-  width: calc(96% / 4);
-  min-width: 300px;
-  display: block;
-  text-decoration: none;
-  background-color: white;
-  margin-bottom: 1.5em;
+main.contact_us .d-flex .left .icons a {
+  margin-right: 0.3em;
 }
 
-.card-cus .writer-name {
-  color: #9698a6;
-  font-size: 12px;
+main.contact_us .d-flex .left ul {
+  padding-left: 0;
 }
 
-.card-cus h5 {
-  margin: 0.7em 0;
+main.contact_us .d-flex .left ul li {
+  list-style: none;
+  margin-bottom: 1em;
 }
 
-.card-cus .card-img-top {
-  height: 230px;
-  -o-object-fit: cover;
-     object-fit: cover;
+main.contact_us .d-flex .left ul li:last-child {
+  margin-bottom: 0em;
+}
+
+main.contact_us .d-flex .left ul li i.fas {
+  margin-right: 0.5em;
+}
+
+main.contact_us .d-flex .left #map {
+  height: 360px;
+}
+
+main.contact_us .d-flex .right input,
+main.contact_us .d-flex .right textarea {
+  width: 100%;
+  background-color: #f3f4f6;
+  border: 1px solid #f3f4f6;
+  padding: 0.3em 0.4em;
+}
+
+main.contact_us .d-flex .right textarea {
+  resize: none;
+  height: 200px;
+}
+
+main.contact_us .d-flex .right input {
+  margin-bottom: 1em;
+}
+
+main.contact_us .d-flex .right .btn-container {
+  margin-top: 1em;
+  text-align: center;
+}
+
+main.contact_us .d-flex .right .btn-container .btn-submit {
+  width: 70%;
 }
 
 header .navbar {

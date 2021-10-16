@@ -3,52 +3,7 @@
 @import "_btns";
 @import "pages/_home";
 @import "pages/_loginSignUp";
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: $darkBlue;
-}
-h1 {
-    font-size: 50px;
-    font-weight: 300;
-}
-p {
-    color: $GrayishBlue;
-}
-
-.link {
-    display: inline-block;
-    color: $LimeGreen;
-    transition: all 0.3s ease-in-out;
-    &:hover {
-        color: $LimeGreen;
-        opacity: 0.5;
-    }
-}
-
-.card-cus {
-    width: calc(96% / 4);
-    min-width: 300px;
-    display: block;
-    text-decoration: none;
-    background-color: $White;
-    margin-bottom: 1.5em;
-    .writer-name {
-        color: $GrayishBlue;
-        font-size: 12px;
-    }
-    h5 {
-        margin: 0.7em 0;
-    }
-    .card-img-top {
-        height: 230px;
-        object-fit: cover;
-    }
-}
+@import "pages/_contact_us";
 
 header {
     .navbar {

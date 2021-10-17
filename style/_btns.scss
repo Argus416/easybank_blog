@@ -34,6 +34,22 @@
         opacity: 0.8;
     }
 }
+
+.btn-forth-cus {
+    display: inline-block;
+    text-decoration: none;
+    background: transparent;
+    color: $darkBlue !important;
+    padding: 0.6em 2em;
+    border-radius: 0;
+    border: 2px solid $darkBlue;
+    transition: opacity 0.3s ease-in-out;
+    &:hover {
+        background: $darkBlue;
+        color: $White !important;
+    }
+}
+
 .nav-item-cus {
     background: $LimeGreen;
     color: $White;

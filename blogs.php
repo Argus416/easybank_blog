@@ -19,6 +19,9 @@
                             only receive money in a singleThe world is getting smaller and we’re becoming more mobile.
                             So why should you be forced to
                             only receive money in a single</p>
+                        <div class="text-center view-more-container">
+                            <a href="#" class="btn-forth-cus">View more</a>
+                        </div>
                     </div>
                     <div class="article">
                         <a href="#">
@@ -28,6 +31,9 @@
                             only receive money in a singleThe world is getting smaller and we’re becoming more mobile.
                             So why should you be forced to
                             only receive money in a single</p>
+                        <div class="text-center view-more-container">
+                            <a href="#" class="btn-forth-cus">View more</a>
+                        </div>
                     </div>
                     <div class="article">
                         <a href="#">
@@ -37,6 +43,9 @@
                             only receive money in a singleThe world is getting smaller and we’re becoming more mobile.
                             So why should you be forced to
                             only receive money in a single</p>
+                        <div class="text-center view-more-container">
+                            <a href="#" class="btn-forth-cus">View more</a>
+                        </div>
                     </div>
                     <div class="article">
                         <a href="#">
@@ -46,6 +55,9 @@
                             only receive money in a singleThe world is getting smaller and we’re becoming more mobile.
                             So why should you be forced to
                             only receive money in a single</p>
+                        <div class="text-center view-more-container">
+                            <a href="#" class="btn-forth-cus">View more</a>
+                        </div>
                     </div>
 
                 </div>

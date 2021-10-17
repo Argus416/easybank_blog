@@ -37,26 +37,31 @@ main.loginSignUpForm {
 
             .label {
                 position: relative;
-                &:first-child,
-                &:nth-child(2) {
-                    .input-parent {
-                        &::before {
-                            font-family: "Helvetica", FontAwesome, sans-serif;
-                            font-size: 1.2em;
-                            margin-left: 10px;
-                            color: $GrayishBlue;
-                        }
+                .input-parent {
+                    margin-bottom: 1.5em;
+
+                    &::before {
+                        font-family: "Helvetica", FontAwesome, sans-serif;
+                        font-size: 1.2em;
+                        margin-left: 10px;
+                        color: $GrayishBlue;
                     }
                 }
                 &:first-child {
                     .input-parent {
-                        margin-bottom: 1.5em;
+                        &::before {
+                            content: "\f0e7";
+                        }
+                    }
+                }
+                &:nth-child(2) {
+                    .input-parent {
                         &::before {
                             content: "\f0e0";
                         }
                     }
                 }
-                &:nth-child(2) {
+                &:nth-child(3) {
                     .input-parent {
                         &::before {
                             content: "\f023";
@@ -82,9 +87,6 @@ main.loginSignUpForm {
                         border-bottom: 1px solid $GrayishBlue;
                     }
                 }
-            }
-            .btn-submit {
-                margin-top: 1.5em;
             }
         }
     }

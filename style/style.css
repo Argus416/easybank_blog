@@ -117,6 +117,23 @@ p {
   opacity: 0.8;
 }
 
+.btn-forth-cus {
+  display: inline-block;
+  text-decoration: none;
+  background: transparent;
+  color: #2d314d !important;
+  padding: 0.6em 2em;
+  border-radius: 0;
+  border: 2px solid #2d314d;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.btn-forth-cus:hover {
+  background: #2d314d;
+  color: white !important;
+}
+
 .nav-item-cus {
   background: #31d35c;
   color: white;
@@ -252,22 +269,26 @@ main.loginSignUpForm .form-container form .label {
   position: relative;
 }
 
-main.loginSignUpForm .form-container form .label:first-child .input-parent::before, main.loginSignUpForm .form-container form .label:nth-child(2) .input-parent::before {
+main.loginSignUpForm .form-container form .label .input-parent {
+  margin-bottom: 1.5em;
+}
+
+main.loginSignUpForm .form-container form .label .input-parent::before {
   font-family: "Helvetica", FontAwesome, sans-serif;
   font-size: 1.2em;
   margin-left: 10px;
   color: #9698a6;
 }
 
-main.loginSignUpForm .form-container form .label:first-child .input-parent {
-  margin-bottom: 1.5em;
-}
-
 main.loginSignUpForm .form-container form .label:first-child .input-parent::before {
-  content: "\f0e0";
+  content: "\f0e7";
 }
 
 main.loginSignUpForm .form-container form .label:nth-child(2) .input-parent::before {
+  content: "\f0e0";
+}
+
+main.loginSignUpForm .form-container form .label:nth-child(3) .input-parent::before {
   content: "\f023";
 }
 
@@ -295,10 +316,6 @@ main.loginSignUpForm .form-container form .label .input-parent input[type="passw
   padding: 0.3em 0 0.3em 2.8em;
   border: none;
   border-bottom: 1px solid #9698a6;
-}
-
-main.loginSignUpForm .form-container form .btn-submit {
-  margin-top: 1.5em;
 }
 
 @-webkit-keyframes backgroundAnimation {
@@ -412,6 +429,10 @@ main.blogs .d-flex .left .article a {
 
 main.blogs .d-flex .left .article p {
   padding-bottom: 0.2em;
+}
+
+main.blogs .d-flex .left .article .view-more-container {
+  margin-bottom: 0.7em;
 }
 
 header .navbar {

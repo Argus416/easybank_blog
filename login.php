@@ -30,7 +30,7 @@
                     </div>
                 </form>
                 <div class="link-parent">
-                    <a href="index.php" class="link">
+                    <a href="signup.php" class="link">
                         Créer un compte
                     </a>
                 </div>

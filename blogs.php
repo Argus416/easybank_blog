@@ -8,10 +8,9 @@
     <main class="blogs">
         <div class="container">
             <h1 class="page-title">Nos articles</h1>
-
             <div class="d-flex">
                 <div class="left">
-                    <div class="article">
+                    <article class="article">
                         <a href="#">
                             <h2>Receive money in any currency with no fees</h2>
                         </a>
@@ -22,8 +21,8 @@
                         <div class="text-center view-more-container">
                             <a href="#" class="btn-forth-cus">View more</a>
                         </div>
-                    </div>
-                    <div class="article">
+                    </article>
+                    <article class="article">
                         <a href="#">
                             <h2>Receive money in any currency with no fees</h2>
                         </a>
@@ -34,8 +33,8 @@
                         <div class="text-center view-more-container">
                             <a href="#" class="btn-forth-cus">View more</a>
                         </div>
-                    </div>
-                    <div class="article">
+                    </article>
+                    <article class="article">
                         <a href="#">
                             <h2>Receive money in any currency with no fees</h2>
                         </a>
@@ -46,8 +45,8 @@
                         <div class="text-center view-more-container">
                             <a href="#" class="btn-forth-cus">View more</a>
                         </div>
-                    </div>
-                    <div class="article">
+                    </article>
+                    <article class="article">
                         <a href="#">
                             <h2>Receive money in any currency with no fees</h2>
                         </a>
@@ -58,8 +57,7 @@
                         <div class="text-center view-more-container">
                             <a href="#" class="btn-forth-cus">View more</a>
                         </div>
-                    </div>
-
+                    </article>
                 </div>
                 <div class="right"></div>
             </div>

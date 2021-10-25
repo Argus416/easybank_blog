@@ -423,6 +423,10 @@ main.blogs .d-flex .left .article {
   border-bottom: 1px solid #f3f4f6;
 }
 
+main.blogs .d-flex .left .article:last-child {
+  border-bottom: 1px solid transparent;
+}
+
 main.blogs .d-flex .left .article a {
   text-decoration: none;
 }

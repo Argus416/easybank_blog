@@ -5,6 +5,9 @@ main.blogs {
             .article {
                 margin-bottom: 1.8em;
                 border-bottom: 1px solid $LightGrayishBlue;
+                &:last-child {
+                    border-bottom: 1px solid transparent;
+                }
                 a {
                     text-decoration: none;
                 }

@@ -12,17 +12,17 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.php">Accueil</a>
+                        <a class="nav-link" href="index.php">Accueil</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="blogs.php">Blog</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="articles_management.php">Articles</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact_us.php">Nous Contacter</a>
                     </li>
-
                     <li class="nav-item-cus">
                         <a class="nav-link btn-secondary-cus" href="login.php">Me connecter</a>
                     </li>

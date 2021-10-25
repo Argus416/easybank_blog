@@ -6,7 +6,6 @@ function initMap() {
         center: pos,
         zoom: 8,
     });
-
     let marker = new google.maps.Marker({
         position: pos,
         map: map,
@@ -32,11 +31,13 @@ function initMap() {
                     marker = new google.maps.Marker({
                         position: pos,
                         map: map,
+                        zoom: 4,
                     });
                     infoWindow.setPosition(pos);
                     infoWindow.setContent("Votre position");
                     infoWindow.open(map);
                     map.setCenter(pos);
+                    map.setZoom(8);
                 },
                 () => {
                     handleLocationError(true, infoWindow, map.getCenter());

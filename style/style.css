@@ -439,6 +439,142 @@ main.blogs .d-flex .left .article .view-more-container {
   margin-bottom: 0.7em;
 }
 
+.logo {
+  width: 200px;
+  padding-bottom: 70px;
+}
+
+main.dashboard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+aside {
+  width: 20%;
+  min-width: 350px;
+  height: 100vh;
+  background-color: #fafafa;
+  padding: 25px;
+}
+
+aside nav ul {
+  list-style: none;
+}
+
+aside nav ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: 5px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+aside nav ul li a {
+  text-decoration: none;
+  color: #2d314d !important;
+  -webkit-transition: 0.3s all ease-in-out;
+  transition: 0.3s all ease-in-out;
+}
+
+aside nav ul li a:hover {
+  opacity: 0.8 !important;
+}
+
+header.dashboard {
+  width: 100%;
+  height: 45px;
+  background-color: #fafafa;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 40px 60px;
+}
+
+header.dashboard .left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header.dashboard .left .search_form {
+  position: relative;
+}
+
+header.dashboard .left .search_form .fa-search {
+  position: absolute;
+  left: 13px;
+  top: 12px;
+}
+
+header.dashboard .left .search_form input {
+  background-color: transparent;
+  border-radius: 25px;
+  margin-right: 20px;
+  padding: 7px 10px 7px 38px;
+  border: 2px solid #2d314d;
+  width: 330px;
+}
+
+header.dashboard .left .profile img {
+  width: 40px;
+  height: 40px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+
+header.dashboard .left .profile a {
+  text-decoration: none;
+  color: #2d314d;
+}
+
+.dashboard_body {
+  width: 100%;
+}
+
+.dashboard_body .dashboard_content {
+  padding: 40px 60px;
+}
+
+.dashboard_body .dashboard_content h3 {
+  margin-bottom: 2em;
+}
+
+.dashboard_body .dashboard_content.my_profile .current_photo_container {
+  text-align: center;
+}
+
+.dashboard_body .dashboard_content.my_profile .current_photo_container .current_photo {
+  width: 100%;
+  width: 190px;
+  height: 190px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.dashboard_body .dashboard_content.my_profile .btn-container {
+  text-align: center;
+}
+
+.dashboard_body .dashboard_content.my_profile .btn-container .btn-secondary-cus {
+  width: 30%;
+}
+
 header .navbar {
   z-index: 999;
   padding: 0;

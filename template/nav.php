@@ -18,7 +18,7 @@
                         <a class="nav-link" href="blogs.php">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="articles_management.php">Articles</a>
+                        <a class="nav-link" href="dashboard.php">Articles</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact_us.php">Nous Contacter</a>

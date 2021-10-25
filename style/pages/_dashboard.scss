@@ -1,0 +1,108 @@
+.logo {
+    width: 200px;
+    padding-bottom: 70px;
+}
+
+main.dashboard {
+    display: flex;
+}
+
+aside {
+    width: 20%;
+    min-width: 350px;
+    height: 100vh;
+    background-color: $VeryLightGray;
+    padding: 25px;
+    nav {
+        ul {
+            list-style: none;
+            li {
+                display: flex;
+                padding-bottom: 5px;
+                align-items: center;
+                a {
+                    text-decoration: none;
+                    color: $darkBlue !important;
+                    transition: 0.3s all ease-in-out;
+                    &:hover {
+                        opacity: 0.8 !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+header.dashboard {
+    width: 100%;
+    height: 45px;
+    background-color: $VeryLightGray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 60px;
+    .left {
+        display: flex;
+        align-items: center;
+        .search_form {
+            position: relative;
+            .fa-search {
+                position: absolute;
+                left: 13px;
+                top: 12px;
+            }
+            input {
+                background-color: transparent;
+                border-radius: 25px;
+                margin-right: 20px;
+                padding: 7px 10px 7px 38px;
+                border: 2px solid $darkBlue;
+                width: 330px;
+            }
+        }
+        .profile {
+            img {
+                width: 40px;
+                height: 40px;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+            a {
+                text-decoration: none;
+                color: $darkBlue;
+            }
+        }
+    }
+}
+
+.dashboard_body {
+    width: 100%;
+    .dashboard_content {
+        padding: 40px 60px;
+        h3 {
+            margin-bottom: 2em;
+        }
+
+        &.my_profile {
+            .current_photo_container {
+                text-align: center;
+                .current_photo {
+                    width: 100%;
+                    width: 190px;
+                    height: 190px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                    margin-bottom: 1em;
+                    text-align: center;
+                }
+            }
+
+            .btn-container {
+                text-align: center;
+                .btn-secondary-cus {
+                    width: 30%;
+                }
+            }
+        }
+    }
+}

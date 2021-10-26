@@ -7,31 +7,28 @@
         <?php require_once 'template/dashboard_aside.php' ?>
         <div class="dashboard_body">
             <?php require_once 'template/dashboard_header.php' ?>
-            <div class="dashboard_content users_management">
-                <h3> Gestion d'utilisateurs </h3>
+            <div class="dashboard_content articles_management">
+                <h3> Gestion d'articles </h3>
 
-                <table class="table table-striped table-success">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Nom</th>
-                            <th scope="col">Prénom</th>
-                            <th scope="col" class="col-cus">Email</th>
-                            <th scope="col">nb articles</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Catégorie</th>
+                            <th scope="col" class="col-cus">Author</th>
                             <th scope="col"></th>
-
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <th scope="row">1</th>
-                            <td>Al-khatib</td>
+                            <td>Lorem ipsum dolor sit amet.</td>
                             <td>Mohamad</td>
                             <td>alkhatib.m804@gmail.com</td>
-                            <td>1</td>
                             <td>
-                                <a href="#" class="btn btn-primary"><i class="far fa-eye"></i></a>
-                                <a href="#" class="btn btn-warning"><i class="far fa-edit"></i></a>
+                                <a href="form_article.php" class="btn btn-primary"><i class="far fa-eye"></i></a>
+                                <a href="form_article.php" class="btn btn-warning"><i class="far fa-edit"></i></a>
                                 <a href="#" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                             </td>
                         </tr>
@@ -40,10 +37,9 @@
                             <td>Jacob</td>
                             <td>Thornton</td>
                             <td>test@gmail.com</td>
-                            <td>3</td>
                             <td>
-                                <a href="#" class="btn btn-primary"><i class="far fa-eye"></i></a>
-                                <a href="#" class="btn btn-warning"><i class="far fa-edit"></i></a>
+                                <a href="form_article.php" class="btn btn-primary"><i class="far fa-eye"></i></a>
+                                <a href="form_article.php" class="btn btn-warning"><i class="far fa-edit"></i></a>
                                 <a href="#" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                             </td>
                         </tr>
@@ -51,10 +47,9 @@
                             <th scope="row">3</th>
                             <td colspan="2">Bonjour</td>
                             <td>coucou@gmail.com</td>
-                            <td>8</td>
                             <td>
-                                <a href="#" class="btn btn-primary"><i class="far fa-eye"></i></a>
-                                <a href="#" class="btn btn-warning"><i class="far fa-edit"></i></a>
+                                <a href="form_article.php" class="btn btn-primary"><i class="far fa-eye"></i></a>
+                                <a href="form_article.php" class="btn btn-warning"><i class="far fa-edit"></i></a>
                                 <a href="#" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                             </td>
                         </tr>

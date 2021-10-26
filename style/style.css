@@ -552,11 +552,19 @@ header.dashboard .left .profile a {
   margin-bottom: 2em;
 }
 
-.dashboard_body .dashboard_content.my_profile .current_photo_container {
+.dashboard_body .btn-container {
   text-align: center;
 }
 
-.dashboard_body .dashboard_content.my_profile .current_photo_container .current_photo {
+.dashboard_body .btn-container .btn-third-cus {
+  width: 30%;
+}
+
+.my_profile .current_photo_container {
+  text-align: center;
+}
+
+.my_profile .current_photo_container .current_photo {
   width: 100%;
   width: 190px;
   height: 190px;
@@ -567,12 +575,32 @@ header.dashboard .left .profile a {
   text-align: center;
 }
 
-.dashboard_body .dashboard_content.my_profile .btn-container {
-  text-align: center;
+.users_management table tr th.col-cus {
+  width: 25em;
 }
 
-.dashboard_body .dashboard_content.my_profile .btn-container .btn-secondary-cus {
-  width: 30%;
+.form_article .blog_photo_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.form_article img {
+  width: 80%;
+}
+
+.form_article input.article_banner_input {
+  margin-top: 13px;
 }
 
 header .navbar {

@@ -3,7 +3,7 @@
     <div class="left">
         <form method="GET" class="search_form">
             <i class="fas fa-search"></i>
-            <input type="search" placeholder="Recherer un blog">
+            <input type="search" placeholder="Recherer un article">
         </form>
         <div class="profile">
             <img src="style/images/image-currency.jpg" alt="profile_photo">

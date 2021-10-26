@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="btn-container">
-                            <button type="submit" class="btn btn-secondary-cus">Submit</button>
+                            <button type="submit" class="btn btn-third-cus">Submit</button>
                         </div>
                     </div>
 

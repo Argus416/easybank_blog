@@ -20,6 +20,10 @@
                 <i class="fas fa-cog"></i>
                 <a class="nav-link" href="my_profile.php">Mon profile</a>
             </li>
+            <li class="nav-item">
+                <i class="far fa-compass"></i>
+                <a class="nav-link" href="index.php">Website</a>
+            </li>
         </ul>
     </nav>
 </aside>

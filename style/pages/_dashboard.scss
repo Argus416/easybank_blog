@@ -82,27 +82,60 @@ header.dashboard {
         h3 {
             margin-bottom: 2em;
         }
+    }
+    .btn-container {
+        text-align: center;
+        .btn-third-cus {
+            width: 30%;
+        }
+    }
+}
 
-        &.my_profile {
-            .current_photo_container {
-                text-align: center;
-                .current_photo {
-                    width: 100%;
-                    width: 190px;
-                    height: 190px;
-                    object-fit: cover;
-                    border-radius: 50%;
-                    margin-bottom: 1em;
-                    text-align: center;
-                }
-            }
+.my_profile {
+    .current_photo_container {
+        text-align: center;
+        .current_photo {
+            width: 100%;
+            width: 190px;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 1em;
+            text-align: center;
+        }
+    }
+}
 
-            .btn-container {
-                text-align: center;
-                .btn-secondary-cus {
-                    width: 30%;
-                }
+.users_management {
+    table {
+        tr {
+            th.col-cus {
+                width: 25em;
             }
         }
+    }
+}
+
+.articles_management {
+    table {
+        tr {
+            th.col-cus {
+            }
+        }
+    }
+}
+
+.form_article {
+    .blog_photo_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    img {
+        width: 80%;
+    }
+    input.article_banner_input {
+        margin-top: 13px;
     }
 }

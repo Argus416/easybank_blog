@@ -1,4 +1,11 @@
-<?php require_once 'template/header.php' ?>
+<?php 
+
+require_once 'template/header.php';
+require_once 'app\helpers\Helpers.php';
+
+Helpers::print_me($resultat);
+
+?>
 <title>Projet PHP</title>
 </head>
 
@@ -35,7 +42,7 @@
 
                     <div class="row cards">
                         <div class="col-lg-3 col-md-6 col-sm-12">
-                            <img src="<?= "$domain$views"?>style/images/icon-online.svg" alt="Online Banking" />
+                            <img src="<?= "$domain$public"?>style/images/icon-online.svg" alt="Online Banking" />
                             <h3>Online Banking</h3>
                             <p>
                                 Our modern web and mobile applications allow you to keep track of your finances
@@ -44,7 +51,7 @@
                         </div>
 
                         <div class="col-lg-3 col-md-6 col-sm-12">
-                            <img src="<?= "$domain$views"?>style/images/icon-budgeting.svg" alt="Simple Budgeting" />
+                            <img src="<?= "$domain$public"?>style/images/icon-budgeting.svg" alt="Simple Budgeting" />
                             <h3>Simple Budgeting</h3>
                             <p>
                                 See exactly where your money goes each month. Receive notifications when you’re
@@ -53,7 +60,7 @@
                         </div>
 
                         <div class="col-lg-3 col-md-6 col-sm-12">
-                            <img src="<?= "$domain$views"?>style/images/icon-onboarding.svg" alt="Fast Onboarding" />
+                            <img src="<?= "$domain$public"?>style/images/icon-onboarding.svg" alt="Fast Onboarding" />
                             <h3>Fast Onboarding</h3>
                             <p>
                                 We don’t do branches. Open your account in minutes online and start taking control
@@ -62,7 +69,7 @@
                         </div>
 
                         <div class="col-lg-3 col-md-6 col-sm-12">
-                            <img src="<?= "$domain$views"?>style/images/icon-api.svg" alt="Open API" />
+                            <img src="<?= "$domain$public"?>style/images/icon-api.svg" alt="Open API" />
                             <h3>Open API</h3>
                             <p>
                                 Manage your savings, investments, pension, and much more from one account. Tracking
@@ -79,7 +86,7 @@
                 <h2>Latest Articles</h2>
                 <div class="d-flex">
                     <a href="#" class="card-cus">
-                        <img src="<?= "$domain$views"?>style/images/image-currency.jpg" class="card-img-top"
+                        <img src="<?= "$domain$public"?>style/images/image-currency.jpg" class="card-img-top"
                             alt="image-currency" />
                         <div class="card-body">
                             <small class="writer-name">By Claire Robinson</small>
@@ -92,7 +99,7 @@
                     </a>
 
                     <a href="#" class="card-cus">
-                        <img src="<?= "$domain$views"?>style/images/image-restaurant.jpg" class="card-img-top"
+                        <img src="<?= "$domain$public"?>style/images/image-restaurant.jpg" class="card-img-top"
                             alt="image-currency" />
                         <div class="card-body">
                             <small class="writer-name">By Wilson Hutton</small>
@@ -105,7 +112,7 @@
                     </a>
 
                     <a href="#" class="card-cus">
-                        <img src="<?= "$domain$views"?>style/images/image-plane.jpg" class="card-img-top"
+                        <img src="<?= "$domain$public"?>style/images/image-plane.jpg" class="card-img-top"
                             alt="image-currency" />
                         <div class="card-body">
                             <small class="writer-name">By Wilson Hutton</small>
@@ -118,7 +125,7 @@
                     </a>
 
                     <a href="#" class="card-cus">
-                        <img src="<?= "$domain$views"?>style/images/image-currency.jpg" class="card-img-top"
+                        <img src="<?= "$domain$public"?>style/images/image-currency.jpg" class="card-img-top"
                             alt="image-currency" />
                         <div class="card-body">
                             <small class="writer-name">By Claire Robinson</small>

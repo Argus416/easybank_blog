@@ -16,14 +16,19 @@
                         <li><i class="fas fa-mobile-alt"></i> +33 61 21 23 45 68</li>
                     </ul>
                     <div class="icons">
-                        <a href="#"><img src="style/images/icon-facebook-black.svg" alt="icon-facebook" /></a>
-                        <a href="#"><img src="style/images/icon-youtube-black.svg" alt="icon-youtube" /></a>
-                        <a href="#"><img src="style/images/icon-twitter-black.svg" alt="icon-twitter" /></a>
-                        <a href="#"><img src="style/images/icon-pinterest-black.svg" alt="icon-pinterest" /></a>
-                        <a href="#"><img src="style/images/icon-instagram-black.svg" alt="icon-instagram" /></a>
+                        <a href="#"><img src="<?= "$domain$public"?>style/images/icon-facebook-black.svg"
+                                alt="icon-facebook" /></a>
+                        <a href="#"><img src="<?= "$domain$public"?>style/images/icon-youtube-black.svg"
+                                alt="icon-youtube" /></a>
+                        <a href="#"><img src="<?= "$domain$public"?>style/images/icon-twitter-black.svg"
+                                alt="icon-twitter" /></a>
+                        <a href="#"><img src="<?= "$domain$public"?>style/images/icon-pinterest-black.svg"
+                                alt="icon-pinterest" /></a>
+                        <a href="#"><img src="<?= "$domain$public"?>style/images/icon-instagram-black.svg"
+                                alt="icon-instagram" /></a>
                     </div>
-                    <div id="map">
-                    </div>
+
+                    <div id="map"></div>
                 </div>
 
                 <div class="right">
@@ -45,7 +50,7 @@
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdsqFknb00ivhg3zu3-maFTt063F7WboY&callback=initMap&v=weekly"
         async></script>
-    <script src="script/google_map.js"></script>
+    <script src="<?= "$domain$public"?>script/google_map.js"></script>
 </body>
 
 </html>

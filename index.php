@@ -1,25 +1,27 @@
-<?php
-
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
-use Symfony\Component\Dotenv\Dotenv;
 
 require __DIR__ . "/vendor/autoload.php";
+require_once "app\classes\PDOSignleton.php";
+require_once "config\config.php";
+require_once "app\helpers\Helpers.php";
 
-// * Importer les variables d'environment
-$dotenv = new Dotenv();
-$dotenv->load(__DIR__.'/.env');
+require_once 'app\models\ArticlesModel.php';
 
+$accueilRoute = new Route('/', [
+'controller' => [
+new ArticlesModel(), 'getLatesetArticles'
+]
+]
+);
 
-$accueilRoute = new Route('/');
 $contactRoute = new Route('/contact');
-$domain = $_ENV['DOMAIN'];
-$views = $_ENV['VIEWS'];
 
-dump($views);
+$domain = $_ENV['DOMAIN'];
+$public = $_ENV['PUBLIC'];
 
 
 $routeCollection = new RouteCollection;
@@ -30,9 +32,13 @@ $pathInfo = $_SERVER['PATH_INFO'] ?? "/";
 $urlMatcher = new UrlMatcher($routeCollection, new RequestContext());
 
 try{
-    $resultat = $urlMatcher->match($pathInfo);
-    $page = $resultat['_route'];
-    require_once 'views/'.$page.'.php';
+$resultat = $urlMatcher->match($pathInfo);
+$controller = $resultat['_controller'];
+
+$page = $resultat['_route'];
+// require_once 'views/'.$page.'.php';
+// call_user_func($controller, $resultat);
+
 }catch(ResourceNotFoundException $e){
-    require_once 'views/404.php';
+// require_once 'views/404.php';
 }

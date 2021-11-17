@@ -1,3 +1,7 @@
+<?php
+    $domain = $_ENV['DOMAIN'];
+    $public = $_ENV['PUBLIC'];
+?>
 <!DOCTYPE html>
 <html lang="fr">
 

@@ -1,17 +1,14 @@
 <?php 
+    require_once 'inc/header.php';
 
-require_once 'template/header.php';
-require_once 'app\helpers\Helpers.php';
-
-Helpers::print_me($resultat);
-
+    dump($data);
 ?>
 <title>Projet PHP</title>
 </head>
 
 <body>
 
-    <?php require_once 'template/nav.php' ?>
+    <?php require_once 'inc/nav.php' ?>
     <main>
         <div class="test">
             <section class="presentation-header">
@@ -144,7 +141,7 @@ Helpers::print_me($resultat);
         </section>
     </main>
 
-    <?php require_once 'template/footer.php' ?>
+    <?php require_once 'inc/footer.php' ?>
     <!-- <div class="attribution">
             Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
             Coded by <a href="#">Mohamad Al-khatib</a>.

@@ -1,10 +1,10 @@
-<?php require_once 'template/header.php' ?>
+<?php require_once 'inc/header.php' ?>
 <title>Nos articles</title>
 
 </head>
 
 <body>
-    <?php require_once 'template/nav.php' ?>
+    <?php require_once 'inc/nav.php' ?>
     <main class="blogs">
         <div class="container">
             <h1 class="page-title">Nos articles</h1>
@@ -64,7 +64,7 @@
         </div>
     </main>
 
-    <?php require_once 'template/footer.php' ?>
+    <?php require_once 'inc/footer.php' ?>
 </body>
 
 </html>

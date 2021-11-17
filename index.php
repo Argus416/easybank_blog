@@ -1,3 +1,5 @@
+<?php
+
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
@@ -9,19 +11,25 @@ require_once "app\classes\PDOSignleton.php";
 require_once "config\config.php";
 require_once "app\helpers\Helpers.php";
 
-require_once 'app\models\ArticlesModel.php';
+require_once 'app\controllers\ArticlesController.php';
+require_once 'app\controllers\ContactController.php';
+
+
+
 
 $accueilRoute = new Route('/', [
-'controller' => [
-new ArticlesModel(), 'getLatesetArticles'
-]
+    'controller' => [
+        new ArticlesController(), 'index'
+    ]
 ]
 );
 
-$contactRoute = new Route('/contact');
+$contactRoute = new Route('/contact', [
+    'controller' => [
+        new ContactController(), 'contact'
+    ]
+]);
 
-$domain = $_ENV['DOMAIN'];
-$public = $_ENV['PUBLIC'];
 
 
 $routeCollection = new RouteCollection;
@@ -33,12 +41,9 @@ $urlMatcher = new UrlMatcher($routeCollection, new RequestContext());
 
 try{
 $resultat = $urlMatcher->match($pathInfo);
-$controller = $resultat['_controller'];
+$controller = $resultat['controller'];
 
-$page = $resultat['_route'];
-// require_once 'views/'.$page.'.php';
-// call_user_func($controller, $resultat);
-
+call_user_func($controller, $resultat);
 }catch(ResourceNotFoundException $e){
-// require_once 'views/404.php';
+    require_once 'views/404.php';
 }

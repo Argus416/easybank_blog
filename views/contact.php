@@ -1,10 +1,10 @@
-<?php require_once 'template/header.php' ?>
+<?php require_once 'inc/header.php' ?>
 <title>Nous contacter</title>
 
 </head>
 
 <body>
-    <?php require_once 'template/nav.php' ?>
+    <?php require_once 'inc/nav.php' ?>
     <main class="contact_us">
         <div class="container">
             <h1 class="page-title">Nous contacter</h1>
@@ -46,7 +46,7 @@
         </div>
     </main>
 
-    <?php require_once 'template/footer.php' ?>
+    <?php require_once 'inc/footer.php' ?>
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdsqFknb00ivhg3zu3-maFTt063F7WboY&callback=initMap&v=weekly"
         async></script>

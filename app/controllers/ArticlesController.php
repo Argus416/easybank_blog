@@ -34,4 +34,10 @@ class ArticlesController{
         $data = $this->ArticlesModel->getLatesetArticles();
         require_once 'views\article.php';
     }
+
+    public function add($param){
+        $urlGenerator = $param['urlGenerator'];
+
+        require_once 'views\form_article.php';
+    }
 }

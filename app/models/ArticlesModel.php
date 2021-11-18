@@ -55,9 +55,20 @@ class ArticlesModel{
         $db = $this->pdo->prepare($query);
         $db->bindParam(':id', $id, PDO::PARAM_INT);
         $db->execute();
-        $lastestArticles = $db->fetchAll(PDO::FETCH_OBJ);
-        return $lastestArticles;
+        $article = $db->fetchAll(PDO::FETCH_OBJ);
+        return $article;
     }
 
+    public function addArticle($title, $body, $idCategorie){ 
+        $query = 'INSERT INTO Articles VALUES(NULL, :title, :body, :isDeleted,:idUser, :idCategorie)';
+        $db = $this->pdo->prepare($query);
+        $db->bindParam(':title', $title);
+        $db->bindParam(':body', $body);
+        $db->bindParam(':isDeleted', 0);
+        $db->bindParam(':idUser', 1);
+        $db->bindParam(':idCategorie', $idCategorie);
+        $db->execute();
+
+    }
     
 }

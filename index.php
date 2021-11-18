@@ -59,14 +59,20 @@ try{
         ]
     ]);
 
+    $dashboardRoute = new Route('/dashboard/article/add', [
+        'controller' => [
+            new ArticlesController(), 'add'
+        ]
+    ]);
 
     $routeCollection = new RouteCollection;
     $routeCollection->add('accueil', $accueilRoute);
     $routeCollection->add('contact', $contactRoute);
     $routeCollection->add('blog', $blogRoute);
+    $routeCollection->add('article', $articleRoute);
     $routeCollection->add('login', $loginRoute);
     $routeCollection->add('logout', $signupRoute);
-    $routeCollection->add('article', $articleRoute);
+    $routeCollection->add('dashboard', $dashboardRoute);
 
     $pathInfo = $_SERVER['PATH_INFO'] ?? "/";
     $urlMatcher = new UrlMatcher($routeCollection, new RequestContext());

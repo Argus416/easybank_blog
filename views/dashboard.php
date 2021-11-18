@@ -10,7 +10,6 @@
             <?php require_once 'inc/dashboard_header.php' ?>
             <div class="dashboard_content">
                 <h3> STAT </h3>
-
             </div>
         </div>
     </main>

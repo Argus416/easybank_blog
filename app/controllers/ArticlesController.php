@@ -37,7 +37,9 @@ class ArticlesController{
 
     public function add($param){
         $urlGenerator = $param['urlGenerator'];
-
+        if(isset($_POST['form_article'])){
+            dump($_POST);
+        }
         require_once 'views\form_article.php';
     }
 }

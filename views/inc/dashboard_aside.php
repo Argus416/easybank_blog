@@ -1,7 +1,7 @@
 <aside>
     <nav>
         <a href="dashboard.php" class="logo">
-            <img src="style/images/logo.svg" alt="logo" class="logo">
+            <img src="<?= "$domain$public"?>style/images/logo.svg" alt="logo" class="logo">
         </a>
         <ul>
             <li class="nav-item">

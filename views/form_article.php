@@ -37,13 +37,14 @@
 
                             <div class="mb-3">
                                 <label for="floatingTextarea2" class="form-label">Body</label>
-                                <textarea class="form-control" rows="5" placeholder="Leave a comment here"></textarea>
+                                <textarea class="form-control" name="form-body" rows="5"
+                                    placeholder="Leave a comment here"></textarea>
                             </div>
 
                         </div>
 
                         <div class="btn-container">
-                            <button type="submit" class="btn btn-third-cus">Submit</button>
+                            <input type="submit" name="form_article" class="btn btn-third-cus" value="Submit">
                         </div>
                     </div>
                 </form>

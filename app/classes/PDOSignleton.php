@@ -7,7 +7,6 @@ class PDOSignleton{
     
     private function __construct()
     {
-        echo "$this->id <br>";
         $this->id = uniqid();
     }
 

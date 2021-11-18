@@ -1,4 +1,4 @@
-<?php require_once 'template/header.php' ?>
+<?php require_once 'inc/header.php' ?>
 
 <title>Me connecter</title>
 
@@ -8,8 +8,8 @@
     <main class="loginSignUpForm">
         <div class="container">
             <div class="form-container">
-                <a href="index.php">
-                    <img src="style/images/logo.svg" class="logo" alt="logo">
+                <a href="/">
+                    <img src="<?= "$domain$public"?>style/images/logo.svg" class="logo" alt="logo">
                 </a>
                 <form method="POST">
 

@@ -1,0 +1,26 @@
+CREATE TABLE If NOT EXISTS users (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nom VARCHAR(255) NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    mdp VARCHAR(255) NOT NULL,
+    date_de_naissance DATE,
+    img_profile LONGBLOB,
+    is_deleted tinyint(1)
+)ENGINE=INNODB ;
+
+CREATE TABLE If NOT EXISTS categorie (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    type VARCHAR(255)
+)ENGINE=INNODB;
+
+CREATE TABLE If NOT EXISTS articles (
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    body TEXT NOT NULL,
+    is_deleted BOOLEAN NOT NULL,
+    id_user INT NOT NULL,
+    id_categorie INT NOT NULL,
+    FOREIGN KEY (id_user) REFERENCES users(id),
+    FOREIGN KEY (id_categorie) REFERENCES categorie(id)
+)ENGINE=INNODB;

@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
+            <a class="navbar-brand" href="<?= $urlGenerator->generate('accueil') ?>">
                 <img src="<?= "$domain$public"?>style/images/logo.svg" alt="logo" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -12,19 +12,20 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Accueil</a>
+                        <a class="nav-link" href="<?= $urlGenerator->generate('accueil') ?>">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/blog">Blog</a>
+                        <a class="nav-link" href="<?= $urlGenerator->generate('blog') ?>"">Blog</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/dashboard">Articles</a>
+                    <li class=" nav-item">
+                            <a class="nav-link" href="">Articles</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/contact">Nous Contacter</a>
+                    <li class=" nav-item">
+                        <a class="nav-link" href="<?= $urlGenerator->generate('contact') ?>">Nous Contacter</a>
                     </li>
-                    <li class="nav-item-cus">
-                        <a class="nav-link btn-secondary-cus" href="/login">Me connecter</a>
+                    <li class=" nav-item-cus">
+                        <a class="nav-link btn-secondary-cus" href="<?= $urlGenerator->generate('login') ?>">Me
+                            connecter</a>
                     </li>
                 </ul>
             </div>

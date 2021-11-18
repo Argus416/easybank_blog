@@ -1,7 +1,6 @@
 <?php 
     require_once 'inc/header.php';
 
-    dump($data);
 ?>
 <title>Projet PHP</title>
 </head>
@@ -81,59 +80,22 @@
         <section class="section-main latest-articles">
             <div class="container">
                 <h2>Latest Articles</h2>
+
                 <div class="d-flex">
-                    <a href="#" class="card-cus">
+                    <?php foreach($data as $article):?>
+                    <a href="<?= $urlGenerator->generate('article', ['id'=>$article->articlesID]) ?>" class="card-cus">
                         <img src="<?= "$domain$public"?>style/images/image-currency.jpg" class="card-img-top"
                             alt="image-currency" />
-                        <div class="card-body">
-                            <small class="writer-name">By Claire Robinson</small>
-                            <h5 class="card-title">Receive money in any currency with no fees</h5>
-                            <p class="card-text">
-                                The world is getting smaller and we’re becoming more mobile. So why should you be
-                                forced to only receive money in a single …
-                            </p>
+                        <div class="card-body justify-content-between">
+                            <small class="writer-name">Par
+                                <?php echo $article->userPrenom." "; echo $article->userNom ?></small>
+                            <h5 class="card-title"><?= $article->articleTitle ?></h5>
+                            <p class="card-text"> <?= substr($article->articleBody, 0, 255)."..." ?> </p>
                         </div>
                     </a>
-
-                    <a href="#" class="card-cus">
-                        <img src="<?= "$domain$public"?>style/images/image-restaurant.jpg" class="card-img-top"
-                            alt="image-currency" />
-                        <div class="card-body">
-                            <small class="writer-name">By Wilson Hutton</small>
-                            <h5 class="card-title">Treat yourself without worrying about money</h5>
-                            <p class="card-text">
-                                Our simple budgeting feature allows you to separate out your spending and set
-                                realistic limits each month. That means you …
-                            </p>
-                        </div>
-                    </a>
-
-                    <a href="#" class="card-cus">
-                        <img src="<?= "$domain$public"?>style/images/image-plane.jpg" class="card-img-top"
-                            alt="image-currency" />
-                        <div class="card-body">
-                            <small class="writer-name">By Wilson Hutton</small>
-                            <h5 class="card-title">Take your Easybank card wherever you go</h5>
-                            <p class="card-text">
-                                We want you to enjoy your travels. This is why we don’t charge any fees on purchases
-                                while you’re abroad. We’ll even show you …
-                            </p>
-                        </div>
-                    </a>
-
-                    <a href="#" class="card-cus">
-                        <img src="<?= "$domain$public"?>style/images/image-currency.jpg" class="card-img-top"
-                            alt="image-currency" />
-                        <div class="card-body">
-                            <small class="writer-name">By Claire Robinson</small>
-                            <h5 class="card-title">Our invite-only Beta accounts are now live!</h5>
-                            <p class="card-text">
-                                After a lot of hard work by the whole team, we’re excited to launch our closed beta.
-                                It’s easy to request an invite through the site ...
-                            </p>
-                        </div>
-                    </a>
+                    <?php endforeach;?>
                 </div>
+
                 <div class="text-center">
                     <a href="blogs.php" class="link"> Tous nos articles </a>
                 </div>

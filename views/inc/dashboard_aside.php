@@ -1,6 +1,6 @@
 <aside>
     <nav>
-        <a href="dashboard.php" class="logo">
+        <a href="<?= $urlGenerator->generate('accueil') ?>" class="logo">
             <img src="<?= "$domain$public"?>style/images/logo.svg" alt="logo" class="logo">
         </a>
         <ul>

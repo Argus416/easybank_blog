@@ -11,7 +11,7 @@
             <input type="search" placeholder="Recherer un article">
         </form>
         <div class="profile">
-            <img src="<?= "$domain$public"?>style/images/image-currency.jpg" alt="profile_photo">
+            <img src="<?= "$domain$public" ?>style/images/image-currency.jpg" alt="profile_photo">
             <a href="my_profile.php" class="current_user">Mohamad</a>
         </div>
     </div>

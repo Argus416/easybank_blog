@@ -8,7 +8,9 @@
         <div class="dashboard_body">
             <?php require_once 'inc/dashboard_header.php' ?>
             <div class="dashboard_content articles_management">
-                <h3> Gestion d'articles </h3>
+                <div class="gestion-article-header">
+                    <h3> Gestion d'articles </h3>
+                </div>
 
                 <table class="table table-striped">
                     <thead>
@@ -39,7 +41,6 @@
                         <?php endforeach;?>
                     </tbody>
                 </table>
-
             </div>
         </div>
     </main>

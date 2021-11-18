@@ -26,7 +26,8 @@ class ArticlesModel{
                   FROM articles 
                   INNER JOIN users on articles.id_user = users.id
                   INNER JOIN categorie on articles.id_categorie = categorie.id
-                  WHERE articles.is_deleted=0';
+                  WHERE articles.is_deleted=0
+                  ';
 
         $db = $this->pdo->prepare($query);
         $db->execute();
@@ -45,7 +46,9 @@ class ArticlesModel{
                   FROM articles 
                   INNER JOIN users on articles.id_user = users.id
                   WHERE users.is_deleted=0 
-                  LIMIT 4'
+                  ORDER BY articles.creation_date ASC
+                  LIMIT 4
+                  '
         ;
         $db = $this->pdo->prepare($query);
         $db->execute();
@@ -82,4 +85,27 @@ class ArticlesModel{
             echo $e;
         }
     }
+
+    public function editArticle(STRING $title,STRING $body, STRING $idCategorie){ 
+        try{
+            $query = 'UPDATE articles
+                      SET title = :title,
+                      SET body = :body,
+                      SET id_categorie = :idCategorie,
+                      WHERE articles.id = :id';
+            $db = $this->pdo->prepare($query);
+
+            $data=[
+                ':title'=> $title,
+                ':body'=> $body,
+                ':idUser'=> true,
+                ':idCategorie'=> $idCategorie
+            ];
+            $db->execute($data);
+        }catch(PDOException $e){
+            echo $e;
+        }
+    }
+    
+
 }

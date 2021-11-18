@@ -60,7 +60,7 @@ class ArticlesController{
         $categorie = 0;
         
         // TODO * Si le formulaire est soumis
-        if(isset($_POST['form_article'])){
+        if(isset($_POST['add-article'])){
             if(isset($_POST['artilce-bannier'])){
                 $bannier = filter_var($_POST['artilce-bannier'], FILTER_SANITIZE_STRING);
             }
@@ -84,9 +84,11 @@ class ArticlesController{
 
     public function edit($param){
         $urlGenerator = $param['urlGenerator'];
-        $allCategories = $this->CategoriesModel->getCategories();
+        $id = $param['id'];
         $title = $body = '';
         $categorie = 0;
+
+        $getArticle = $this->ArticlesModel->getArticle($id)[0];
         
         // TODO * Si le formulaire est soumis
         if(isset($_POST['form_article'])){
@@ -106,7 +108,7 @@ class ArticlesController{
                 $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
             }
             
-            $this->ArticlesModel->addArticle($title, $body, $categorie );
+            $this->ArticlesModel->editArticle($title, $body, $categorie );
         }
         require_once 'views\form_edit_article.php';
     }

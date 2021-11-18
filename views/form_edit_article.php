@@ -9,11 +9,7 @@
             <?php require_once 'inc/dashboard_header.php' ?>
             <div class="dashboard_content form_article">
                 <h3> Bienvenu Mohamad </h3>
-                <?php
-                    echo "title: $title <br>";
-                    echo "body: $body <br>";
-                    echo "categorie: $categorie <br>";
-                ?>
+
                 <!-- TODO REGEX input -->
                 <form method="POST">
                     <div class="row">
@@ -48,7 +44,7 @@
                         </div>
 
                         <div class="btn-container">
-                            <input type="submit" name="form_article" class="btn btn-third-cus" value="Submit">
+                            <input type="submit" name="edit-article" class="btn btn-third-cus" value="Submit">
                         </div>
                     </div>
                 </form>

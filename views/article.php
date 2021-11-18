@@ -18,7 +18,7 @@
         <div class="latest-articles">
             <div class="d-flex">
                 <?php foreach($data as $article):?>
-                <a href="<?= $urlGenerator->generate('article', ['id'=>$article->articlesID]) ?>" class="card-cus">
+                <a href="<?= $urlGenerator->generate('article', ['id'=>$article->articleID]) ?>" class="card-cus">
                     <img src="<?= "$domain$public"?>style/images/image-currency.jpg" class="card-img-top"
                         alt="image-currency" />
                     <div class="card-body justify-content-between">

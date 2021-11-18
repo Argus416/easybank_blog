@@ -21,38 +21,22 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php foreach($articles as $article):?>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Lorem ipsum dolor sit amet.</td>
-                            <td>Mohamad</td>
-                            <td>alkhatib.m804@gmail.com</td>
+                            <th scope="row"><?= $article->articleID?></th>
+                            <td><?= $article->articleTitle?></td>
+                            <td><?= $article->categorieType?></td>
+                            <td><?= $article->userNom?> <?= $article->userPrenom?></td>
                             <td>
-                                <a href="form_article.php" class="btn btn-primary"><i class="far fa-eye"></i></a>
-                                <a href="form_article.php" class="btn btn-warning"><i class="far fa-edit"></i></a>
-                                <a href="#" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                <a href="<?= $urlGenerator->generate('article', ['id' => $article->articleID]) ?>"
+                                    class="btn btn-primary"><i class="far fa-eye"></i></a>
+                                <a href="<?= $urlGenerator->generate('editArticle', ['id' => $article->articleID]) ?>"
+                                    class="btn btn-warning"><i class="far fa-edit"></i></a>
+                                <a href="<?= $urlGenerator->generate('article', ['id' => $article->articleID]) ?>"
+                                    class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>test@gmail.com</td>
-                            <td>
-                                <a href="form_article.php" class="btn btn-primary"><i class="far fa-eye"></i></a>
-                                <a href="form_article.php" class="btn btn-warning"><i class="far fa-edit"></i></a>
-                                <a href="#" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Bonjour</td>
-                            <td>coucou@gmail.com</td>
-                            <td>
-                                <a href="form_article.php" class="btn btn-primary"><i class="far fa-eye"></i></a>
-                                <a href="form_article.php" class="btn btn-warning"><i class="far fa-edit"></i></a>
-                                <a href="#" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
+                        <?php endforeach;?>
                     </tbody>
                 </table>
 

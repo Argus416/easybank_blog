@@ -16,11 +16,18 @@ class ArticlesModel{
 
     public function getArticles(){
         $query = 'SELECT
-                  articles.id as articlesID,
+                  articles.id as articleID,
                   articles.title as articleTitle,
-                  articles.body as articleBody
+                  articles.body as articleBody,
+                  users.id as userID,
+                  users.nom as userNom,
+                  users.prenom as userPrenom,
+                  categorie.type as categorieType
                   FROM articles 
-                  WHERE is_deleted=0';
+                  INNER JOIN users on articles.id_user = users.id
+                  INNER JOIN categorie on articles.id_categorie = categorie.id
+                  WHERE articles.is_deleted=0';
+
         $db = $this->pdo->prepare($query);
         $db->execute();
         $lastestArticles = $db->fetchAll(PDO::FETCH_OBJ);
@@ -29,7 +36,7 @@ class ArticlesModel{
 
     public function getLatesetArticles(){
         $query = 'SELECT
-                  articles.id as articlesID,
+                  articles.id as articleID,
                   articles.title as articleTitle,
                   articles.body as articleBody,
                   users.id as userID,
@@ -59,16 +66,20 @@ class ArticlesModel{
         return $article;
     }
 
-    public function addArticle($title, $body, $idCategorie){ 
-        $query = 'INSERT INTO Articles VALUES(NULL, :title, :body, :isDeleted,:idUser, :idCategorie)';
-        $db = $this->pdo->prepare($query);
-        $db->bindParam(':title', $title);
-        $db->bindParam(':body', $body);
-        $db->bindParam(':isDeleted', 0);
-        $db->bindParam(':idUser', 1);
-        $db->bindParam(':idCategorie', $idCategorie);
-        $db->execute();
-
+    public function addArticle(STRING $title,STRING $body, STRING $idCategorie, INT $isDeleted = 0  ){ 
+        try{
+            $query = 'INSERT INTO Articles VALUES(NULL, :title, :body, :isDeleted,:idUser, :idCategorie)';
+            $db = $this->pdo->prepare($query);
+            $data=[
+                ':title'=> $title,
+                ':body'=> $body,
+                ':isDeleted'=> $isDeleted,
+                ':idUser'=> true,
+                ':idCategorie'=> $idCategorie
+            ];
+            $db->execute($data);
+        }catch(PDOException $e){
+            echo $e;
+        }
     }
-    
 }

@@ -59,11 +59,30 @@ try{
         ]
     ]);
 
-    $dashboardRoute = new Route('/dashboard/article/add', [
+    $dashboardRouteStat = new Route('/dashboard/', [
+        'controller' => [
+            new ArticlesController(), 'stat'
+        ]
+    ]);
+
+    $dashboardRouteArticleMan = new Route('/dashboard/articles/', [
+        'controller' => [
+            new ArticlesController(), 'articlesManagement'
+        ]
+    ]);
+
+    $dashboardRouteArticleAdd = new Route('/dashboard/article/add', [
         'controller' => [
             new ArticlesController(), 'add'
         ]
     ]);
+
+    $dashboardRouteArticleEdit = new Route('/dashboard/article/edit/{id}', [
+        'controller' => [
+            new ArticlesController(), 'edit'
+        ]
+    ]);
+
 
     $routeCollection = new RouteCollection;
     $routeCollection->add('accueil', $accueilRoute);
@@ -72,7 +91,11 @@ try{
     $routeCollection->add('article', $articleRoute);
     $routeCollection->add('login', $loginRoute);
     $routeCollection->add('logout', $signupRoute);
-    $routeCollection->add('dashboard', $dashboardRoute);
+    $routeCollection->add('stat', $dashboardRouteStat);
+    $routeCollection->add('management', $dashboardRouteArticleMan);
+    $routeCollection->add('addArticle', $dashboardRouteArticleAdd);
+    $routeCollection->add('editArticle', $dashboardRouteArticleEdit);
+
 
     $pathInfo = $_SERVER['PATH_INFO'] ?? "/";
     $urlMatcher = new UrlMatcher($routeCollection, new RequestContext());

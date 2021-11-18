@@ -18,13 +18,10 @@
                         <a class="nav-link" href="<?= $urlGenerator->generate('blog') ?>"">Blog</a>
                     </li>
                     <li class=" nav-item">
-                            <a class="nav-link" href="">Articles</a>
+                            <a class="nav-link" href="<?= $urlGenerator->generate('contact') ?>">Nous Contacter</a>
                     </li>
                     <li class=" nav-item">
-                        <a class="nav-link" href="<?= $urlGenerator->generate('contact') ?>">Nous Contacter</a>
-                    </li>
-                    <li class=" nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link" href="<?= $urlGenerator->generate('stat') ?>">Dashboard</a>
                     </li>
                     <li class=" nav-item-cus">
                         <a class="nav-link btn-secondary-cus" href="<?= $urlGenerator->generate('login') ?>">Me

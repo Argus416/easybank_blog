@@ -1,14 +1,17 @@
 <?php
 
 require_once 'app\models\ArticlesModel.php';
+require_once 'app\models\CategoriesModel.php';
 
 class ArticlesController{
 
     private $ArticlesModel;
+    private $CategoriesModel;
 
     public function __construct()
     {
         $this->ArticlesModel = new ArticlesModel;
+        $this->CategoriesModel = new CategoriesModel;
 
     }
 
@@ -34,12 +37,77 @@ class ArticlesController{
         $data = $this->ArticlesModel->getLatesetArticles();
         require_once 'views\article.php';
     }
+    
+    public function stat($param){
+        $urlGenerator = $param['urlGenerator'];
+    
+        require_once 'views\dashboard.php';
+    }
+
+
+    public function articlesManagement($param){
+        $urlGenerator = $param['urlGenerator'];
+        $allCategories = $this->CategoriesModel->getCategories();
+        $articles = $this->ArticlesModel->getArticles();
+        dump($articles);
+        require_once 'views\articles_management.php';
+    }
 
     public function add($param){
         $urlGenerator = $param['urlGenerator'];
+        $allCategories = $this->CategoriesModel->getCategories();
+        $title = $body = '';
+        $categorie = 0;
+        
+        // TODO * Si le formulaire est soumis
         if(isset($_POST['form_article'])){
-            dump($_POST);
+            if(isset($_POST['artilce-bannier'])){
+                $bannier = filter_var($_POST['artilce-bannier'], FILTER_SANITIZE_STRING);
+            }
+            
+            if(isset($_POST['artilce-title'])){
+                $title = filter_var($_POST['artilce-title'], FILTER_SANITIZE_STRING);
+            }
+
+            if(isset($_POST['artilce-categorie'])){
+                $categorie = filter_var($_POST['artilce-categorie'], FILTER_VALIDATE_INT);
+            }
+
+            if(isset($_POST['artilce-body'])){
+                $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
+            }
+            
+            $this->ArticlesModel->addArticle($title, $body, $categorie );
         }
-        require_once 'views\form_article.php';
+        require_once 'views\form_add_article.php';
+    }
+
+    public function edit($param){
+        $urlGenerator = $param['urlGenerator'];
+        $allCategories = $this->CategoriesModel->getCategories();
+        $title = $body = '';
+        $categorie = 0;
+        
+        // TODO * Si le formulaire est soumis
+        if(isset($_POST['form_article'])){
+            if(isset($_POST['artilce-bannier'])){
+                $bannier = filter_var($_POST['artilce-bannier'], FILTER_SANITIZE_STRING);
+            }
+            
+            if(isset($_POST['artilce-title'])){
+                $title = filter_var($_POST['artilce-title'], FILTER_SANITIZE_STRING);
+            }
+
+            if(isset($_POST['artilce-categorie'])){
+                $categorie = filter_var($_POST['artilce-categorie'], FILTER_VALIDATE_INT);
+            }
+
+            if(isset($_POST['artilce-body'])){
+                $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
+            }
+            
+            $this->ArticlesModel->addArticle($title, $body, $categorie );
+        }
+        require_once 'views\form_edit_article.php';
     }
 }

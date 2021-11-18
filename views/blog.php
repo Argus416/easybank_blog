@@ -18,7 +18,7 @@
                         <p> <?= substr($article->articleBody, 0, 255)."..." ?> </p>
 
                         <div class="text-center view-more-container">
-                            <a href="<?= $urlGenerator->generate('article', ['id'=>$article->articlesID]) ?>"
+                            <a href="<?= $urlGenerator->generate('article', ['id'=>$article->articleID]) ?>"
                                 class="btn-forth-cus">Voir plus</a>
                         </div>
                     </article>

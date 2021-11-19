@@ -22,6 +22,7 @@ class ArticlesModel{
                   users.id as userID,
                   users.nom as userNom,
                   users.prenom as userPrenom,
+                  categorie.id as categorieID
                   categorie.type as categorieType
                   FROM articles 
                   INNER JOIN users on articles.id_user = users.id
@@ -36,20 +37,20 @@ class ArticlesModel{
     }
 
     public function getLatesetArticles(){
-        $query = 'SELECT
-                  articles.id as articleID,
-                  articles.title as articleTitle,
-                  articles.body as articleBody,
-                  users.id as userID,
-                  users.nom as userNom,
-                  users.prenom as userPrenom
-                  FROM articles 
-                  INNER JOIN users on articles.id_user = users.id
-                  WHERE users.is_deleted=0 
-                  ORDER BY articles.creation_date ASC
-                  LIMIT 4
-                  '
-        ;
+        $query= 'SELECT
+                articles.id as articleID,
+                articles.title as articleTitle,
+                articles.body as articleBody,
+                users.id as userID,
+                users.nom as userNom,
+                users.prenom as userPrenom,
+                categorie.type as categorieType
+                FROM articles 
+                INNER JOIN users on articles.id_user = users.id
+                INNER JOIN categorie on articles.id_categorie = categorie.id
+                WHERE articles.is_deleted=0
+                LIMIT 4
+        ';
         $db = $this->pdo->prepare($query);
         $db->execute();
         $lastestArticles = $db->fetchAll(PDO::FETCH_OBJ);
@@ -57,10 +58,16 @@ class ArticlesModel{
     }
 
     public function getArticle($id){
-        $query = "SELECT * FROM articles 
-                  INNER JOIN users on articles.id_user = users.id
+        $query = "SELECT
+                  articles.id as articleID,
+                  articles.title as articleTitle,
+                  articles.body as articleBody,
+                  categorie.id as categorieID,
+                  categorie.type as categorieType
+                  FROM articles 
+                  INNER JOIN categorie on articles.id_categorie = categorie.id
                   WHERE articles.id=:id
-                  LIMIT 4"
+                  "
         ;
         $db = $this->pdo->prepare($query);
         $db->bindParam(':id', $id, PDO::PARAM_INT);

@@ -89,7 +89,9 @@ class ArticlesController{
         $categorie = 0;
 
         $getArticle = $this->ArticlesModel->getArticle($id)[0];
-        
+        $allCategories = $this->CategoriesModel->getCategories();
+
+
         // TODO * Si le formulaire est soumis
         if(isset($_POST['form_article'])){
             if(isset($_POST['artilce-bannier'])){

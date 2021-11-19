@@ -9,8 +9,8 @@
     <?php require_once 'inc/nav.php' ?>
     <main class="container my-5">
         <article class="mb-5">
-            <h1 class="mb-4"><?= $article[0]->title ?></h1>
-            <p><?= $article[0]->body ?></p>
+            <h1 class="mb-4"><?= $article[0]->articleTitle ?></h1>
+            <p><?= $article[0]->articleBody ?></p>
         </article>
 
 

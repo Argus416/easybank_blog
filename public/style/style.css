@@ -213,6 +213,18 @@ p {
           justify-content: space-between;
 }
 
+.latest-articles .d-flex .card-cus .card-header-cus {
+  position: relative;
+}
+
+.latest-articles .d-flex .card-cus .card-header-cus .categorie {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: red;
+  z-index: 999;
+}
+
 .latest-articles .link {
   margin-top: 1em;
 }

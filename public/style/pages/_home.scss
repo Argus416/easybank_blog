@@ -60,8 +60,11 @@
                     position: absolute;
                     bottom: 0;
                     left: 0;
-                    background-color: red;
+                    background-color: $LimeGreen;
                     z-index: 999;
+                    color: $White;
+                    padding: 0.2em 1.5em;
+                    font-size: 13px;
                 }
             }
         }

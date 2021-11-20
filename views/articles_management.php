@@ -1,4 +1,6 @@
-<?php require_once 'inc/header.php' ?>
+<?php
+
+require_once 'inc/header.php' ?>
 <title>Articls management</title>
 </head>
 
@@ -8,8 +10,10 @@
         <div class="dashboard_body">
             <?php require_once 'inc/dashboard_header.php' ?>
             <div class="dashboard_content articles_management">
-                <div class="gestion-article-header">
-                    <h3> Gestion d'articles </h3>
+                <div class="gestion-article-header d-flex justify-content-between mb-4 ">
+                    <h3 class="m-0"> Gestion d'articles </h3>
+                    <a href="<?= $urlGenerator->generate('addArticle') ?>" class="btn-secondary-cus me-4">Ajouter un
+                        article</a>
                 </div>
 
                 <table class="table table-striped">

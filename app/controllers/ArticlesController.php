@@ -76,7 +76,7 @@ class ArticlesController{
             if(isset($_POST['artilce-body'])){
                 $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
             }
-            
+            dump($_POST);
             $this->ArticlesModel->addArticle($title, $body, $categorie );
         }
         require_once 'views\form_add_article.php';

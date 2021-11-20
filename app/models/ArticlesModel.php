@@ -22,12 +22,13 @@ class ArticlesModel{
                   users.id as userID,
                   users.nom as userNom,
                   users.prenom as userPrenom,
-                  categorie.id as categorieID
+                  categorie.id as categorieID,
                   categorie.type as categorieType
                   FROM articles 
                   INNER JOIN users on articles.id_user = users.id
                   INNER JOIN categorie on articles.id_categorie = categorie.id
                   WHERE articles.is_deleted=0
+                  ORDER BY articles.creation_date ASC
                   ';
 
         $db = $this->pdo->prepare($query);
@@ -78,16 +79,18 @@ class ArticlesModel{
 
     public function addArticle(STRING $title,STRING $body, STRING $idCategorie, INT $isDeleted = 0  ){ 
         try{
-            $query = 'INSERT INTO Articles VALUES(NULL, :title, :body, :isDeleted,:idUser, :idCategorie)';
+            $query = 'INSERT INTO Articles VALUES(NULL, :title, :body, :creation_date ,:isDeleted,:idUser, :idCategorie)';
             $db = $this->pdo->prepare($query);
             $data=[
                 ':title'=> $title,
                 ':body'=> $body,
+                // ':creation_date'=> "insert_time".=now(),
                 ':isDeleted'=> $isDeleted,
-                ':idUser'=> true,
+                ':idUser'=> 1,
                 ':idCategorie'=> $idCategorie
             ];
             $db->execute($data);
+
         }catch(PDOException $e){
             echo $e;
         }

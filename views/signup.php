@@ -42,7 +42,8 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <input type="submit" class="btn-secondary-cus btn-submit" value="Me connecter">
+                        <input type="submit" class="btn-secondary-cus btn-submit" name="create-account"
+                            value="Créer un compte">
                     </div>
                 </form>
                 <div class="link-parent">

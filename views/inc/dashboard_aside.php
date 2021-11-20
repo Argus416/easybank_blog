@@ -14,7 +14,7 @@
             </li>
             <li class="nav-item">
                 <i class="far fa-user"></i>
-                <a class="nav-link" href="users_management.php">Gestions d'utilisateurs</a>
+                <a class="nav-link" href="<?= $urlGenerator->generate('usersManagement') ?>">Gestions d'utilisateurs</a>
             </li>
             <li class="nav-item">
                 <i class="fas fa-cog"></i>

@@ -12,9 +12,10 @@
                 <div class="left">
                     <?php foreach($data as $article):?>
                     <article class="article">
-                        <a href="#">
+                        <a href="<?= $urlGenerator->generate('article', ['id'=>$article->articleID]) ?>">
                             <h2><?= $article->articleTitle ?></h2>
                         </a>
+
                         <p> <?= substr($article->articleBody, 0, 255)."..." ?> </p>
 
                         <div class="text-center view-more-container">

@@ -61,14 +61,16 @@ require_once 'inc/header.php' ?>
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Fermer</button>
                                                 <form method="POST">
-                                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                                    <input type="hidden" name="article-id"
+                                                        value="<?= $article->articleID?>">
+                                                    <button type="submit" name="article-del"
+                                                        class="btn btn-danger">Supprimer</button>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Fin Modal -->
-
                             </td>
                         </tr>
                         <?php endforeach;?>

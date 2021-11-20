@@ -44,11 +44,18 @@ class ArticlesController{
         require_once 'views\dashboard.php';
     }
 
-
     public function articlesManagement($param){
         $urlGenerator = $param['urlGenerator'];
         $allCategories = $this->CategoriesModel->getCategories();
         $articles = $this->ArticlesModel->getArticles();
+
+        if(isset($_POST['article-del'])){
+            $idArticle = filter_var($_POST['article-id'], FILTER_VALIDATE_INT);
+            $this->ArticlesModel->deleteArticle($idArticle);
+            // Reactualiser  la page
+            header('Refresh:0');
+        }
+
         require_once 'views\articles_management.php';
     }
 

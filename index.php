@@ -59,13 +59,13 @@ try{
         ]
     ]);
 
-    $dashboardRouteStat = new Route('/dashboard/', [
+    $dashboardRouteStat = new Route('/dashboard', [
         'controller' => [
             new ArticlesController(), 'stat'
         ]
     ]);
 
-    $dashboardRouteArticleMan = new Route('/dashboard/articles/', [
+    $dashboardRouteArticleMan = new Route('/dashboard/articles', [
         'controller' => [
             new ArticlesController(), 'articlesManagement'
         ]
@@ -80,9 +80,36 @@ try{
     $dashboardRouteArticleEdit = new Route('/dashboard/article/edit/{id}', [
         'controller' => [
             new ArticlesController(), 'edit'
-        ]
+        ],
+        ['id' => "$regChiffre"],
     ]);
 
+    $dashboardRouteAuthorMan = new Route('/dashboard/authors', [
+        'controller' => [
+            new UsersController(), 'usersManagement'
+        ],
+        ['id' => "$regChiffre"],
+    ]);
+    
+    $dashboardRouteAuthorShow = new Route('/dashboard/authors/show/{id}', [
+        'controller' => [
+            new UsersController(), 'show'
+        ],
+        ['id' => "$regChiffre"],
+    ]);
+
+    $dashboardRouteAuthorEdit = new Route('/dashboard/authors/edit/{id}', [
+        'controller' => [
+            new UsersController(), 'edit'
+        ],
+        ['id' => "$regChiffre"],
+    ]);
+
+    $dashboardRouteAuthorCreate = new Route('/dashboard/authors/new', [
+        'controller' => [
+            new UsersController(), 'create'
+        ]
+    ]);
 
     $routeCollection = new RouteCollection;
     $routeCollection->add('accueil', $accueilRoute);
@@ -95,6 +122,10 @@ try{
     $routeCollection->add('management', $dashboardRouteArticleMan);
     $routeCollection->add('addArticle', $dashboardRouteArticleAdd);
     $routeCollection->add('editArticle', $dashboardRouteArticleEdit);
+    $routeCollection->add('usersManagement', $dashboardRouteAuthorMan);
+    $routeCollection->add('authorShow', $dashboardRouteAuthorShow);
+    $routeCollection->add('authorEdit', $dashboardRouteAuthorEdit);
+    $routeCollection->add('authorCreate', $dashboardRouteAuthorCreate);
 
 
     $pathInfo = $_SERVER['PATH_INFO'] ?? "/";

@@ -117,6 +117,24 @@ class ArticlesModel{
             echo $e;
         }
     }
+
+    public function deleteArticle(INT $id){
+        try{
+            $query = 'UPDATE articles
+                      SET is_deleted = :isDeleted
+                      WHERE articles.id = :id';
+                      
+            $db = $this->pdo->prepare($query);
+
+            $data=[
+                ':isDeleted'=> 1,
+                ':id' => $id
+            ];
+            $db->execute($data);
+        }catch(PDOException $e){
+            echo $e;
+        }
+    }
     
 
 }

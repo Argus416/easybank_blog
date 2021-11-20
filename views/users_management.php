@@ -1,12 +1,12 @@
-<?php require_once 'template/header.php' ?>
-<title>Articls management</title>
+<?php require_once 'inc/header.php' ?>
+<title>Users management</title>
 </head>
 
 <body>
     <main class="dashboard">
-        <?php require_once 'template/dashboard_aside.php' ?>
+        <?php require_once 'inc/dashboard_aside.php' ?>
         <div class="dashboard_body">
-            <?php require_once 'template/dashboard_header.php' ?>
+            <?php require_once 'inc/dashboard_header.php' ?>
             <div class="dashboard_content users_management">
                 <h3> Gestion d'utilisateurs </h3>
 
@@ -23,41 +23,32 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php foreach($users as $user): ?>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Al-khatib</td>
-                            <td>Mohamad</td>
-                            <td>alkhatib.m804@gmail.com</td>
-                            <td>1</td>
+                            <th scope="row">
+                                <?= $user->authorID ?>
+                            </th>
                             <td>
-                                <a href="#" class="btn btn-primary"><i class="far fa-eye"></i></a>
-                                <a href="#" class="btn btn-warning"><i class="far fa-edit"></i></a>
+                                <?= $user->authorNom ?>
+                            </td>
+                            <td>
+                                <?= $user->authorPrenom ?>
+                            </td>
+                            <td>
+                                <?= $user->authorEmail ?>
+                            </td>
+                            <td>
+                                <?= $user->nbArticle ?>
+                            </td>
+                            <td>
+                                <a href="<?= $urlGenerator->generate('authorShow', ['id' =>$user->authorID]) ?>"
+                                    class="btn btn-primary"><i class="far fa-eye"></i></a>
+                                <a href="<?= $urlGenerator->generate('authorEdit', ['id' =>$user->authorID]) ?>"
+                                    class="btn btn-warning"><i class="far fa-edit"></i></a>
                                 <a href="#" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>test@gmail.com</td>
-                            <td>3</td>
-                            <td>
-                                <a href="#" class="btn btn-primary"><i class="far fa-eye"></i></a>
-                                <a href="#" class="btn btn-warning"><i class="far fa-edit"></i></a>
-                                <a href="#" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Bonjour</td>
-                            <td>coucou@gmail.com</td>
-                            <td>8</td>
-                            <td>
-                                <a href="#" class="btn btn-primary"><i class="far fa-eye"></i></a>
-                                <a href="#" class="btn btn-warning"><i class="far fa-edit"></i></a>
-                                <a href="#" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
 

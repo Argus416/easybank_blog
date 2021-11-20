@@ -14,10 +14,31 @@ class UsersModel{
     }
 
     public function getUsers(){
+        try{
+            $query = 'SELECT * FROM users WHERE is_deleted=0';
+            $db = $this->pdo->prepare($query);
+            $db->execute();
+            $lastestArticles = $db->fetchAll(PDO::FETCH_OBJ);
+            return $lastestArticles;
+        }catch(PDOException $e){
+
+        }
+    }
+
+    public function create(){
         $query = 'SELECT * FROM users WHERE is_deleted=0';
         $db = $this->pdo->prepare($query);
         $db->execute();
         $lastestArticles = $db->fetchAll(PDO::FETCH_OBJ);
         return $lastestArticles;
     }
+    
+    public function get(){
+        $query = 'SELECT * FROM users WHERE is_deleted=0';
+        $db = $this->pdo->prepare($query);
+        $db->execute();
+        $lastestArticles = $db->fetchAll(PDO::FETCH_OBJ);
+        return $lastestArticles;
+    }
+
 }

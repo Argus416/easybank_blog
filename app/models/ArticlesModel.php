@@ -28,7 +28,7 @@ class ArticlesModel{
                   INNER JOIN users on articles.id_user = users.id
                   INNER JOIN categorie on articles.id_categorie = categorie.id
                   WHERE articles.is_deleted=0
-                  ORDER BY articles.creation_date ASC
+                  ORDER BY articles.creation_date DESC
                   ';
 
         $db = $this->pdo->prepare($query);
@@ -50,6 +50,7 @@ class ArticlesModel{
                 INNER JOIN users on articles.id_user = users.id
                 INNER JOIN categorie on articles.id_categorie = categorie.id
                 WHERE articles.is_deleted=0
+                ORDER BY articles.creation_date DESC
                 LIMIT 4
         ';
         $db = $this->pdo->prepare($query);
@@ -79,12 +80,11 @@ class ArticlesModel{
 
     public function addArticle(STRING $title,STRING $body, STRING $idCategorie, INT $isDeleted = 0  ){ 
         try{
-            $query = 'INSERT INTO Articles VALUES(NULL, :title, :body, :creation_date ,:isDeleted,:idUser, :idCategorie)';
+            $query = 'INSERT INTO Articles VALUES(NULL, :title, :body, CURRENT_TIMESTAMP ,:isDeleted,:idUser, :idCategorie)';
             $db = $this->pdo->prepare($query);
             $data=[
                 ':title'=> $title,
                 ':body'=> $body,
-                // ':creation_date'=> "insert_time".=now(),
                 ':isDeleted'=> $isDeleted,
                 ':idUser'=> 1,
                 ':idCategorie'=> $idCategorie
@@ -96,20 +96,21 @@ class ArticlesModel{
         }
     }
 
-    public function editArticle(STRING $title,STRING $body, STRING $idCategorie){ 
+    public function editArticle(INT $id ,STRING $title,STRING $body, $idCategorie){ 
         try{
             $query = 'UPDATE articles
                       SET title = :title,
-                      SET body = :body,
-                      SET id_categorie = :idCategorie,
+                      body = :body,
+                      id_categorie = :idCategorie
                       WHERE articles.id = :id';
+                      
             $db = $this->pdo->prepare($query);
 
             $data=[
                 ':title'=> $title,
                 ':body'=> $body,
-                ':idUser'=> true,
-                ':idCategorie'=> $idCategorie
+                ':idCategorie'=> $idCategorie,
+                ':id' => $id
             ];
             $db->execute($data);
         }catch(PDOException $e){

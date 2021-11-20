@@ -90,7 +90,7 @@ try{
     $routeCollection->add('blog', $blogRoute);
     $routeCollection->add('article', $articleRoute);
     $routeCollection->add('login', $loginRoute);
-    $routeCollection->add('logout', $signupRoute);
+    $routeCollection->add('signup', $signupRoute);
     $routeCollection->add('stat', $dashboardRouteStat);
     $routeCollection->add('management', $dashboardRouteArticleMan);
     $routeCollection->add('addArticle', $dashboardRouteArticleAdd);

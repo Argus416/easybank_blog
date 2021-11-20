@@ -232,7 +232,8 @@ p {
   margin-top: 1em;
 }
 
-main.loginSignUpForm {
+main.signUpForm,
+main.loginForm {
   height: 100vh;
   width: 100vw;
   background: linear-gradient(-45deg, #31d35c 0%, #28bace 100%);
@@ -250,7 +251,8 @@ main.loginSignUpForm {
           animation: backgroundAnimation 7s ease infinite;
 }
 
-main.loginSignUpForm .form-container {
+main.signUpForm .form-container,
+main.loginForm .form-container {
   position: relative;
   text-align: center;
   padding: 3em 3.5em;
@@ -263,12 +265,14 @@ main.loginSignUpForm .form-container {
   border-radius: 10px;
 }
 
-main.loginSignUpForm .form-container .logo {
+main.signUpForm .form-container .logo,
+main.loginForm .form-container .logo {
   margin: 1em 0em 3em;
   width: 250px;
 }
 
-main.loginSignUpForm .form-container .link-parent {
+main.signUpForm .form-container .link-parent,
+main.loginForm .form-container .link-parent {
   position: absolute;
   text-align: center;
   bottom: 30px;
@@ -276,42 +280,36 @@ main.loginSignUpForm .form-container .link-parent {
   left: 0;
 }
 
-main.loginSignUpForm .form-container form {
+main.signUpForm .form-container form,
+main.loginForm .form-container form {
   text-align: left;
 }
 
-main.loginSignUpForm .form-container form .label {
+main.signUpForm .form-container form .label,
+main.loginForm .form-container form .label {
   position: relative;
 }
 
-main.loginSignUpForm .form-container form .label .input-parent {
+main.signUpForm .form-container form .label .input-parent,
+main.loginForm .form-container form .label .input-parent {
   margin-bottom: 1.5em;
 }
 
-main.loginSignUpForm .form-container form .label .input-parent::before {
+main.signUpForm .form-container form .label .input-parent::before,
+main.loginForm .form-container form .label .input-parent::before {
   font-family: "Helvetica", FontAwesome, sans-serif;
   font-size: 1.2em;
   margin-left: 10px;
   color: #9698a6;
 }
 
-main.loginSignUpForm .form-container form .label:first-child .input-parent::before {
-  content: "\f0e7";
-}
-
-main.loginSignUpForm .form-container form .label:nth-child(2) .input-parent::before {
-  content: "\f0e0";
-}
-
-main.loginSignUpForm .form-container form .label:nth-child(3) .input-parent::before {
-  content: "\f023";
-}
-
-main.loginSignUpForm .form-container form .label label {
+main.signUpForm .form-container form .label label,
+main.loginForm .form-container form .label label {
   display: block;
 }
 
-main.loginSignUpForm .form-container form .label .input-parent {
+main.signUpForm .form-container form .label .input-parent,
+main.loginForm .form-container form .label .input-parent {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -321,16 +319,43 @@ main.loginSignUpForm .form-container form .label .input-parent {
           align-items: center;
 }
 
-main.loginSignUpForm .form-container form .label .input-parent::before {
+main.signUpForm .form-container form .label .input-parent::before,
+main.loginForm .form-container form .label .input-parent::before {
   position: absolute;
 }
 
-main.loginSignUpForm .form-container form .label .input-parent input[type="text"],
-main.loginSignUpForm .form-container form .label .input-parent input[type="password"] {
+main.signUpForm .form-container form .label .input-parent input[type="text"],
+main.signUpForm .form-container form .label .input-parent input[type="password"],
+main.loginForm .form-container form .label .input-parent input[type="text"],
+main.loginForm .form-container form .label .input-parent input[type="password"] {
   width: 100%;
   padding: 0.3em 0 0.3em 2.8em;
   border: none;
   border-bottom: 1px solid #9698a6;
+}
+
+main.signUpForm .form-container form .nickname-signup-container .input-parent::before,
+main.loginForm .form-container form .nickname-signup-container .input-parent::before {
+  content: "\f507" !important;
+}
+
+main.signUpForm .form-container form:nth-child(2) .input-parent::before,
+main.loginForm .form-container form:nth-child(2) .input-parent::before {
+  content: "\f0e0";
+}
+
+main.signUpForm .form-container form:nth-child(3) .input-parent::before,
+main.loginForm .form-container form:nth-child(3) .input-parent::before {
+  content: "\f023";
+}
+
+main.signUpForm .form-container form:nth-child(4) .input-parent::before,
+main.loginForm .form-container form:nth-child(4) .input-parent::before {
+  content: "\qds";
+}
+
+main.signUpForm .form-container .logo {
+  margin-bottom: 0;
 }
 
 @-webkit-keyframes backgroundAnimation {

@@ -5,7 +5,7 @@
 </head>
 
 <body>
-    <main class="loginSignUpForm">
+    <main class="loginForm">
         <div class="container">
             <div class="form-container">
                 <a href="index.php">
@@ -30,7 +30,7 @@
                     </div>
                 </form>
                 <div class="link-parent">
-                    <a href="signup.php" class="link">
+                    <a href="<?= $urlGenerator->generate('signup') ?>" class="link">
                         Créer un compte
                     </a>
                 </div>

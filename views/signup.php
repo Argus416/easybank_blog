@@ -5,7 +5,7 @@
 </head>
 
 <body>
-    <main class="loginSignUpForm">
+    <main class="signUpForm">
         <div class="container">
             <div class="form-container">
                 <a href="/">
@@ -13,10 +13,17 @@
                 </a>
                 <form method="POST">
 
+                    <div class="label prenom-signup-container">
+                        <label for="prenom-signup">Prénom</label>
+                        <div class="input-parent ">
+                            <input type="text" name="prenom-signup" id="prenom-signup" placeholder="Prénom">
+                        </div>
+                    </div>
+
                     <div class="label">
-                        <label for="nickname-signup">Nickname</label>
+                        <label for="nom-signup">Nom</label>
                         <div class="input-parent">
-                            <input type="text" name="nickname-signup" id="nickname-signup" placeholder="nickname">
+                            <input type="text" name="nom-signup" id="nom-signup" placeholder="Nom">
                         </div>
                     </div>
 
@@ -39,7 +46,7 @@
                     </div>
                 </form>
                 <div class="link-parent">
-                    <a href="login.php" class="link">
+                    <a href="<?= $urlGenerator->generate('login') ?>" class="link">
                         Me connecter
                     </a>
                 </div>

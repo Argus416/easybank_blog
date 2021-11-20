@@ -39,7 +39,36 @@ require_once 'inc/header.php' ?>
                                 <a href="<?= $urlGenerator->generate('editArticle', ['id' => $article->articleID]) ?>"
                                     class="btn btn-warning"><i class="far fa-edit"></i></a>
                                 <a href="<?= $urlGenerator->generate('article', ['id' => $article->articleID]) ?>"
-                                    class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                    class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalConfirmation"><i
+                                        class="far fa-trash-alt"></i></a>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="modalConfirmation" tabindex="-1"
+                                    aria-labelledby="modalConfirmationLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalConfirmationLabel">Supprimer l'article
+                                                    <b><?= $article->articleID?> </b>
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Êtes vous sur de vouloir supprimer l'article ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Fermer</button>
+                                                <form method="POST">
+                                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Fin Modal -->
+
                             </td>
                         </tr>
                         <?php endforeach;?>
@@ -48,6 +77,9 @@ require_once 'inc/header.php' ?>
             </div>
         </div>
     </main>
+
+
+
 </body>
 
 </html>

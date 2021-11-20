@@ -1,4 +1,5 @@
-main.loginSignUpForm {
+main.signUpForm,
+main.loginForm {
     height: 100vh;
     width: 100vw;
     background: linear-gradient(-45deg, $LimeGreen 0%, rgba(40, 186, 206, 1) 100%);
@@ -47,27 +48,7 @@ main.loginSignUpForm {
                         color: $GrayishBlue;
                     }
                 }
-                &:first-child {
-                    .input-parent {
-                        &::before {
-                            content: "\f0e7";
-                        }
-                    }
-                }
-                &:nth-child(2) {
-                    .input-parent {
-                        &::before {
-                            content: "\f0e0";
-                        }
-                    }
-                }
-                &:nth-child(3) {
-                    .input-parent {
-                        &::before {
-                            content: "\f023";
-                        }
-                    }
-                }
+
                 label {
                     display: block;
                 }
@@ -88,6 +69,44 @@ main.loginSignUpForm {
                     }
                 }
             }
+
+            .nickname-signup-container {
+                .input-parent {
+                    &::before {
+                        content: "\f507" !important;
+                    }
+                }
+            }
+            &:nth-child(2) {
+                .input-parent {
+                    &::before {
+                        content: "\f0e0";
+                    }
+                }
+            }
+            &:nth-child(3) {
+                .input-parent {
+                    &::before {
+                        content: "\f023";
+                    }
+                }
+            }
+
+            &:nth-child(4) {
+                .input-parent {
+                    &::before {
+                        content: "\qds";
+                    }
+                }
+            }
+        }
+    }
+}
+
+main.signUpForm {
+    .form-container {
+        .logo {
+            margin-bottom: 0;
         }
     }
 }

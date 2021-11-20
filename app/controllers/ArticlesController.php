@@ -49,7 +49,6 @@ class ArticlesController{
         $urlGenerator = $param['urlGenerator'];
         $allCategories = $this->CategoriesModel->getCategories();
         $articles = $this->ArticlesModel->getArticles();
-        dump($articles);
         require_once 'views\articles_management.php';
     }
 
@@ -93,7 +92,7 @@ class ArticlesController{
 
 
         // TODO * Si le formulaire est soumis
-        if(isset($_POST['form_article'])){
+        if(isset($_POST['edit-article'])){
             if(isset($_POST['artilce-bannier'])){
                 $bannier = filter_var($_POST['artilce-bannier'], FILTER_SANITIZE_STRING);
             }
@@ -109,8 +108,8 @@ class ArticlesController{
             if(isset($_POST['artilce-body'])){
                 $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
             }
-            
-            $this->ArticlesModel->editArticle($title, $body, $categorie );
+            header('Refresh:0');
+            $this->ArticlesModel->editArticle($id ,$title, $body, $categorie );
         }
         require_once 'views\form_edit_article.php';
     }

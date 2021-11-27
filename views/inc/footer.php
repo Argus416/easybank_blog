@@ -1,8 +1,9 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="fisrt-col col-lg-3 col-md-6 col-sm-12">
-                <a href="#"><img src="style/images/logo-white.svg" alt="" /></a>
+            <div class="fisrt-col col-lg-4 col-md-6 col-sm-12">
+                <a href="<?= $urlGenerator->generate('accueil') ?>"><img
+                        src="<?= "$domain$public"?>style/images/logo-white.svg" alt="" /></a>
                 <div class="icons">
                     <a href="#"><img src="<?= "$domain$public"?>style/images/icon-facebook.svg"
                             alt="icon-facebook" /></a>
@@ -14,21 +15,14 @@
                             alt="icon-instagram" /></a>
                 </div>
             </div>
-            <div class="sec-col col-lg-3 col-md-6 col-sm-12">
+            <div class="sec-col col-lg-4 col-md-6 col-sm-12">
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="<?= $urlGenerator->generate('contact') ?>">Nous contacter</a></li>
+                    <li><a href="<?= $urlGenerator->generate('blog') ?>">Blog</a></li>
                 </ul>
             </div>
-            <div class="third-col col-lg-3 col-md-6 col-sm-12">
-                <ul>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div class="forth-col col-lg-3 col-md-6 col-sm-12">
+
+            <div class="third-col col-lg-4 col-md-6 col-sm-12">
                 <p>© Easybank. All Rights Reserved</p>
             </div>
         </div>

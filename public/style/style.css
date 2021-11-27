@@ -718,33 +718,34 @@ footer .fisrt-col {
 }
 
 footer .fisrt-col .icons {
-  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 footer .fisrt-col .icons a {
   margin-right: 10px;
 }
 
-footer .sec-col ul li,
-footer .third-col ul li {
+footer .sec-col ul {
+  padding: 0 !important;
+}
+
+footer .sec-col ul li {
   list-style: none;
   margin-bottom: 0.6em;
 }
 
-footer .sec-col ul li a,
-footer .third-col ul li a {
+footer .sec-col ul li a {
   text-decoration: none;
   color: white;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
 
-footer .sec-col ul li a:hover,
-footer .third-col ul li a:hover {
+footer .sec-col ul li a:hover {
   color: #31d35c;
 }
 
-footer .forth-col {
+footer .third-col {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -755,5 +756,58 @@ footer .forth-col {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.err-text {
+  -webkit-animation-name: errAnim;
+          animation-name: errAnim;
+  -webkit-animation-duration: 0.1s;
+          animation-duration: 0.1s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: 3;
+          animation-iteration-count: 3;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  font-size: 13px;
+  margin-bottom: 2em !important;
+}
+
+@-webkit-keyframes errAnim {
+  0% {
+    -webkit-transform: translateX(-5px);
+            transform: translateX(-5px);
+  }
+  40% {
+    -webkit-transform: translateX(5px);
+            transform: translateX(5px);
+  }
+  70% {
+    -webkit-transform: translateX(-5px);
+            transform: translateX(-5px);
+  }
+  100% {
+    -webkit-transform: translateX(5px);
+            transform: translateX(5px);
+  }
+}
+
+@keyframes errAnim {
+  0% {
+    -webkit-transform: translateX(-5px);
+            transform: translateX(-5px);
+  }
+  40% {
+    -webkit-transform: translateX(5px);
+            transform: translateX(5px);
+  }
+  70% {
+    -webkit-transform: translateX(-5px);
+            transform: translateX(-5px);
+  }
+  100% {
+    -webkit-transform: translateX(5px);
+            transform: translateX(5px);
+  }
 }
 /*# sourceMappingURL=style.css.map */

@@ -26,6 +26,11 @@
                                 required>
                         </div>
                     </div>
+
+                    <div class="label password-parent">
+                        <?= $err; ?>
+                    </div>
+
                     <div class="text-center">
                         <input type="submit" name="login" class="btn-secondary-cus btn-submit" value="Me connecter">
                     </div>

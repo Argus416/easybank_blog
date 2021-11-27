@@ -34,15 +34,15 @@ footer {
         flex-direction: column;
         justify-content: space-between;
         .icons {
-            margin-bottom: 15px;
+            margin-top: 15px;
             a {
                 margin-right: 10px;
             }
         }
     }
-    .sec-col,
-    .third-col {
+    .sec-col {
         ul {
+            padding: 0 !important;
             li {
                 list-style: none;
                 margin-bottom: 0.6em;
@@ -58,9 +58,34 @@ footer {
         }
     }
 
-    .forth-col {
+    .third-col {
         display: flex;
         flex-direction: column;
         justify-content: center;
+    }
+}
+
+.err-text {
+    animation-name: errAnim;
+    animation-duration: 0.1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 3;
+    animation-direction: alternate;
+    font-size: 13px;
+    margin-bottom: 2em !important;
+}
+
+@keyframes errAnim {
+    0% {
+        transform: translateX(-5px);
+    }
+    40% {
+        transform: translateX(5px);
+    }
+    70% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(5px);
     }
 }

@@ -1,3 +1,7 @@
+<?php
+    // echo $user->img_profile;
+
+?>
 <?php require_once 'inc/header.php' ?>
 <title>Articls management</title>
 </head>

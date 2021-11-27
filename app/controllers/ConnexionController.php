@@ -12,7 +12,9 @@ class ConnexionController{
 
     public function login($param){
         $urlGenerator = $param['urlGenerator'];
-        if(self::isLoggedin() != true){
+        $err = "";
+        
+        if($_SESSION['isLoggedin'] != true){
             $users = $this->UsersModel->getUsers();
             $email = $password = '';
             
@@ -35,10 +37,12 @@ class ConnexionController{
                         password_verify($password, $admin->mdp)
                     ){
                         $_SESSION['isLoggedin'] = true;
+                        header('Location:'.$urlGenerator->generate('accueil'));
+                    }else{
+                        $err = "<p class='text-danger err-text'>Votre email ou mot de passe n'est pas correct</p>";
                     }
                 }
             }
-
             require_once 'views\login.php';
         }else{
             header('Location:'.$urlGenerator->generate('accueil'));
@@ -54,6 +58,14 @@ class ConnexionController{
         }
     }
 
+    public static function Deconnexion(){
+        if(isset($_POST['deconnexion'])){
+            if($_SESSION['isLoggedin'] == true){
+                $_SESSION['isLoggedin'] = false;
+                return header('location:/');
+            }
+        }
+    }
     // public function signup($param){
     //     $urlGenerator = $param['urlGenerator'];
     //     $prenom = $nom = $email = $password = '';

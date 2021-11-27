@@ -11,13 +11,13 @@
                 <h3> Bienvenu Mohamad </h3>
 
 
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-2 current_photo_container">
                             <img class="current_photo" src="<?= "$domain$public" ?>style/images/image-currency.jpg"
-                                alt="profile_photo">
+                                alt="profile photo">
                             <input class="form-control" type="file" name="photo_profile"
-                                accept="image/png, image/gif, image/jpeg" />
+                                accept="image/png, image/jpeg, image/jpg" />
 
                         </div>
 

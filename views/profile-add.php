@@ -10,7 +10,7 @@
             <div class="dashboard_content my_profile">
                 <h3> Nouveau utilisateur </h3>
 
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-2 current_photo_container">
                             <img class="current_photo" src="<?= "$domain$public" ?>style/images/image-currency.jpg"

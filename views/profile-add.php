@@ -8,8 +8,7 @@
         <div class="dashboard_body">
             <?php require_once 'inc/dashboard_header.php' ?>
             <div class="dashboard_content my_profile">
-                <h3> Bienvenu Mohamad </h3>
-
+                <h3> Nouveau utilisateur </h3>
 
                 <form method="POST">
                     <div class="row">

@@ -1,4 +1,6 @@
-<?php require_once 'inc/header.php' ?>
+<?php
+    require_once 'inc/header.php' ;
+?>
 <title>404 error</title>
 </head>
 

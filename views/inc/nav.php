@@ -21,12 +21,22 @@
                             <a class="nav-link" href="<?= $urlGenerator->generate('contact') ?>">Nous Contacter</a>
                     </li>
                     <li class=" nav-item">
-                        <a class="nav-link" href="<?= $urlGenerator->generate('stat') ?>">Dashboard</a>
+                        <a class="nav-link" href="<?= $urlGenerator->generate('articlesManagement') ?>">Dashboard</a>
                     </li>
+
+                    <?php if(isset($_SESSION['isLoggedin']) && $_SESSION['isLoggedin'] != true ):?>
                     <li class=" nav-item-cus">
-                        <a class="nav-link btn-secondary-cus" href="<?= $urlGenerator->generate('login') ?>">Me
+                        <a class="nav-link " href="<?= $urlGenerator->generate('login') ?>">Me
                             connecter</a>
                     </li>
+                    <?php elseif(isset($_SESSION['isLoggedin']) && $_SESSION['isLoggedin'] == true ):?>
+                    <li class="nav-link">
+                        <form method="POST">
+                            <input type="submit" class=" nav-item-cus-dec" value="Me déconnecter">
+                        </form>
+                    </li>
+                    <?php endif;?>
+
                 </ul>
             </div>
         </div>

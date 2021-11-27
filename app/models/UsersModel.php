@@ -22,9 +22,8 @@ class UsersModel{
                     users.email as authorEmail,
                     COUNT(articles.id_user) as nbArticle
                     FROM users 
-                    right JOIN articles ON users.id = articles.id_user
-                    WHERE users.is_deleted=0
-                    GROUP  BY articles.id_user';
+                    LEFT JOIN articles ON users.id = articles.id_user
+                    GROUP  BY users.id';
             $db = $this->pdo->prepare($query);
             $db->execute();
             $users = $db->fetchAll(PDO::FETCH_OBJ);
@@ -35,7 +34,7 @@ class UsersModel{
     }
     
     public function getUser($id){
-        $query = 'SELECT * FROM users WHERE is_deleted=0 AND id=:id';
+        $query = 'SELECT * FROM users WHERE id=:id';
         $db = $this->pdo->prepare($query);
         $data=[
             ':id' => $id
@@ -45,22 +44,21 @@ class UsersModel{
         return $user;
     }
     
-    public function create(
-        STRING $nom, STRING $prenom, STRING $email,
-        STRING $mdp
-    ){
-        $query='INSERT INTO users VALUES (NULL ,:nom, :prenom, :email, :mdp, NULL, NULL, 0)';
-        $db = $this->pdo->prepare($query);
+    // public function create(
+    //     STRING $nom, STRING $prenom, STRING $email,
+    //     STRING $mdp
+    // ){
+    //     $query='INSERT INTO users VALUES (NULL ,:nom, :prenom, :email, :mdp, NULL, NULL, 0)';
+    //     $db = $this->pdo->prepare($query);
 
-        $date= [
-            ':nom' => $nom,
-            ':prenom' => $prenom,
-            ':email'=> $email,
-            ':mdp' => $mdp
-        ];
-        $db->execute($date);
-    }
-
+    //     $date= [
+    //         ':nom' => $nom,
+    //         ':prenom' => $prenom,
+    //         ':email'=> $email,
+    //         ':mdp' => $mdp
+    //     ];
+    //     $db->execute($date);
+    // }
 
 
     public function update(
@@ -71,11 +69,10 @@ class UsersModel{
                 SET nom = :nom, 
                 prenom = :prenom, 
                 email = :email, 
-                mdp = :mdp 
+                mdp = :mdp,
+                date_de_naissance = :dateDeNaissance
                 WHERE users.id = :id
         ';
-
-    
 
         $db = $this->pdo->prepare($query);
 
@@ -90,12 +87,20 @@ class UsersModel{
         $db->execute($date);
     }
 
-    public function delete(){
-        $query = 'SELECT * FROM users WHERE is_deleted=0';
+    
+    public function delete($id){
+        $query='UPDATE users 
+                SET is_deleted = :isDeleted 
+                WHERE users.id = :id
+        ';
         $db = $this->pdo->prepare($query);
-        $db->execute();
-        $lastestArticles = $db->fetchAll(PDO::FETCH_OBJ);
-        return $lastestArticles;
+        
+        $data = [
+            ':id' => $id,
+            ':isDeleted' => 1
+        ];
+        
+        $db->execute($data);
     }
 
 }

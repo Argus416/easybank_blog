@@ -38,6 +38,22 @@ main.loginForm {
 
             .label {
                 position: relative;
+
+                &.email-parent {
+                    .input-parent {
+                        &::before {
+                            content: "\f0e0";
+                        }
+                    }
+                }
+                &.password-parent {
+                    .input-parent {
+                        &::before {
+                            content: "\f023";
+                        }
+                    }
+                }
+
                 .input-parent {
                     margin-bottom: 1.5em;
 
@@ -61,6 +77,7 @@ main.loginForm {
                     }
 
                     input[type="text"],
+                    input[type="email"],
                     input[type="password"] {
                         width: 100%;
                         padding: 0.3em 0 0.3em 2.8em;
@@ -74,28 +91,6 @@ main.loginForm {
                 .input-parent {
                     &::before {
                         content: "\f507" !important;
-                    }
-                }
-            }
-            &:nth-child(2) {
-                .input-parent {
-                    &::before {
-                        content: "\f0e0";
-                    }
-                }
-            }
-            &:nth-child(3) {
-                .input-parent {
-                    &::before {
-                        content: "\f023";
-                    }
-                }
-            }
-
-            &:nth-child(4) {
-                .input-parent {
-                    &::before {
-                        content: "\qds";
                     }
                 }
             }

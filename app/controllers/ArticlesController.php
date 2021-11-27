@@ -38,13 +38,14 @@ class ArticlesController{
         require_once 'views\article.php';
     }
     
-    public function stat($param){
-        $urlGenerator = $param['urlGenerator'];
+    // public function stat($param){
+    //     $urlGenerator = $param['urlGenerator'];
     
-        require_once 'views\dashboard.php';
-    }
+    //     require_once 'views\dashboard.php';
+    // }
 
     public function articlesManagement($param){
+        ConnexionController::isLoggedin();
         $urlGenerator = $param['urlGenerator'];
         $allCategories = $this->CategoriesModel->getCategories();
         $articles = $this->ArticlesModel->getArticles();
@@ -60,6 +61,8 @@ class ArticlesController{
     }
 
     public function add($param){
+        ConnexionController::isLoggedin();
+        
         $urlGenerator = $param['urlGenerator'];
         $allCategories = $this->CategoriesModel->getCategories();
         $title = $body = '';
@@ -82,13 +85,16 @@ class ArticlesController{
             if(isset($_POST['artilce-body'])){
                 $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
             }
-            dump($_POST);
+
+            header('Location:' . $urlGenerator->generate('management'));
             $this->ArticlesModel->addArticle($title, $body, $categorie );
         }
         require_once 'views\form_add_article.php';
     }
 
     public function edit($param){
+        ConnexionController::isLoggedin();
+        ConnexionController::isLoggedin();
         $urlGenerator = $param['urlGenerator'];
         $id = $param['id'];
         $title = $body = '';

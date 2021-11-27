@@ -80,9 +80,16 @@ p {
   background: -webkit-gradient(linear, left top, right top, from(#31d35c), to(#28bace));
   background: linear-gradient(90deg, #31d35c 0%, #28bace 100%);
   color: white;
-  padding: 0.7em 2em !important;
+  padding: 0.8em 2em !important;
   border-radius: 20px;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   border: none;
+}
+
+.btn-primary-cus:hover {
+  opacity: 0.8;
+  color: white;
 }
 
 .btn-secondary-cus {
@@ -98,7 +105,7 @@ p {
 }
 
 .btn-secondary-cus:hover {
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .btn-third-cus {
@@ -144,7 +151,36 @@ p {
 }
 
 .nav-item-cus:hover {
-  opacity: 0.7;
+  opacity: 0.8;
+}
+
+.nav-item-cus,
+.nav-item-cus-dec {
+  color: white !important;
+  padding: 0em 1em !important;
+  border-radius: 20px;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.nav-item-cus > *,
+.nav-item-cus-dec > * {
+  color: white !important;
+}
+
+.nav-item-cus:hover,
+.nav-item-cus-dec:hover {
+  opacity: 0.8;
+}
+
+.nav-item-cus {
+  background-color: #31d35c;
+}
+
+.nav-item-cus-dec {
+  height: 40px;
+  border: none;
+  background-color: crimson;
 }
 
 .test {
@@ -290,6 +326,16 @@ main.loginForm .form-container form .label {
   position: relative;
 }
 
+main.signUpForm .form-container form .label.email-parent .input-parent::before,
+main.loginForm .form-container form .label.email-parent .input-parent::before {
+  content: "\f0e0";
+}
+
+main.signUpForm .form-container form .label.password-parent .input-parent::before,
+main.loginForm .form-container form .label.password-parent .input-parent::before {
+  content: "\f023";
+}
+
 main.signUpForm .form-container form .label .input-parent,
 main.loginForm .form-container form .label .input-parent {
   margin-bottom: 1.5em;
@@ -325,8 +371,10 @@ main.loginForm .form-container form .label .input-parent::before {
 }
 
 main.signUpForm .form-container form .label .input-parent input[type="text"],
+main.signUpForm .form-container form .label .input-parent input[type="email"],
 main.signUpForm .form-container form .label .input-parent input[type="password"],
 main.loginForm .form-container form .label .input-parent input[type="text"],
+main.loginForm .form-container form .label .input-parent input[type="email"],
 main.loginForm .form-container form .label .input-parent input[type="password"] {
   width: 100%;
   padding: 0.3em 0 0.3em 2.8em;
@@ -337,21 +385,6 @@ main.loginForm .form-container form .label .input-parent input[type="password"] 
 main.signUpForm .form-container form .nickname-signup-container .input-parent::before,
 main.loginForm .form-container form .nickname-signup-container .input-parent::before {
   content: "\f507" !important;
-}
-
-main.signUpForm .form-container form:nth-child(2) .input-parent::before,
-main.loginForm .form-container form:nth-child(2) .input-parent::before {
-  content: "\f0e0";
-}
-
-main.signUpForm .form-container form:nth-child(3) .input-parent::before,
-main.loginForm .form-container form:nth-child(3) .input-parent::before {
-  content: "\f023";
-}
-
-main.signUpForm .form-container form:nth-child(4) .input-parent::before,
-main.loginForm .form-container form:nth-child(4) .input-parent::before {
-  content: "\qds";
 }
 
 main.signUpForm .form-container .logo {

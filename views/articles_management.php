@@ -39,11 +39,12 @@ require_once 'inc/header.php' ?>
                                 <a href="<?= $urlGenerator->generate('editArticle', ['id' => $article->articleID]) ?>"
                                     class="btn btn-warning"><i class="far fa-edit"></i></a>
                                 <a href="<?= $urlGenerator->generate('article', ['id' => $article->articleID]) ?>"
-                                    class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalConfirmation"><i
+                                    class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#modalConfirmation<?= $article->articleID?>"><i
                                         class="far fa-trash-alt"></i></a>
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="modalConfirmation" tabindex="-1"
+                                <div class="modal fade" id="modalConfirmation<?= $article->articleID?>" tabindex="-1"
                                     aria-labelledby="modalConfirmationLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">

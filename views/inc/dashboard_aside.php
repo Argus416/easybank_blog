@@ -4,21 +4,24 @@
             <img src="<?= "$domain$public"?>style/images/logo.svg" alt="logo" class="logo">
         </a>
         <ul>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <i class="fas fa-desktop"></i>
-                <a class="nav-link" href="<?= $urlGenerator->generate('stat') ?>">Main</a>
-            </li>
+                <a class="nav-link" href=" $urlGenerator->generate('stat') ">Main</a>
+            </li> -->
             <li class="nav-item">
                 <i class="fas fa-newspaper"></i>
-                <a class="nav-link" href="<?= $urlGenerator->generate('management') ?>">Gestion d'article</a>
+                <a class="nav-link" href="<?= $urlGenerator->generate('articlesManagement') ?>">Gestion d'article</a>
             </li>
-            <li class="nav-item">
+
+            <!-- <li class="nav-item">
                 <i class="far fa-user"></i>
-                <a class="nav-link" href="<?= $urlGenerator->generate('usersManagement') ?>">Gestions d'utilisateurs</a>
-            </li>
+                <a class="nav-link" href="?= $urlGenerator->generate('usersManagement') ?">Gestions d'utilisateurs</a>
+            </li> -->
+
             <li class="nav-item">
                 <i class="fas fa-cog"></i>
-                <a class="nav-link" href="my_profile.php">Mon profile</a>
+                <a class="nav-link" href="<?= $urlGenerator->generate('authorShow', ['id' =>$_ENV['USER_ID']])?>">Mon
+                    profile</a>
             </li>
             <li class="nav-item">
                 <i class="far fa-compass"></i>

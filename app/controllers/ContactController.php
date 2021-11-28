@@ -1,6 +1,6 @@
 <?php
 
-require_once 'app\models\ArticlesModel.php';
+require_once 'app/models/ArticlesModel.php';
 
 class ContactController{
 
@@ -12,6 +12,6 @@ class ContactController{
     public function contact($param){
         $urlGenerator = $param['urlGenerator'];
 
-        require_once 'views\contact.php';
+        require_once 'views/contact.php';
     }
 }

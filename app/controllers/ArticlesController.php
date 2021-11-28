@@ -1,7 +1,7 @@
 <?php
 
-require_once 'app\models\ArticlesModel.php';
-require_once 'app\models\CategoriesModel.php';
+require_once 'app/models/ArticlesModel.php';
+require_once 'app/models/CategoriesModel.php';
 
 class ArticlesController{
 
@@ -19,14 +19,14 @@ class ArticlesController{
         $urlGenerator = $param['urlGenerator'];
 
         $data = $this->ArticlesModel->getLatesetArticles();
-        require_once 'views\accueil.php';
+        require_once 'views/accueil.php';
     }
 
     public function blog($param){
         $urlGenerator = $param['urlGenerator'];
 
         $data = $this->ArticlesModel->getArticles();
-        require_once 'views\blog.php';
+        require_once 'views/blog.php';
     }
 
     public function show($param){
@@ -35,13 +35,13 @@ class ArticlesController{
         $id = $param['id'];
         $article = $this->ArticlesModel->getArticle($id);
         $data = $this->ArticlesModel->getLatesetArticles();
-        require_once 'views\article.php';
+        require_once 'views/article.php';
     }
     
     // public function stat($param){
     //     $urlGenerator = $param['urlGenerator'];
     
-    //     require_once 'views\dashboard.php';
+    //     require_once 'views/dashboard.php';
     // }
 
     public function articlesManagement($param){
@@ -57,7 +57,7 @@ class ArticlesController{
             header('Refresh:0');
         }
 
-        require_once 'views\articles_management.php';
+        require_once 'views/articles_management.php';
     }
 
     public function add($param){
@@ -89,7 +89,7 @@ class ArticlesController{
             header('Location:' . $urlGenerator->generate('management'));
             $this->ArticlesModel->addArticle($title, $body, $categorie );
         }
-        require_once 'views\form_add_article.php';
+        require_once 'views/form_add_article.php';
     }
 
     public function edit($param){
@@ -123,6 +123,6 @@ class ArticlesController{
             $this->ArticlesModel->editArticle($id ,$title, $body, $categorie );
             header('location:'. $urlGenerator->generate('article', ['id' => $id]));
         }
-        require_once 'views\form_edit_article.php';
+        require_once 'views/form_edit_article.php';
     }
 }

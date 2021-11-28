@@ -1,6 +1,6 @@
 <?php
 
-require_once 'app\models\UsersModel.php';
+require_once 'app/models/UsersModel.php';
 
 class ConnexionController{
 
@@ -43,7 +43,7 @@ class ConnexionController{
                     }
                 }
             }
-            require_once 'views\login.php';
+            require_once 'views/login.php';
         }else{
             header('Location:'.$urlGenerator->generate('accueil'));
         }
@@ -88,7 +88,7 @@ class ConnexionController{
             
     //     }
         
-    //     require_once 'views\signup.php';
+    //     require_once 'views/signup.php';
     // }
 
     // public function usersManagement($param){
@@ -99,7 +99,7 @@ class ConnexionController{
     //         $id = filter_var($_POST['user-id'], FILTER_VALIDATE_INT);
     //         $this->UsersModel->delete($id);
     //     }
-    //     require_once 'views\users_management.php';
+    //     require_once 'views/users_management.php';
     // }
 
 }

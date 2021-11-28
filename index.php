@@ -8,15 +8,15 @@ use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
 require __DIR__ . "/vendor/autoload.php";
-require_once "app\classes\PDOSignleton.php";
-require_once "config\config.php";
-require_once "app\helpers\Helpers.php";
+require_once "app/classes/PDOSignleton.php";
+require_once "config/config.php";
+require_once "app/helpers/Helpers.php";
 
-require_once 'app\controllers\ArticlesController.php';
-require_once 'app\controllers\ContactController.php';
-require_once 'app\controllers\UsersController.php';
-require_once 'app\controllers\ConnexionController.php';
-require_once 'app\controllers\ErrorController.php';
+require_once 'app/controllers/ArticlesController.php';
+require_once 'app/controllers/ContactController.php';
+require_once 'app/controllers/UsersController.php';
+require_once 'app/controllers/ConnexionController.php';
+require_once 'app/controllers/ErrorController.php';
 
 if(!isset($_SESSION['isLoggedin']) || $_SESSION['isLoggedin'] != true  ){
     $_SESSION['isLoggedin'] = false;

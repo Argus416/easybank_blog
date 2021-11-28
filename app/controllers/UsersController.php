@@ -1,6 +1,6 @@
 <?php
 
-require_once 'app\models\UsersModel.php';
+require_once 'app/models/UsersModel.php';
 
 class UsersController{
 
@@ -19,7 +19,7 @@ class UsersController{
 
         $user = $this->UsersModel->getUser($id)[0];
        
-        require_once 'views\my_profile.php';
+        require_once 'views/my_profile.php';
 
     }
 
@@ -74,7 +74,7 @@ class UsersController{
             $this->UsersModel->update($id ,$nom, $prenom, $email, $password, $dateDeNaissance);
 
         }
-        require_once 'views\profile-edit.php';
+        require_once 'views/profile-edit.php';
     }
 
    

@@ -1,5 +1,6 @@
 <?php
 
+use function PHPSTORM_META\type;
 
 require_once 'app/classes/PDOSignleton.php';
 
@@ -46,10 +47,11 @@ class ArticlesModel{
         }
     }
 
-    public function getArticlesByCategories(Array $idsCategorie){
+    public function getArticlesByCategories(Array $idsCategorie, INT $offset = 0){
         try{
-            $data = [];
 
+            
+            // $data = [];
             $query="SELECT
                     articles.id as articleID,
                     articles.title as articleTitle,
@@ -66,22 +68,31 @@ class ArticlesModel{
                     AND categorie.is_deleted=0
                     ";
             $i = 0;
+            
             foreach($idsCategorie as $id){
                 if($i == 0){
                     $query .= "AND articles.id_categorie = :idsCategorie$id\n";
                 }else{
                     $query .= "OR articles.id_categorie = :idsCategorie$id\n";
                 }
-                $data['idsCategorie'.$id] += $id;
+                // $data['idsCategorie'.$id] += $id;
                 $i++;
             }
-    
-            
-            $query .= " ORDER BY articles.creation_date DESC";
-    
+
+            $query.="ORDER BY articles.creation_date DESC
+                    LIMIT 4 OFFSET :offsetTest
+            ";
+
             $db = $this->pdo->prepare($query);
+
+            foreach($idsCategorie as $id){
+                $id = intval($id);
+                $db->bindParam(":idsCategorie$id", $id, PDO::PARAM_INT);
+            }
             
-            $db->execute($data);
+            $db->bindParam(':offsetTest', $offset, PDO::PARAM_INT);
+            $db->execute();
+            // $db->execute($data);
             $articlesByCategories = $db->fetchAll(PDO::FETCH_OBJ);
             return $articlesByCategories;
         }catch(PDOException $e){
@@ -240,6 +251,42 @@ class ArticlesModel{
             echo $e->getMessage();
         }
 
+    }
+
+    public function getCountArticlesByCategories(Array $idsCategorie){
+        try{
+            $data = [];
+            $query="SELECT
+                    count(articles.id) as nbArticles
+                    FROM articles 
+                    INNER JOIN users on articles.id_user = users.id
+                    INNER JOIN categorie on articles.id_categorie = categorie.id
+                    WHERE articles.is_deleted=0
+                    AND categorie.is_deleted=0
+                    ";
+                    
+            $i = 0;
+            foreach($idsCategorie as $id){
+                if($i == 0){
+                    $query .= "AND articles.id_categorie = :idsCategorie$id\n";
+                }else{
+                    $query .= "OR articles.id_categorie = :idsCategorie$id\n";
+                }
+                
+                $data['idsCategorie'.$id] += $id;
+                $i++;
+            }
+
+            $db = $this->pdo->prepare($query);
+            
+            $db->execute($data);
+            $countArticlesByCategories = $db->fetchAll(PDO::FETCH_OBJ);
+            return $countArticlesByCategories;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+
+       
     }
 
 }

@@ -10,17 +10,12 @@ class ArticlesController{
 
     // Attribue pour la pagination
     private $nbElementParPage;
-    private $nbPages;
-
     public function __construct()
     {
         $this->ArticlesModel = new ArticlesModel;
         $this->CategoriesModel = new CategoriesModel;
-
-        $this->nbElementParPage = 5;
         
-        $this->nbPages = $this->ArticlesModel->getCountArticle()[0]->nbArticles;
-        $this->nbPages = ceil($this->nbPages / $this->nbElementParPage);
+        $this->nbElementParPage = 4;
     }
 
     public function index($param){
@@ -32,28 +27,46 @@ class ArticlesController{
 
     public function blog($param){
         $urlGenerator = $param['urlGenerator'];
-
-        dump($this->nbPages);
+        $nbPages = 0;
+        
         // Si aucun catégorie n'est selectionné => afficher tous les articles
         if(!isset($_POST['categories-selected']) || empty($_POST['categories-selected']) ){
+            
             $data = $this->ArticlesModel->getArticles();
+            
+            // gestion de la pagination
+            if(isset($_GET['pagination']) && !empty($_GET['pagination'])){
+                $pageNumber = (intval($_GET['pagination']) - 1) * $this->nbElementParPage;
+                $data = $this->ArticlesModel->getArticles($pageNumber);
+            }
+
+            $nbPages = $this->ArticlesModel->getCountArticle()[0]->nbArticles;
+            $nbPages = intval(ceil($nbPages / $this->nbElementParPage));
+    
+            
         }else{
             unset($_POST['categories-selected']);
             $categories = [];
-
             foreach($_POST as $categorie){
                 array_push($categories, $categorie);
             }
-
             $data = $this->ArticlesModel->getArticlesByCategories($categories);
+
+            $nbPages = $this->ArticlesModel->getCountArticlesByCategories($categories)[0]->nbArticles;
+            $nbPages = intval(ceil($nbPages / $this->nbElementParPage));
+            dump( $this->ArticlesModel->getCountArticlesByCategories($categories));
         }
         
         $articles = $data;
-
         $categories = $this->CategoriesModel->getCategories();
+
+        $urlBlog = $urlGenerator->generate('blog');
+
+        $pagintation = Helpers::Pagination($this->nbElementParPage, $nbPages, "$urlBlog?pagination=" );
 
         require_once 'views/blog.php';
     }
+
 
     public function show($param){
         $urlGenerator = $param['urlGenerator'];

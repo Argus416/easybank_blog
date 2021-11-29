@@ -1,6 +1,5 @@
 <?php
     require_once 'inc/header.php';
-    dump($data);
 ?>
 <title>Nos articles</title>
 
@@ -13,12 +12,12 @@
             <h1 class="page-title">Nos articles</h1>
             <div class="d-flex">
                 <div class="left">
-                    <?php foreach($data as $article):?>
+                    <?php foreach($articles as $article):?>
                     <article class="article">
                         <a href="<?= $urlGenerator->generate('article', ['id'=>$article->articleID]) ?>">
                             <h2><?= $article->articleTitle ?></h2>
                         </a>
-                        <span class="mb-4"><?= $article->categorieType; ?></span>
+                        <small class="d-block mb-3"><?= $article->categorieType; ?></small>
 
                         <p> <?= substr($article->articleBody, 0, 255)."..." ?> </p>
 
@@ -30,9 +29,53 @@
                     <?php endforeach;?>
                 </div>
 
-                <div class="right"></div>
+                <div class="right">
+                    <form method="POST" class="d-flex flex-column categorie-select-form">
+                        <h4>Catégories</h4>
+                        <ul class="categorie-list">
+                            <?php 
+                                foreach($categories as $categorie):
+                                $checked = $_POST["cat-$categorie->type"] === "$categorie->id" ? 'checked' :
+                            '';
+                            ?>
+
+                            <li>
+                                <label for="cat-<?= $categorie->type ?>" class="mb-1">
+                                    <input type="checkbox" name="cat-<?= $categorie->type ?>" class="categorie"
+                                        id="cat-<?= $categorie->type ?>" value="<?= $categorie->id ?>" <?= $checked?>>
+                                    <?= $categorie->type ?>
+                                </label>
+                            </li>
+                            <?php endforeach;?>
+                        </ul>
+                        <input type="submit" name="categories-selected" class="categorie-select" hidden>
+                    </form>
+                </div>
             </div>
+
+            <nav aria-label="Page navigation ">
+                <ul class="pagination justify-content-center">
+
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
         </div>
+
     </main>
 
     <?php require_once 'inc/footer.php' ?>

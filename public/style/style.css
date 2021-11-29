@@ -487,8 +487,14 @@ main.contact_us .d-flex .right .btn-container .btn-submit {
   width: 70%;
 }
 
+main.blogs .d-flex {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 main.blogs .d-flex .left {
-  width: 75%;
+  width: 74%;
 }
 
 main.blogs .d-flex .left .article {
@@ -510,6 +516,23 @@ main.blogs .d-flex .left .article p {
 
 main.blogs .d-flex .left .article .view-more-container {
   margin-bottom: 0.7em;
+}
+
+main.blogs .d-flex .right {
+  width: 24%;
+}
+
+main.blogs .d-flex .right h4 {
+  margin-bottom: 18px;
+}
+
+main.blogs .d-flex .right .categorie-list {
+  padding-left: 13px;
+  list-style: none;
+}
+
+main.blogs .d-flex .right .categorie-list li input {
+  margin-right: 5px;
 }
 
 .logo {
@@ -709,6 +732,10 @@ header .nav-item {
 
 header .nav-item:last-child {
   margin-right: 0;
+}
+
+header .form-deconnexion {
+  margin: 0;
 }
 
 footer {

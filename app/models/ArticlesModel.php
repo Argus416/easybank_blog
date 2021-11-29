@@ -13,29 +13,82 @@ class ArticlesModel{
         $this->pdosingleton = PDOSignleton::getSingleton();
         $this->pdo = $this->pdosingleton::PDO_Init();
     }
+    
 
-    public function getArticles(){
-        $query = 'SELECT
-                  articles.id as articleID,
-                  articles.title as articleTitle,
-                  articles.body as articleBody,
-                  users.id as userID,
-                  users.nom as userNom,
-                  users.prenom as userPrenom,
-                  categorie.id as categorieID,
-                  categorie.type as categorieType
-                  FROM articles 
-                  INNER JOIN users on articles.id_user = users.id
-                  INNER JOIN categorie on articles.id_categorie = categorie.id
-                  WHERE articles.is_deleted=0
-                  AND categorie.is_deleted=0
-                  ORDER BY articles.creation_date DESC
-                  ';
+    public function getArticles($offset = 0){
+        try{
+            $query='SELECT
+                    articles.id as articleID,
+                    articles.title as articleTitle,
+                    articles.body as articleBody,
+                    users.id as userID,
+                    users.nom as userNom,
+                    users.prenom as userPrenom,
+                    categorie.id as categorieID,
+                    categorie.type as categorieType
+                    FROM articles 
+                    INNER JOIN users on articles.id_user = users.id
+                    INNER JOIN categorie on articles.id_categorie = categorie.id
+                    WHERE articles.is_deleted=0
+                    AND categorie.is_deleted=0
+                    ORDER BY articles.creation_date DESC
+                    LIMIT 4 OFFSET :offsetTest
+                ';
+    
+            $db = $this->pdo->prepare($query);
+            $db->bindParam(':offsetTest', $offset, PDO::PARAM_INT);
+            $db->execute();
+            $articles = $db->fetchAll(PDO::FETCH_OBJ);
+            return $articles;
+            
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
 
-        $db = $this->pdo->prepare($query);
-        $db->execute();
-        $lastestArticles = $db->fetchAll(PDO::FETCH_OBJ);
-        return $lastestArticles;
+    public function getArticlesByCategories(Array $idsCategorie){
+        try{
+            $data = [];
+
+            $query="SELECT
+                    articles.id as articleID,
+                    articles.title as articleTitle,
+                    articles.body as articleBody,
+                    users.id as userID,
+                    users.nom as userNom,
+                    users.prenom as userPrenom,
+                    categorie.id as categorieID,
+                    categorie.type as categorieType
+                    FROM articles 
+                    INNER JOIN users on articles.id_user = users.id
+                    INNER JOIN categorie on articles.id_categorie = categorie.id
+                    WHERE articles.is_deleted=0
+                    AND categorie.is_deleted=0
+                    ";
+            $i = 0;
+            foreach($idsCategorie as $id){
+                if($i == 0){
+                    $query .= "AND articles.id_categorie = :idsCategorie$id\n";
+                }else{
+                    $query .= "OR articles.id_categorie = :idsCategorie$id\n";
+                }
+                $data['idsCategorie'.$id] += $id;
+                $i++;
+            }
+    
+            
+            $query .= " ORDER BY articles.creation_date DESC";
+    
+            $db = $this->pdo->prepare($query);
+            
+            $db->execute($data);
+            $articlesByCategories = $db->fetchAll(PDO::FETCH_OBJ);
+            return $articlesByCategories;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+
+       
     }
 
     public function getLatesetArticles(){
@@ -75,8 +128,8 @@ class ArticlesModel{
                 INNER JOIN categorie on articles.id_categorie = categorie.id
                 WHERE articles.is_deleted=0
                 AND categorie.is_deleted=0
-                AND articles.id != :id
-                ORDER BY articles.creation_date DESC
+                AND articles.id != :id 
+                ORDER BY articles.creation_date DESC 
                 LIMIT 4
         ';
         $db = $this->pdo->prepare($query);
@@ -104,7 +157,6 @@ class ArticlesModel{
                   "
         ;
         $db = $this->pdo->prepare($query);
-        $db->bindParam(':id', $id, PDO::PARAM_INT);
         $data = [
             ':id' => $id,
             'isDeleted' => 0
@@ -171,6 +223,23 @@ class ArticlesModel{
             echo $e;
         }
     }
-    
+   
+    public function getCountArticle(){
+        try{
+            $query='SELECT count(articles.id) as nbArticles FROM articles 
+                INNER JOIN users on articles.id_user = users.id
+                INNER JOIN categorie on articles.id_categorie = categorie.id
+                WHERE articles.is_deleted=0
+                AND categorie.is_deleted=0
+            ';
+            $db = $this->pdo->prepare($query);
+            $db->execute();
+            $data = $db->fetchAll(PDO::FETCH_OBJ);
+            return $data;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+
+    }
 
 }

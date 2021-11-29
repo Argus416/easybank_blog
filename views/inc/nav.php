@@ -35,7 +35,7 @@
                         <a class="nav-link" href="<?= $urlGenerator->generate('articlesManagement') ?>">Dashboard</a>
                     </li>
                     <li class="nav-link">
-                        <form method="POST">
+                        <form method="POST" class="form-deconnexion">
                             <input type="submit" name="deconnexion" class="nav-item-cus-dec" value="Me déconnecter">
                         </form>
                     </li>

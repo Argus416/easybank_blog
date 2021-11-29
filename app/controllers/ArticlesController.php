@@ -8,11 +8,19 @@ class ArticlesController{
     private $ArticlesModel;
     private $CategoriesModel;
 
+    // Attribue pour la pagination
+    private $nbElementParPage;
+    private $nbPages;
+
     public function __construct()
     {
         $this->ArticlesModel = new ArticlesModel;
         $this->CategoriesModel = new CategoriesModel;
 
+        $this->nbElementParPage = 5;
+        
+        $this->nbPages = $this->ArticlesModel->getCountArticle()[0]->nbArticles;
+        $this->nbPages = ceil($this->nbPages / $this->nbElementParPage);
     }
 
     public function index($param){
@@ -25,7 +33,25 @@ class ArticlesController{
     public function blog($param){
         $urlGenerator = $param['urlGenerator'];
 
-        $data = $this->ArticlesModel->getArticles();
+        dump($this->nbPages);
+        // Si aucun catégorie n'est selectionné => afficher tous les articles
+        if(!isset($_POST['categories-selected']) || empty($_POST['categories-selected']) ){
+            $data = $this->ArticlesModel->getArticles();
+        }else{
+            unset($_POST['categories-selected']);
+            $categories = [];
+
+            foreach($_POST as $categorie){
+                array_push($categories, $categorie);
+            }
+
+            $data = $this->ArticlesModel->getArticlesByCategories($categories);
+        }
+        
+        $articles = $data;
+
+        $categories = $this->CategoriesModel->getCategories();
+
         require_once 'views/blog.php';
     }
 
@@ -125,4 +151,5 @@ class ArticlesController{
         }
         require_once 'views/form_edit_article.php';
     }
+
 }

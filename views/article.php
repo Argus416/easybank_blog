@@ -1,6 +1,5 @@
 <?php 
     require_once 'inc/header.php';
-
 ?>
 <title><?= $article[0]->articleTitle ?></title>
 </head>

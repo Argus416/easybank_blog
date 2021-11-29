@@ -29,4 +29,4 @@
     </div>
 </footer>
 
-<script src="script/sandbox.js"></script>
+<script src="<?= "$domain$public"?>script/sandbox.js"></script>

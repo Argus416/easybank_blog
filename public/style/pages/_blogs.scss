@@ -1,7 +1,8 @@
 main.blogs {
     .d-flex {
+        justify-content: space-between;
         .left {
-            width: 75%;
+            width: 74%;
             .article {
                 margin-bottom: 1.8em;
                 border-bottom: 1px solid $LightGrayishBlue;
@@ -16,6 +17,21 @@ main.blogs {
                 }
                 .view-more-container {
                     margin-bottom: 0.7em;
+                }
+            }
+        }
+        .right {
+            width: 24%;
+            h4 {
+                margin-bottom: 18px;
+            }
+            .categorie-list {
+                padding-left: 13px;
+                list-style: none;
+                li {
+                    input {
+                        margin-right: 5px;
+                    }
                 }
             }
         }

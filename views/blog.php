@@ -1,4 +1,7 @@
-<?php require_once 'inc/header.php' ?>
+<?php
+    require_once 'inc/header.php';
+    dump($data);
+?>
 <title>Nos articles</title>
 
 </head>
@@ -15,6 +18,7 @@
                         <a href="<?= $urlGenerator->generate('article', ['id'=>$article->articleID]) ?>">
                             <h2><?= $article->articleTitle ?></h2>
                         </a>
+                        <span class="mb-4"><?= $article->categorieType; ?></span>
 
                         <p> <?= substr($article->articleBody, 0, 255)."..." ?> </p>
 

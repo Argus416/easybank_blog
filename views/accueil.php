@@ -22,7 +22,8 @@
                             <a href="#" class="btn-primary-cus">Request Invite</a>
                         </div>
                         <div class="col-lg-6 col-sm-12 imgs">
-                            <img src="style/images/image-mockups.png" class="img-mockup" alt="bg-intro-desktop" />
+                            <img src="<?= "$domain$public"?>style/images/image-mockups.png" class="img-mockup"
+                                alt="bg-intro-desktop" />
                         </div>
                     </div>
                 </div>

@@ -9,15 +9,23 @@
 
     <?php
         require_once 'inc/nav.php';
-        
      ?>
 
     <main>
         <div class="container my-5">
+            <!-- Si l'article existe -->
             <?php if(count($article)): ?>
 
             <article class="mb-5">
-                <h1 class="mb-4"><?= $article[0]->articleTitle ?></h1>
+                <div class="header-article mb-4">
+                    <h1><?= $article[0]->articleTitle ?></h1>
+
+                    <?php if(isset($_SESSION['isLoggedin']) && $_SESSION['isLoggedin'] == true ):?>
+                    <a href="<?= $urlGenerator->generate('editArticle', ['id' => $article[0]->articleID]) ?>"
+                        class="btn btn-warning">Editer l'article</a>
+                    <?php endif;?>
+
+                </div>
                 <p><?= $article[0]->articleBody ?></p>
             </article>
 

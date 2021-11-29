@@ -8,9 +8,17 @@
                 <i class="fas fa-desktop"></i>
                 <a class="nav-link" href=" $urlGenerator->generate('stat') ">Main</a>
             </li> -->
+
             <li class="nav-item">
                 <i class="fas fa-newspaper"></i>
                 <a class="nav-link" href="<?= $urlGenerator->generate('articlesManagement') ?>">Gestion d'article</a>
+            </li>
+
+            <li class="nav-item">
+                <i class="fas fa-columns">
+
+                </i> <a class="nav-link" href="<?= $urlGenerator->generate('categorieManagement') ?>">Gestion de
+                    catégorie</a>
             </li>
 
             <!-- <li class="nav-item">

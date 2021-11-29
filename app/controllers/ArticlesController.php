@@ -34,7 +34,7 @@ class ArticlesController{
 
         $id = $param['id'];
         $article = $this->ArticlesModel->getArticle($id);
-        $data = $this->ArticlesModel->getLatesetArticles();
+        $data = $this->ArticlesModel->getLatesetArticlesExcept($id);
         require_once 'views/article.php';
     }
     

@@ -13,6 +13,7 @@ require_once "config/config.php";
 require_once "app/helpers/Helpers.php";
 
 require_once 'app/controllers/ArticlesController.php';
+require_once 'app/controllers/CategorieController.php';
 require_once 'app/controllers/ContactController.php';
 require_once 'app/controllers/UsersController.php';
 require_once 'app/controllers/ConnexionController.php';
@@ -95,6 +96,24 @@ try{
         ['id' => "$regChiffre"],
     ]);
 
+    $dashboardRouteCategorieMan = new Route("/dashboard/categorie", [
+        'controller' => [
+            new CategorieController(), 'index'
+        ]
+    ]);
+
+    $dashboardRouteCategorieAdd = new Route("/dashboard/categorie/add", [
+        'controller' => [
+            new CategorieController(), 'add'
+        ]
+    ]);
+
+    $dashboardRouteCategorieEdit = new Route("/dashboard/categorie/edit/{id$regChiffre}", [
+        'controller' => [
+            new CategorieController(), 'edit'
+        ]
+    ]);
+
     // $dashboardRouteAuthorMan = new Route('/dashboard/authors', [
     //     'controller' => [
     //         new UsersController(), 'usersManagement'
@@ -133,6 +152,9 @@ try{
     $routeCollection->add('articlesManagement', $dashboardRouteArticleMan);
     $routeCollection->add('addArticle', $dashboardRouteArticleAdd);
     $routeCollection->add('editArticle', $dashboardRouteArticleEdit);
+    $routeCollection->add('categorieManagement', $dashboardRouteCategorieMan);
+    $routeCollection->add('addCategorie', $dashboardRouteCategorieAdd);
+    $routeCollection->add('editCategorie', $dashboardRouteCategorieEdit);
     // $routeCollection->add('usersManagement', $dashboardRouteAuthorMan);
     $routeCollection->add('authorShow', $dashboardRouteAuthorShow);
     $routeCollection->add('authorEdit', $dashboardRouteAuthorEdit);

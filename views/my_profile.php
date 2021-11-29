@@ -45,9 +45,7 @@
                         <input type="date" class="form-control" name="date-de-naissance" id="date-de-naissance"
                             value="<?= $user->date_de_naissance?>" disabled>
                     </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Mot de passe</label>
-                    </div>
+
                 </div>
 
             </div>

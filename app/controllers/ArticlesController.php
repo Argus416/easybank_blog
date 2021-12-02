@@ -2,18 +2,20 @@
 
 require_once 'app/models/ArticlesModel.php';
 require_once 'app/models/CategoriesModel.php';
+require_once 'app/models/UsersModel.php';
 
 class ArticlesController{
 
     private $ArticlesModel;
     private $CategoriesModel;
-
+    private $UsersModel;
     // Attribue pour la pagination
     private $nbElementParPage;
     public function __construct()
     {
         $this->ArticlesModel = new ArticlesModel;
         $this->CategoriesModel = new CategoriesModel;
+        $this->UsersModel = new UsersModel;
         
         $this->nbElementParPage = 4;
     }
@@ -21,16 +23,17 @@ class ArticlesController{
     public function index($param){
         $urlGenerator = $param['urlGenerator'];
 
-        $data = $this->ArticlesModel->getLatesetArticles();
+        $articles = $this->ArticlesModel->getLatesetArticles();
         require_once 'views/accueil.php';
     }
 
     public function blog($param){
         $urlGenerator = $param['urlGenerator'];
-        $nbPages = 0;
+        $nbArticles = 0;
+        $categoriesSelections = [];
         
         // Si aucun catégorie n'est selectionné => afficher tous les articles
-        if(!isset($_POST['categories-selected']) || empty($_POST['categories-selected']) ){
+        if(!isset($_GET['categories-selected']) || empty($_GET['categories-selected']) ){
             
             $data = $this->ArticlesModel->getArticles();
             
@@ -40,29 +43,36 @@ class ArticlesController{
                 $data = $this->ArticlesModel->getArticles($pageNumber);
             }
 
-            $nbPages = $this->ArticlesModel->getCountArticle()[0]->nbArticles;
-            $nbPages = intval(ceil($nbPages / $this->nbElementParPage));
-    
-            
+            $nbArticles = $this->ArticlesModel->getCountArticle()[0]->nbArticles;
+            unset($_GET['categories-selected']);
         }else{
-            unset($_POST['categories-selected']);
-            $categories = [];
-            foreach($_POST as $categorie){
-                array_push($categories, $categorie);
-            }
-            $data = $this->ArticlesModel->getArticlesByCategories($categories);
+            //si aucun catégorie est selectionne, afficher tous les articles
+            unset($_GET['categories-selected']);
 
-            $nbPages = $this->ArticlesModel->getCountArticlesByCategories($categories)[0]->nbArticles;
-            $nbPages = intval(ceil($nbPages / $this->nbElementParPage));
-            dump( $this->ArticlesModel->getCountArticlesByCategories($categories));
+            // récuperer tous les id de catégories selectionnées
+            $categoriesSelections = $_GET;
+
+            // récuperer tous les articles de catégorie
+            $data = $this->ArticlesModel->getArticlesByCategories($categoriesSelections);
+            $nbArticles = $this->ArticlesModel->getCountArticlesByCategories($categoriesSelections)[0]->nbArticles;
+
         }
-        
         $articles = $data;
         $categories = $this->CategoriesModel->getCategories();
-
         $urlBlog = $urlGenerator->generate('blog');
 
-        $pagintation = Helpers::Pagination($this->nbElementParPage, $nbPages, "$urlBlog?pagination=" );
+        $cats = '';
+        $i = 1;
+        foreach($categoriesSelections as $index => $cat){
+            if($i == count($categoriesSelections)){
+                $cats .="$index=$cat"; 
+            }else{
+                $cats .="$index=$cat&"; 
+            }
+            $i++;
+        }
+        dump($cats);
+        $pagintation = Helpers::Pagination($this->nbElementParPage, $nbArticles, "$urlBlog?$cats&pagination=" );
 
         require_once 'views/blog.php';
     }
@@ -109,24 +119,15 @@ class ArticlesController{
         
         // TODO * Si le formulaire est soumis
         if(isset($_POST['add-article'])){
-            if(isset($_POST['artilce-bannier'])){
-                $bannier = filter_var($_POST['artilce-bannier'], FILTER_SANITIZE_STRING);
-            }
-            
-            if(isset($_POST['artilce-title'])){
-                $title = filter_var($_POST['artilce-title'], FILTER_SANITIZE_STRING);
-            }
+            $bannier = filter_var($_POST['artilce-bannier'], FILTER_SANITIZE_STRING);
+            $title = filter_var($_POST['artilce-title'], FILTER_SANITIZE_STRING);
+            $categorie = filter_var($_POST['artilce-categorie'], FILTER_VALIDATE_INT);
+            $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
+            $idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
+            dump($_POST);
 
-            if(isset($_POST['artilce-categorie'])){
-                $categorie = filter_var($_POST['artilce-categorie'], FILTER_VALIDATE_INT);
-            }
-
-            if(isset($_POST['artilce-body'])){
-                $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
-            }
-
-            header('Location:' . $urlGenerator->generate('management'));
-            $this->ArticlesModel->addArticle($title, $body, $categorie );
+            header('Location:' . $urlGenerator->generate('articlesManagement'));
+            $this->ArticlesModel->addArticle($title, $body, $categorie,$idUser );
         }
         require_once 'views/form_add_article.php';
     }

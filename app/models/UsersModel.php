@@ -20,6 +20,7 @@ class UsersModel{
                     users.nom as authorNom,
                     users.prenom as authorPrenom,
                     users.email as authorEmail,
+                    users.mdp as authorMDP,
                     COUNT(articles.id_user) as nbArticle
                     FROM users 
                     LEFT JOIN articles ON users.id = articles.id_user

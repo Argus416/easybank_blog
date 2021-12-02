@@ -78,7 +78,11 @@
             </section>
         </div>
 
-        <?php require_once 'inc/derniers_articles.php'; ?>
+        <?php
+            if(count($articles)){
+                require_once 'inc/derniers_articles.php';
+            }
+        ?>
     </main>
 
     <?php require_once 'inc/footer.php' ?>

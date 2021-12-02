@@ -16,6 +16,11 @@ require_once 'inc/header.php' ?>
                         article</a>
                 </div>
 
+
+                <?php
+                    if(count($articles)): 
+                    foreach($articles as $article):
+                ?>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -26,8 +31,10 @@ require_once 'inc/header.php' ?>
                             <th scope="col"></th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        <?php foreach($articles as $article):?>
+
+
                         <tr>
                             <th scope="row"><?= $article->articleID?></th>
                             <td><?= $article->articleTitle?></td>
@@ -74,9 +81,19 @@ require_once 'inc/header.php' ?>
                                 <!-- Fin Modal -->
                             </td>
                         </tr>
-                        <?php endforeach;?>
+                        <?php 
+                            endforeach;
+                        ?>
                     </tbody>
                 </table>
+                <?php 
+                    else: 
+                ?>
+                <h2>Aucun articles n'est publié</h2>
+                <?php 
+                    endif; 
+                ?>
+
             </div>
         </div>
     </main>

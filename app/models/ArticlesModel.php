@@ -50,7 +50,6 @@ class ArticlesModel{
     public function getArticlesByCategories(Array $idsCategorie, INT $offset = 0){
         try{
 
-            
             // $data = [];
             $query="SELECT
                     articles.id as articleID,
@@ -87,10 +86,10 @@ class ArticlesModel{
 
             foreach($idsCategorie as $id){
                 $id = intval($id);
-                $db->bindParam(":idsCategorie$id", $id, PDO::PARAM_INT);
+                $db->bindValue(":idsCategorie$id", $id, PDO::PARAM_INT);
             }
             
-            $db->bindParam(':offsetTest', $offset, PDO::PARAM_INT);
+            $db->bindValue(':offsetTest', $offset, PDO::PARAM_INT);
             $db->execute();
             // $db->execute($data);
             $articlesByCategories = $db->fetchAll(PDO::FETCH_OBJ);
@@ -177,15 +176,15 @@ class ArticlesModel{
         return $article;
     }
 
-    public function addArticle(STRING $title,STRING $body, STRING $idCategorie, INT $isDeleted = 0  ){ 
+    public function addArticle(STRING $title,STRING $body, STRING $idCategorie, INT $idUser ,INT $isDeleted = 0  ){ 
         try{
-            $query = 'INSERT INTO Articles VALUES(NULL, :title, :body, CURRENT_TIMESTAMP ,:isDeleted,:idUser, :idCategorie)';
+            $query = 'INSERT INTO articles VALUES(NULL, :title, :body, CURRENT_TIMESTAMP ,:isDeleted,:idUser, :idCategorie)';
             $db = $this->pdo->prepare($query);
             $data=[
                 ':title'=> $title,
                 ':body'=> $body,
                 ':isDeleted'=> $isDeleted,
-                ':idUser'=> 1,
+                ':idUser'=> $idUser,
                 ':idCategorie'=> $idCategorie
             ];
             $db->execute($data);
@@ -288,5 +287,6 @@ class ArticlesModel{
 
        
     }
+
 
 }

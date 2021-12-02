@@ -30,13 +30,14 @@ class ConnexionController{
                     
                     $hashed_password = password_hash($password, PASSWORD_ARGON2I);
 
-                    $admin = $this->UsersModel->getUser($_ENV['USER_ID'])[0];
+                    $admin = $this->UsersModel->getUsers()[0];
 
                     if(
-                        $email === $admin->email &&
-                        password_verify($password, $admin->mdp)
+                        $email === $admin->authorEmail &&
+                        password_verify($password, $admin->authorMDP)
                     ){
                         $_SESSION['isLoggedin'] = true;
+                        $_SESSION['idAdmin'] = $admin->authorID;
                         header('Location:'.$urlGenerator->generate('accueil'));
                     }else{
                         $err = "<p class='text-danger err-text'>Votre email ou mot de passe n'est pas correct</p>";

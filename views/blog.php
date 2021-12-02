@@ -10,6 +10,8 @@
     <main class="blogs">
         <div class="container">
             <h1 class="page-title">Nos articles</h1>
+
+            <?php if(count($articles)): ?>
             <div class="d-flex">
                 <div class="left">
                     <?php foreach($articles as $article):?>
@@ -30,12 +32,12 @@
                 </div>
 
                 <div class="right">
-                    <form method="POST" class="d-flex flex-column categorie-select-form">
+                    <form method="GET" class="d-flex flex-column categorie-select-form">
                         <h4>Catégories</h4>
                         <ul class="categorie-list">
                             <?php 
                                 foreach($categories as $categorie):
-                                $checked = $_POST["cat-$categorie->type"] === "$categorie->id" ? 'checked' :
+                                $checked = $_GET["cat-$categorie->type"] === "$categorie->id" ? 'checked' :
                             '';
                             ?>
 
@@ -52,8 +54,11 @@
                     </form>
                 </div>
             </div>
-
             <?= $pagintation ?>
+            <?php else: ?>
+            <h2 class="mb-5"> Aucun articles n'est publié </h2>
+            <?php endif; ?>
+
         </div>
 
     </main>

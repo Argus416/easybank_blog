@@ -12,7 +12,7 @@
         </form>
         <div class="profile">
             <img src="<?= "$domain$public" ?>style/images/image-currency.jpg" alt="profile_photo">
-            <a href="<?= $urlGenerator->generate('authorShow', ['id' =>$_ENV['USER_ID']])?>"
+            <a href="<?= $urlGenerator->generate('authorShow', ['id' =>$_SESSION['idAdmin']])?>"
                 class="current_user">Mohamad</a>
         </div>
     </div>

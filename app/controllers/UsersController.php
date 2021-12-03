@@ -77,7 +77,7 @@ class UsersController{
             dump($imgAcutalExt);
 
             dump($_FILES['photo_profile']);
-            // header('Location:'.$urlGenerator->generate('authorShow', ['id' => $_ENV['USER_ID']]));
+            // header('Location:'.$urlGenerator->generate('authorShow', ['id' =>$_SESSION['idAdmin']] ));
             $this->UsersModel->update($id ,$nom, $prenom, $email, $password, $dateDeNaissance);
 
         }

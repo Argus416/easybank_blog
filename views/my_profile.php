@@ -17,7 +17,7 @@
 
                     <div class="btns-my-profile">
                         <a class="btn btn-third-cus"
-                            href="<?= $urlGenerator->generate('authorEdit', ['id' =>$_ENV['USER_ID']])?>">Modifier</a>
+                            href="<?= $urlGenerator->generate('authorEdit', ['id' =>$_SESSION['idAdmin']])?>">Modifier</a>
                         <form method="POST">
                             <input type="submit" name="download-logs" class="btn-forth-cus"
                                 value="Télécharger les logs">

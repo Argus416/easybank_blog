@@ -28,7 +28,8 @@
 
             <li class="nav-item">
                 <i class="fas fa-cog"></i>
-                <a class="nav-link" href="<?= $urlGenerator->generate('authorShow', ['id' =>$_ENV['USER_ID']])?>">Mon
+                <a class="nav-link"
+                    href="<?= $urlGenerator->generate('authorShow', ['id' =>$_SESSION['idAdmin']])?>">Mon
                     profile</a>
             </li>
             <li class="nav-item">

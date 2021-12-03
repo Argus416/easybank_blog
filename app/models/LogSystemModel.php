@@ -40,11 +40,25 @@ class LogSystemModel{
         try{
             $query="INSERT INTO log_system (id, id_user, id_article, creation_date, actionUtilisateur) 
             VALUES (NULL, :idUser, :idArticle, CURRENT_TIMESTAMP, :actionUtilisateur) 
+            WHERE id_user = :idUser
             ";
             
             $stmt = $this->pdo->prepare($query);
             $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
             $stmt->bindParam(':idArticle', $idArticle, PDO::PARAM_INT);
+
+            switch($actionUtilisateur){
+                case "articleCree": 
+                    $actionUtilisateur = "un nouveau article a été créé";
+                case "articleModifie": 
+                    $actionUtilisateur = "l'article a été modifié";
+                case "utilisateurCree": 
+                    $actionUtilisateur = "un nouveau utilisateur a été créé";
+                case "utilisateurModifiee": 
+                    $actionUtilisateur = "l'utilisateur a été modifié";
+                default:
+                    $actionUtilisateur = "action introuvable";
+            }
             $stmt->bindParam(':actionUtilisateur', $actionUtilisateur, PDO::PARAM_STR);
 
             $stmt->execute();

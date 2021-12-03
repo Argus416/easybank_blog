@@ -1,8 +1,10 @@
 <?php
 
+require_once 'app/helpers/logsManager.php';
 require_once 'app/models/ArticlesModel.php';
 require_once 'app/models/CategoriesModel.php';
 require_once 'app/models/UsersModel.php';
+
 
 class ArticlesController{
 
@@ -11,11 +13,14 @@ class ArticlesController{
     private $UsersModel;
     // Attribue pour la pagination
     private $nbElementParPage;
+
     public function __construct()
     {
         $this->ArticlesModel = new ArticlesModel;
         $this->CategoriesModel = new CategoriesModel;
         $this->UsersModel = new UsersModel;
+        
+        
         
         $this->nbElementParPage = 4;
     }
@@ -35,12 +40,12 @@ class ArticlesController{
         // Si aucun catégorie n'est selectionné => afficher tous les articles
         if(!isset($_GET['categories-selected']) || empty($_GET['categories-selected']) ){
             
-            $data = $this->ArticlesModel->getArticles();
+            $articles = $this->ArticlesModel->getArticles();
             
             // gestion de la pagination
             if(isset($_GET['pagination']) && !empty($_GET['pagination'])){
                 $pageNumber = (intval($_GET['pagination']) - 1) * $this->nbElementParPage;
-                $data = $this->ArticlesModel->getArticles($pageNumber);
+                $articles = $this->ArticlesModel->getArticles($pageNumber);
             }
 
             $nbArticles = $this->ArticlesModel->getCountArticle()[0]->nbArticles;
@@ -53,11 +58,10 @@ class ArticlesController{
             $categoriesSelections = $_GET;
 
             // récuperer tous les articles de catégorie
-            $data = $this->ArticlesModel->getArticlesByCategories($categoriesSelections);
+            $articles = $this->ArticlesModel->getArticlesByCategories($categoriesSelections);
             $nbArticles = $this->ArticlesModel->getCountArticlesByCategories($categoriesSelections)[0]->nbArticles;
 
         }
-        $articles = $data;
         $categories = $this->CategoriesModel->getCategories();
         $urlBlog = $urlGenerator->generate('blog');
 
@@ -71,9 +75,7 @@ class ArticlesController{
             }
             $i++;
         }
-        dump($cats);
         $pagintation = Helpers::Pagination($this->nbElementParPage, $nbArticles, "$urlBlog?$cats&pagination=" );
-
         require_once 'views/blog.php';
     }
 
@@ -83,7 +85,7 @@ class ArticlesController{
 
         $id = $param['id'];
         $article = $this->ArticlesModel->getArticle($id);
-        $data = $this->ArticlesModel->getLatesetArticlesExcept($id);
+        $articles = $this->ArticlesModel->getLatesetArticlesExcept($id);
         require_once 'views/article.php';
     }
     
@@ -124,8 +126,8 @@ class ArticlesController{
             $categorie = filter_var($_POST['artilce-categorie'], FILTER_VALIDATE_INT);
             $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
             $idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
-            dump($_POST);
-
+            
+            logsManager::createAndAddToLog($idUser, NULL, "$idUser a crée un nouveau utilisateur\n");
             header('Location:' . $urlGenerator->generate('articlesManagement'));
             $this->ArticlesModel->addArticle($title, $body, $categorie,$idUser );
         }

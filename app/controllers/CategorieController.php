@@ -28,7 +28,6 @@ class CategorieController{
         require_once 'views/categories_management.php';
     }
 
-
     public function add($param){
         ConnexionController::isLoggedin();
         $urlGenerator = $param['urlGenerator'];

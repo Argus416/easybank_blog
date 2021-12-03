@@ -17,9 +17,9 @@ require_once 'inc/header.php' ?>
                 </div>
 
 
-                <?php
-                    if(count($articles)): 
-                    foreach($articles as $article):
+
+                <?php 
+                    if(count($articles)):
                 ?>
                 <table class="table table-striped">
                     <thead>
@@ -33,7 +33,9 @@ require_once 'inc/header.php' ?>
                     </thead>
 
                     <tbody>
-
+                        <?php
+                            foreach($articles as $article):
+                        ?>
 
                         <tr>
                             <th scope="row"><?= $article->articleID?></th>

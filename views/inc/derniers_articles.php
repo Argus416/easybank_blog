@@ -3,7 +3,7 @@
         <h2>Derniers Articles</h2>
 
         <div class="d-flex">
-            <?php foreach($data as $article):?>
+            <?php foreach($articles as $article):?>
             <a href="<?= $urlGenerator->generate('article', ['id'=>$article->articleID]) ?>" class="card-cus">
                 <div class="card-header-cus">
                     <img src="<?= "$domain$public"?>style/images/image-currency.jpg" class="card-img-top"

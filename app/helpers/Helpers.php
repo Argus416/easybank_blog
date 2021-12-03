@@ -56,4 +56,5 @@ class Helpers {
         $paginationTemplate .= " </nav>";
         return $paginationTemplate;
     }
+
 }

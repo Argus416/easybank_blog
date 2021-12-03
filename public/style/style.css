@@ -162,6 +162,9 @@ p {
   border-radius: 20px;
   -webkit-transition: opacity 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out;
+  color: white !important;
+  padding: 0.5em 1.1em !important;
+  border: none;
 }
 
 .nav-item-cus > *,
@@ -174,14 +177,12 @@ p {
   opacity: 0.8;
 }
 
-.nav-item-cus,
-.nav-item-cus-dec {
-  color: white !important;
-  padding: 0em 1em !important;
-}
-
 .nav-item-cus {
   background: #31d35c;
+}
+
+.nav-item-cus-dec {
+  background: crimson;
 }
 
 .test {

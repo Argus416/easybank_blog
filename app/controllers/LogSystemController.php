@@ -17,10 +17,9 @@ class LogSystemController{
         $file = fopen('logs.csv', 'w');
 
         // generée le header du fichiers
-        fputcsv($file, ['userID','userIden', 'articleID', 'articleTitle', 'actionDate']);
+        fputcsv($file, ['logID','userID','userIden', 'articleID', 'articleTitle', 'actionDate', 'actionUtilisateur']);
 
         $data = $this->LogSystemModel->getLog();
-
         foreach ($data as $row){
             // inserer les informtations
             fputcsv($file, $row);

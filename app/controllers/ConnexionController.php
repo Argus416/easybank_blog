@@ -28,7 +28,7 @@ class ConnexionController{
                     $email = filter_var($_POST['email-login']);
                     $password = filter_var($_POST['password-login']);
                     
-                    $hashed_password = password_hash($password, PASSWORD_ARGON2I);
+                    // $hashed_password = password_hash($password, PASSWORD_ARGON2I);
 
                     $admin = $this->UsersModel->getUsers()[0];
 
@@ -38,6 +38,7 @@ class ConnexionController{
                     ){
                         $_SESSION['isLoggedin'] = true;
                         $_SESSION['idAdmin'] = $admin->authorID;
+                        $_SESSION['authorPrenom'] = $admin->authorPrenom;
                         header('Location:'.$urlGenerator->generate('accueil'));
                     }else{
                         $err = "<p class='text-danger err-text'>Votre email ou mot de passe n'est pas correct</p>";
@@ -46,7 +47,7 @@ class ConnexionController{
             }
             require_once 'views/login.php';
         }else{
-            header('Location:'.$urlGenerator->generate('accueil'));
+            // header('Location:'.$urlGenerator->generate('accueil'));
         }
 
     }

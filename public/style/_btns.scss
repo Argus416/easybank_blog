@@ -73,6 +73,9 @@
 .nav-item-cus-dec {
     border-radius: 20px;
     transition: opacity 0.3s ease-in-out;
+    color: $White !important;
+    padding: 0.5em 1.1em !important;
+    border: none;
     & > * {
         color: $White !important;
     }
@@ -81,12 +84,10 @@
     }
 }
 
-.nav-item-cus,
-.nav-item-cus-dec {
-    color: $White !important;
-    padding: 0em 1em !important;
-}
-
 .nav-item-cus {
     background: $LimeGreen;
+}
+
+.nav-item-cus-dec {
+    background: $crimson;
 }

@@ -12,8 +12,10 @@ class ArticlesController{
     private $CategoriesModel;
     private $UsersModel;
     private $LogSystemModel;
-    // Attribue pour la pagination
+    
     private $nbElementParPage;
+
+    private $idUser;
 
     public function __construct()
     {
@@ -21,6 +23,7 @@ class ArticlesController{
         $this->CategoriesModel = new CategoriesModel;
         $this->UsersModel = new UsersModel;
         $this->LogSystemModel = new LogSystemModel;
+        $this->idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
         
         $this->nbElementParPage = 4;
     }
@@ -127,13 +130,14 @@ class ArticlesController{
             $title = filter_var($_POST['artilce-title'], FILTER_SANITIZE_STRING);
             $categorie = filter_var($_POST['artilce-categorie'], FILTER_VALIDATE_INT);
             $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
-            $idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
+            $this->idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
             $idArticle = $this->ArticlesModel->getLatesetArticle()[0]->articleID;
             $idArticle = filter_var($idArticle, FILTER_VALIDATE_INT);
-            // $this->ArticlesModel->addArticle($title, $body, $categorie,$idUser );
-            $this->LogSystemModel->addToLog($idUser, $idArticle, 'test');
-            dump($idUser ,$idArticle);
-            // header('Location:' . $urlGenerator->generate('articlesManagement'));
+
+            
+            $this->ArticlesModel->addArticle($title, $body, $categorie,$this->idUser );
+            $this->LogSystemModel->addToLog($this->idUser, $idArticle, 'articleCree');
+            header('Location:' . $urlGenerator->generate('articlesManagement'));
         }
         require_once 'views/form_add_article.php';
     }
@@ -151,22 +155,13 @@ class ArticlesController{
 
 
         if(isset($_POST['edit-article'])){
-            if(isset($_POST['artilce-bannier'])){
-                $bannier = filter_var($_POST['artilce-bannier'], FILTER_SANITIZE_STRING);
-            }
-            
-            if(isset($_POST['artilce-title'])){
-                $title = filter_var($_POST['artilce-title'], FILTER_SANITIZE_STRING);
-            }
+            $bannier = filter_var($_POST['artilce-bannier'], FILTER_SANITIZE_STRING);
+            $title = filter_var($_POST['artilce-title'], FILTER_SANITIZE_STRING);
+            $categorie = filter_var($_POST['artilce-categorie'], FILTER_VALIDATE_INT);
+            $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
 
-            if(isset($_POST['artilce-categorie'])){
-                $categorie = filter_var($_POST['artilce-categorie'], FILTER_VALIDATE_INT);
-            }
-
-            if(isset($_POST['artilce-body'])){
-                $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
-            }
             $this->ArticlesModel->editArticle($id ,$title, $body, $categorie );
+            $this->LogSystemModel->addToLog($this->idUser, $id, 'articleModifie');
             header('location:'. $urlGenerator->generate('article', ['id' => $id]));
         }
         require_once 'views/form_edit_article.php';

@@ -39,6 +39,7 @@ class UsersController{
         $user = $this->UsersModel->getUser($id)[0];
         $domain = $_ENV['DOMAIN'];
         $public = $_ENV['PUBLIC'];
+        
         if(isset($_POST['update-account'])){
             
             $prenom = filter_var($_POST['prenom'], FILTER_SANITIZE_STRING);
@@ -57,29 +58,31 @@ class UsersController{
             $imgExt = explode('.', $imgProfileName);
             $imgAcutalExt = strtolower(end($imgExt));
             $allowedExt = array('jpg', 'jpeg', 'png');
-            
+            $imgNewName = "" ; 
+
             if(in_array($imgAcutalExt, $allowedExt)){
                 if($imgProfileError === 0){
                     if($imgProfileSize < 300000){
-                        $imgNewName = uniqid('', true) . '.' . $imgAcutalExt;
-                        $serverDocumentRoot =  str_replace("\\", "/", $_SERVER['DOCUMENT_ROOT']) ;
-                        $imgDestination = $serverDocumentRoot ."/upload/images";
-                        dump(pathinfo($_FILES['photo_profile']['name']));
-                        move_uploaded_file($imgProfileTmpName, $imgDestination);
+                        $imgNewName = str_replace('.','', uniqid('', true) ) . '.' . $imgAcutalExt;
+                        $path = "public/uploaded/images/$imgNewName";
+
+                        try{
+                            move_uploaded_file($imgProfileTmpName, $path);
+                        }catch(Exception $e){
+                            echo $e->getMessage();
+                        }
+                       
                     }else{
                         echo "l'image est trop grande, il ne faut pas qu'elle dépasse 3mb";
                     }
                 }
-            }else{
-                echo "vous ne pouvez pas mettre ce fichier comme img profile, veuillez uploader une img de type jpg, jpeg ou png ";
             }
             
-            dump($imgAcutalExt);
-
-            dump($_FILES['photo_profile']);
             // header('Location:'.$urlGenerator->generate('authorShow', ['id' =>$_SESSION['idAdmin']] ));
-            $this->UsersModel->update($id ,$nom, $prenom, $email, $password, $dateDeNaissance);
-
+            $_SESSION['authorPrenom'] = $prenom;
+            dump($imgNewName);
+            $this->LogSystemModel->addToLog($id, NULL, 'utilisateurModifiee');
+            $this->UsersModel->update($id ,$nom, $prenom, $email, $password, $dateDeNaissance, $imgNewName);
         }
         require_once 'views/profile-edit.php';
     }

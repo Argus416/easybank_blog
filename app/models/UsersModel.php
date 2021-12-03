@@ -64,31 +64,43 @@ class UsersModel{
 
     public function update(
         INT $id, STRING $nom, STRING $prenom, STRING $email,
-        STRING $mdp, STRING $dateDeNaissance
+        STRING $mdp, STRING $dateDeNaissance, $imgName = ''
     ){
-        $query='UPDATE users 
-                SET nom = :nom, 
-                prenom = :prenom, 
-                email = :email, 
-                mdp = :mdp,
-                date_de_naissance = :dateDeNaissance
-                WHERE users.id = :id
-        ';
+        try{
+           
+            $data = [];
+            $query='UPDATE users 
+                    SET nom = :nom, 
+                    prenom = :prenom, 
+                    email = :email, 
+                    mdp = :mdp,
+                    date_de_naissance = :dateDeNaissance
+            ';
+    
+            if(strlen($imgName)){
+                $query .=",img_profile = :imgName \n";
+                $data[':imgURL'] = $imgName;
+            }
 
-        $db = $this->pdo->prepare($query);
+            $query .="WHERE users.id = :id";
+            $stmt = $this->pdo->prepare($query);
 
-        $date= [
-            ':id' => $id,
-            ':nom'=> $nom,
-            ':prenom' => $prenom,
-            ':email' => $email,
-            ':mdp' => $mdp,
-            ':dateDeNaissance' => $dateDeNaissance
-        ];
-        $db->execute($date);
+            $data= [
+                ':id' => $id,
+                ':nom'=> $nom,
+                ':prenom' => $prenom,
+                ':email' => $email,
+                ':mdp' => $mdp,
+                ':dateDeNaissance' => $dateDeNaissance,
+            ];
+            dump($data);
+
+            $stmt->execute($data);
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
-    
     public function delete($id){
         $query='UPDATE users 
                 SET is_deleted = :isDeleted 
@@ -100,8 +112,8 @@ class UsersModel{
             ':id' => $id,
             ':isDeleted' => 1
         ];
-        
         $db->execute($data);
     }
+
 
 }

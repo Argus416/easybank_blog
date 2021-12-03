@@ -57,8 +57,9 @@ class LogSystemModel{
                 case "utilisateurModifiee": 
                     $actionUtilisateur = "l'utilisateur a été modifié";
                 default:
-                    $actionUtilisateur = "action introuvable";
+                    $actionUtilisateur = "action non trouvé";
             }
+            
             $stmt->bindParam(':actionUtilisateur', $actionUtilisateur, PDO::PARAM_STR);
 
             $stmt->execute();

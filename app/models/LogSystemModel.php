@@ -15,34 +15,39 @@ class LogSystemModel{
         $this->pdo = $this->pdosingleton::PDO_Init();
     }
 
-    public function getloc(){
+    public function getLog(){
         try{
-            $query = "SELECT * from log_system";
+            $query="SELECT 
+                    users.id as userID,
+                    CONCAT(users.nom , ' ', users.prenom) as userIden,
+                    articles.id as articleID,
+                    articles.title as articleTitle,
+                    log_system.creation_date as actionDate
+                    from log_system
+                    INNER JOIN users on log_system.id_user = users.id
+                    INNER JOIN articles on log_system.id_article = articles.id
+                    ";
             $db = $this->pdo->prepare($query);
             $db->execute();
-            $logs = $db->fetchAll(PDO::FETCH_OBJ);
-    
+            $logs = $db->fetchAll(PDO::FETCH_ASSOC);
             return $logs;
         }catch(PDOException $e){
             echo $e->getMessage();
         }
     }
 
-    public function addToLog(INT $idUser, INT $idArticle, STRING $actionUtilisteur){
+    public function addToLog(INT $idUser, INT $idArticle, STRING $actionUtilisateur){
         try{
-            $query="INSERT INTO `log_system` 
-            (id, id_user, id_article, creation_date, action) 
-            VALUES (NULL, :idUser, :idArticle, CURRENT_TIMESTAMP, :actionUtilisteur) 
+            $query="INSERT INTO log_system (id, id_user, id_article, creation_date, actionUtilisateur) 
+            VALUES (NULL, :idUser, :idArticle, CURRENT_TIMESTAMP, :actionUtilisateur) 
             ";
+            
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+            $stmt->bindParam(':idArticle', $idArticle, PDO::PARAM_INT);
+            $stmt->bindParam(':actionUtilisateur', $actionUtilisateur, PDO::PARAM_STR);
 
-            $stmt = $this->$pdo->prepare($query);
-            $data = [
-                ':idUser' => $idUser,
-                ':idArticle' => $idArticle,
-                ':actionUtilisteur' => $actionUtilisteur
-            ];
-
-            $stmt = $stmt->execute($data);
+            $stmt->execute();
 
         }catch(PDOException $e){
             echo $e->getMessage();

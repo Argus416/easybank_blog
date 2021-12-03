@@ -14,8 +14,15 @@
             <div class="dashboard_content my_profile">
                 <div class="mb-5 d-flex align-items-center justify-content-between">
                     <h3 class="m-0"> Bienvenu <?= $user->prenom?> </h3>
-                    <a class="btn btn-secondary-cus"
-                        href="<?= $urlGenerator->generate('authorEdit', ['id' =>$_ENV['USER_ID']])?>">Modifier</a>
+
+                    <div class="btns-my-profile">
+                        <a class="btn btn-third-cus"
+                            href="<?= $urlGenerator->generate('authorEdit', ['id' =>$_ENV['USER_ID']])?>">Modifier</a>
+                        <form method="POST">
+                            <input type="submit" name="download-logs" class="btn-forth-cus"
+                                value="Télécharger les logs">
+                        </form>
+                    </div>
                 </div>
 
 

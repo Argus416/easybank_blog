@@ -1,0 +1,12 @@
+.btns-my-profile {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    form {
+        margin: 0;
+    }
+    .btn-third-cus {
+        display: inline-block;
+        margin-right: 0.4em;
+    }
+}

@@ -1,13 +1,19 @@
 <?php
 
 require_once 'app/models/UsersModel.php';
+require_once 'app/models/LogSystemModel.php';
+require_once 'app/controllers/LogSystemController.php';
 
 class UsersController{
 
     private $UsersModel;
+    private $LogSystemModel;
+    private $LogSystemController;
 
     public function __construct(){
         $this->UsersModel = new UsersModel;
+        $this->LogSystemModel = new LogSystemModel;
+        $this->LogSystemController = new LogSystemController;
     }
 
    
@@ -15,19 +21,20 @@ class UsersController{
         ConnexionController::isLoggedin();
         $urlGenerator = $param['urlGenerator'];
         $prenom = $nom = $email = $password = $dateDeNaissance = '';
-        $id = filter_var($param['id'], FILTER_VALIDATE_INT);
-
+        $id = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
         $user = $this->UsersModel->getUser($id)[0];
-       
-        require_once 'views/my_profile.php';
 
+        if(isset($_POST['download-logs'])){
+            $this->LogSystemController->generateLogFile();
+        }
+        require_once 'views/my_profile.php';
     }
 
     public function edit($param){
         ConnexionController::isLoggedin();
         $urlGenerator = $param['urlGenerator'];
         $prenom = $nom = $email = $password = $imgProfile = $dateDeNaissance = '';
-        $id = filter_var($param['id'], FILTER_VALIDATE_INT);
+        $id = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
 
         $user = $this->UsersModel->getUser($id)[0];
         $domain = $_ENV['DOMAIN'];

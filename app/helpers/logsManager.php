@@ -8,13 +8,17 @@ class logsManager {
 
     public function __construct()
     {
-        self::$LogSystemModel = new LogSystemModel;
+        $this->LogSystemModel = new LogSystemModel;
     }
     
-    public static function createAndAddToLog(INT $idUser,  $idArticle, STRING $actionUtilisteur){
-        $logs = fopen('log.txt', 'a+');
-        fwrite($logs, $actionUtilisteur);
-        // self::$LogSystemModel->addToLog($idUser, $idArticle, $actionUtilisteur);
-        fclose($logs);
+    public function generateLogFile(){
+        $file = fopen('logs.csv', 'w');
+        fputcsv($file, ['userID','userIden', 'articleID', 'articleTitle', 'actionDate']);
+        $data = $this->LogSystemModel->getLog();
+        dump($data);
+        foreach ($data as $row){
+            fputcsv($file, $row);
+        }
+        fclose($file);
     }
 }

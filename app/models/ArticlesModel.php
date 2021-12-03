@@ -16,7 +16,36 @@ class ArticlesModel{
     }
     
 
-    public function getArticles($offset = 0){
+    public function getArticles(){
+        try{
+            $query='SELECT
+                    articles.id as articleID,
+                    articles.title as articleTitle,
+                    articles.body as articleBody,
+                    users.id as userID,
+                    users.nom as userNom,
+                    users.prenom as userPrenom,
+                    categorie.id as categorieID,
+                    categorie.type as categorieType
+                    FROM articles 
+                    INNER JOIN users on articles.id_user = users.id
+                    INNER JOIN categorie on articles.id_categorie = categorie.id
+                    WHERE articles.is_deleted=0
+                    AND categorie.is_deleted=0
+                    ORDER BY articles.creation_date DESC
+                ';
+    
+            $db = $this->pdo->prepare($query);
+            $db->execute();
+            $articles = $db->fetchAll(PDO::FETCH_OBJ);
+            return $articles;
+            
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+
+    public function getArticlesWithPagintation($offset = 0){
         try{
             $query='SELECT
                     articles.id as articleID,
@@ -117,6 +146,29 @@ class ArticlesModel{
                 AND categorie.is_deleted=0
                 ORDER BY articles.creation_date DESC
                 LIMIT 4
+        ';
+        $db = $this->pdo->prepare($query);
+        $db->execute();
+        $lastestArticles = $db->fetchAll(PDO::FETCH_OBJ);
+        return $lastestArticles;
+    }
+
+    public function getLatesetArticle(){
+        $query= 'SELECT
+                articles.id as articleID,
+                articles.title as articleTitle,
+                articles.body as articleBody,
+                users.id as userID,
+                users.nom as userNom,
+                users.prenom as userPrenom,
+                categorie.type as categorieType
+                FROM articles 
+                INNER JOIN users on articles.id_user = users.id
+                INNER JOIN categorie on articles.id_categorie = categorie.id
+                WHERE articles.is_deleted=0
+                AND categorie.is_deleted=0
+                ORDER BY articles.creation_date DESC
+                LIMIT 1
         ';
         $db = $this->pdo->prepare($query);
         $db->execute();

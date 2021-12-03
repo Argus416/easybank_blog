@@ -25,7 +25,7 @@
 
                         <div class="text-center view-more-container">
                             <a href="<?= $urlGenerator->generate('article', ['id'=>$article->articleID]) ?>"
-                                class="btn-forth-cus">Voir plus</a>
+                                class="btn-third-outline-cus">Voir plus</a>
                         </div>
                     </article>
                     <?php endforeach;?>

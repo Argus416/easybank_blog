@@ -124,7 +124,7 @@ p {
   opacity: 0.8;
 }
 
-.btn-forth-cus {
+.btn-third-outline-cus {
   display: inline-block;
   text-decoration: none;
   background: transparent;
@@ -136,28 +136,29 @@ p {
   transition: opacity 0.3s ease-in-out;
 }
 
-.btn-forth-cus:hover {
+.btn-third-outline-cus:hover {
   background: #2d314d;
   color: white !important;
 }
 
-.nav-item-cus {
-  background: #31d35c;
-  color: white;
-  padding: 0em 1em !important;
+.btn-forth-cus {
+  display: inline-block;
+  text-decoration: none;
+  background: #ffc107;
+  color: white !important;
+  padding: 0.6em 2em;
   border-radius: 20px;
+  border: none;
   -webkit-transition: opacity 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out;
 }
 
-.nav-item-cus:hover {
+.btn-forth-cus:hover {
   opacity: 0.8;
 }
 
 .nav-item-cus,
 .nav-item-cus-dec {
-  color: white !important;
-  padding: 0em 1em !important;
   border-radius: 20px;
   -webkit-transition: opacity 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out;
@@ -173,14 +174,14 @@ p {
   opacity: 0.8;
 }
 
-.nav-item-cus {
-  background-color: #31d35c;
+.nav-item-cus,
+.nav-item-cus-dec {
+  color: white !important;
+  padding: 0em 1em !important;
 }
 
-.nav-item-cus-dec {
-  height: 40px;
-  border: none;
-  background-color: crimson;
+.nav-item-cus {
+  background: #31d35c;
 }
 
 .test {
@@ -709,6 +710,26 @@ header.dashboard .left .profile a {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.btns-my-profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.btns-my-profile form {
+  margin: 0;
+}
+
+.btns-my-profile .btn-third-cus {
+  display: inline-block;
+  margin-right: 0.4em;
 }
 
 header .navbar {

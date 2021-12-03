@@ -40,7 +40,7 @@
     }
 }
 
-.btn-forth-cus {
+.btn-third-outline-cus {
     display: inline-block;
     text-decoration: none;
     background: transparent;
@@ -55,11 +55,14 @@
     }
 }
 
-.nav-item-cus {
-    background: $LimeGreen;
-    color: $White;
-    padding: 0em 1em !important;
+.btn-forth-cus {
+    display: inline-block;
+    text-decoration: none;
+    background: $wraningColor;
+    color: $White !important;
+    padding: 0.6em 2em;
     border-radius: 20px;
+    border: none;
     transition: opacity 0.3s ease-in-out;
     &:hover {
         opacity: 0.8;
@@ -68,8 +71,6 @@
 
 .nav-item-cus,
 .nav-item-cus-dec {
-    color: $White !important;
-    padding: 0em 1em !important;
     border-radius: 20px;
     transition: opacity 0.3s ease-in-out;
     & > * {
@@ -79,11 +80,13 @@
         opacity: 0.8;
     }
 }
-.nav-item-cus {
-    background-color: $LimeGreen;
-}
+
+.nav-item-cus,
 .nav-item-cus-dec {
-    height: 40px;
-    border: none;
-    background-color: $crimson;
+    color: $White !important;
+    padding: 0em 1em !important;
+}
+
+.nav-item-cus {
+    background: $LimeGreen;
 }

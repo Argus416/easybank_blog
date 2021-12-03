@@ -39,6 +39,7 @@ class ConnexionController{
                         $_SESSION['isLoggedin'] = true;
                         $_SESSION['idAdmin'] = $admin->authorID;
                         $_SESSION['authorPrenom'] = $admin->authorPrenom;
+                        $_SESSION['authorImg'] = $admin->authorImg;
                         header('Location:'.$urlGenerator->generate('accueil'));
                     }else{
                         $err = "<p class='text-danger err-text'>Votre email ou mot de passe n'est pas correct</p>";

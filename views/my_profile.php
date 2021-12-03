@@ -27,7 +27,7 @@
 
 
                 <div class="current_photo_container mb-3">
-                    <img class="current_photo" src="<?= "$domain$public" ?>style/images/image-currency.jpg"
+                    <img class="current_photo" src="<?= "$domain$public" ?>uploaded/images/<?= $user->img_profile?>"
                         alt="profile_photo">
                 </div>
 

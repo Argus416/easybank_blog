@@ -11,7 +11,7 @@
             <input type="search" placeholder="Recherer un article">
         </form>
         <div class="profile">
-            <img src="<?= "$domain$public" ?>style/images/image-currency.jpg" alt="profile_photo">
+            <img src="<?= "$domain$public" ?>uploaded/images/<?= $_SESSION['authorImg'] ?>" alt="profile_photo">
             <a href="<?= $urlGenerator->generate('authorShow', ['id' =>$_SESSION['idAdmin']])?>"
                 class="current_user"><?=$_SESSION['authorPrenom']?></a>
         </div>

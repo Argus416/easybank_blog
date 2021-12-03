@@ -21,6 +21,7 @@ class UsersModel{
                     users.prenom as authorPrenom,
                     users.email as authorEmail,
                     users.mdp as authorMDP,
+                    users.img_profile as authorImg,
                     COUNT(articles.id_user) as nbArticle
                     FROM users 
                     LEFT JOIN articles ON users.id = articles.id_user
@@ -64,11 +65,10 @@ class UsersModel{
 
     public function update(
         INT $id, STRING $nom, STRING $prenom, STRING $email,
-        STRING $mdp, STRING $dateDeNaissance, $imgName = ''
+        STRING $mdp, STRING $dateDeNaissance, STRING $imgName = ''
     ){
         try{
            
-            $data = [];
             $query='UPDATE users 
                     SET nom = :nom, 
                     prenom = :prenom, 
@@ -78,24 +78,26 @@ class UsersModel{
             ';
     
             if(strlen($imgName)){
-                $query .=",img_profile = :imgName \n";
-                $data[':imgURL'] = $imgName;
+                $query .=", img_profile = :imgName \n";
+                // $data[':imgURL'] = $imgName;
             }
 
             $query .="WHERE users.id = :id";
+            
             $stmt = $this->pdo->prepare($query);
+            
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
+            $stmt->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':mdp', $mdp, PDO::PARAM_STR);
+            $stmt->bindParam(':dateDeNaissance', $dateDeNaissance, PDO::PARAM_STR);
 
-            $data= [
-                ':id' => $id,
-                ':nom'=> $nom,
-                ':prenom' => $prenom,
-                ':email' => $email,
-                ':mdp' => $mdp,
-                ':dateDeNaissance' => $dateDeNaissance,
-            ];
-            dump($data);
+            if(strlen($imgName)){
+                $stmt->bindParam(':imgName', $imgName, PDO::PARAM_STR);
+            }
 
-            $stmt->execute($data);
+            $stmt->execute();
         }catch(PDOException $e){
             echo $e->getMessage();
         }

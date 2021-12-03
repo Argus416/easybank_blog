@@ -23,7 +23,6 @@ class UsersController{
         $prenom = $nom = $email = $password = $dateDeNaissance = '';
         $id = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
         $user = $this->UsersModel->getUser($id)[0];
-
         if(isset($_POST['download-logs'])){
             $this->LogSystemController->generateLogFile();
         }
@@ -78,9 +77,9 @@ class UsersController{
                 }
             }
             
-            // header('Location:'.$urlGenerator->generate('authorShow', ['id' =>$_SESSION['idAdmin']] ));
+            header('Location:'.$urlGenerator->generate('authorShow', ['id' =>$_SESSION['idAdmin']] ));
             $_SESSION['authorPrenom'] = $prenom;
-            dump($imgNewName);
+            $_SESSION['authorImg'] = $imgNewName;
             $this->LogSystemModel->addToLog($id, NULL, 'utilisateurModifiee');
             $this->UsersModel->update($id ,$nom, $prenom, $email, $password, $dateDeNaissance, $imgNewName);
         }

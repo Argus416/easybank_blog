@@ -27,8 +27,7 @@
 
 
                 <div class="current_photo_container mb-3">
-                    <img class="current_photo" src="<?= "$domain$public" ?>uploaded/images/<?= $user->img_profile?>"
-                        alt="profile_photo">
+                    <img class="current_photo" src="<?= Helpers::imgProfile() ?>" alt="photo profil">
                 </div>
 
                 <div class="row w-75 m-auto">

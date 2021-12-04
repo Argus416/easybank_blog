@@ -59,6 +59,7 @@ class UsersController{
             $allowedExt = array('jpg', 'jpeg', 'png');
             $imgNewName = "" ; 
 
+            
             if(in_array($imgAcutalExt, $allowedExt)){
                 if($imgProfileError === 0){
                     if($imgProfileSize < 300000){

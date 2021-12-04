@@ -1,6 +1,7 @@
 <?php
     $domain = $_ENV['DOMAIN'];
     $public = $_ENV['PUBLIC'];
+
 ?>
 
 <header class="dashboard">
@@ -11,7 +12,7 @@
             <input type="search" placeholder="Recherer un article">
         </form>
         <div class="profile">
-            <img src="<?= "$domain$public" ?>uploaded/images/<?= $_SESSION['authorImg'] ?>" alt="profile_photo">
+            <img src="<?= Helpers::imgProfile() ?>" alt="photo profil">
             <a href="<?= $urlGenerator->generate('authorShow', ['id' =>$_SESSION['idAdmin']])?>"
                 class="current_user"><?=$_SESSION['authorPrenom']?></a>
         </div>

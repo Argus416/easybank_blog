@@ -1,6 +1,8 @@
 <?php
 
 class Helpers {
+
+    
     public static function print_me($value){
         echo "<pre>";
         print_r($value);
@@ -55,6 +57,20 @@ class Helpers {
         $paginationTemplate .= " </ul>";
         $paginationTemplate .= " </nav>";
         return $paginationTemplate;
+    }
+
+    public static function imgProfile(){
+        $imgProfile = "";
+        $domain = $_ENV['DOMAIN'];
+        $public = $_ENV['PUBLIC'];
+        
+        if(file_exists($_SERVER['DOCUMENT_ROOT']."/public/uploaded/images/".$_SESSION['authorImg'])){
+            $imgProfile = "$domain$public"."uploaded/images/".$_SESSION['authorImg'];
+        }else{
+            $imgProfile = "$domain$public"."style/images/photoprofilplaceholder.jpg";
+        }
+
+        return $imgProfile;
     }
 
 }

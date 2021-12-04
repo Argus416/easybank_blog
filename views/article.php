@@ -15,6 +15,15 @@
             <!-- Si l'article existe -->
             <?php if(count($article)): ?>
 
+            <?php
+                if(isset($_SESSION['alert'])){
+                    if($_SESSION['alert'] === 'go'){
+                        echo Helpers::alertManager('primary' ,'articleModifie'); 
+                    }else{
+                        echo Helpers::alertManager(); 
+                    }
+                }    
+            ?>
             <article class="mb-5">
                 <div class="header-article mb-4">
                     <h1><?= $article[0]->articleTitle ?></h1>

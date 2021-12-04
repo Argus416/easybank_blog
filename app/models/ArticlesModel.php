@@ -231,7 +231,7 @@ class ArticlesModel{
     public function addArticle(STRING $title,STRING $body, STRING $idCategorie, INT $idUser ,INT $isDeleted = 0  ){ 
         try{
             $query = 'INSERT INTO articles VALUES(NULL, :title, :body, CURRENT_TIMESTAMP ,:isDeleted,:idUser, :idCategorie)';
-            $db = $this->pdo->prepare($query);
+            $stmt = $this->pdo->prepare($query);
             $data=[
                 ':title'=> $title,
                 ':body'=> $body,
@@ -239,8 +239,8 @@ class ArticlesModel{
                 ':idUser'=> $idUser,
                 ':idCategorie'=> $idCategorie
             ];
-            $db->execute($data);
 
+            return $stmt->execute($data);
         }catch(PDOException $e){
             echo $e;
         }
@@ -254,7 +254,7 @@ class ArticlesModel{
                       id_categorie = :idCategorie
                       WHERE articles.id = :id';
                       
-            $db = $this->pdo->prepare($query);
+            $stmt = $this->pdo->prepare($query);
 
             $data=[
                 ':title'=> $title,
@@ -262,7 +262,7 @@ class ArticlesModel{
                 ':idCategorie'=> $idCategorie,
                 ':id' => $id
             ];
-            $db->execute($data);
+            return $stmt->execute($data);
         }catch(PDOException $e){
             echo $e;
         }
@@ -274,13 +274,13 @@ class ArticlesModel{
                       SET is_deleted = :isDeleted
                       WHERE articles.id = :id';
                       
-            $db = $this->pdo->prepare($query);
+            $stmt = $this->pdo->prepare($query);
 
             $data=[
                 ':isDeleted'=> 1,
                 ':id' => $id
             ];
-            $db->execute($data);
+            return $stmt->execute($data);
         }catch(PDOException $e){
             echo $e;
         }

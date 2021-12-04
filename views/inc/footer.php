@@ -28,5 +28,3 @@
         </div>
     </div>
 </footer>
-
-<script src="<?= "$domain$public"?>script/sandbox.js"></script>

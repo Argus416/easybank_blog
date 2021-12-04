@@ -109,8 +109,15 @@ class ArticlesController{
         if(isset($_POST['article-del'])){
             $idArticle = filter_var($_POST['article-id'], FILTER_VALIDATE_INT);
             $this->ArticlesModel->deleteArticle($idArticle);
-            // Reactualiser  la page
-            header('Refresh:0');
+           
+            if($this->ArticlesModel->deleteArticle($idArticle)){
+                $_SESSION['alert'] = 'del-article';
+            }else{
+                $_SESSION['alert'] = 'err';
+            }
+            
+           // Reactualiser  la page
+           header('Refresh:1');
         }
 
         require_once 'views/articles_management.php';
@@ -137,6 +144,13 @@ class ArticlesController{
             
             $this->ArticlesModel->addArticle($title, $body, $categorie,$this->idUser );
             $this->LogSystemModel->addToLog($this->idUser, $idArticle, 'articleCree');
+
+            if($this->ArticlesModel->addArticle($title, $body, $categorie,$this->idUser )){
+                $_SESSION['alert'] = 'add-article';
+            }else{
+                $_SESSION['alert'] = 'err';
+            }
+
             header('Location:' . $urlGenerator->generate('articlesManagement'));
         }
         require_once 'views/form_add_article.php';
@@ -160,8 +174,15 @@ class ArticlesController{
             $categorie = filter_var($_POST['artilce-categorie'], FILTER_VALIDATE_INT);
             $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
 
-            $this->ArticlesModel->editArticle($id ,$title, $body, $categorie );
+            
             $this->LogSystemModel->addToLog($this->idUser, $id, 'articleModifie');
+
+            $this->ArticlesModel->editArticle($id ,$title, $body, $categorie );
+            if($this->ArticlesModel->editArticle($id ,$title, $body, $categorie)){
+                $_SESSION['alert'] = 'go';
+            }else{
+                $_SESSION['alert'] = 'err';
+            }
             header('location:'. $urlGenerator->generate('article', ['id' => $id]));
         }
         require_once 'views/form_edit_article.php';

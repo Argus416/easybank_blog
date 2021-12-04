@@ -30,7 +30,7 @@
                 <i class="fas fa-cog"></i>
                 <a class="nav-link"
                     href="<?= $urlGenerator->generate('authorShow', ['id' =>$_SESSION['idAdmin']])?>">Mon
-                    profile</a>
+                    profil</a>
             </li>
             <li class="nav-item">
                 <i class="far fa-compass"></i>

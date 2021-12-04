@@ -63,7 +63,7 @@ class LogSystemModel{
                     $actionUtilisateur = "un nouveau utilisateur a été créé";
                     break;
                 case "utilisateurModifiee": 
-                    $actionUtilisateur = "l'utilisateur a été modifié";
+                    $actionUtilisateur = "l'utilisateur a été mis à jour";
                     break;
                 default:
                     $actionUtilisateur = "action non trouvé";
@@ -76,7 +76,7 @@ class LogSystemModel{
             ];
             
             $stmt->bindParam(':actionUtilisateur', $actionUtilisateur, PDO::PARAM_STR);
-            $stmt->execute();
+            return $stmt->execute();
         }catch(PDOException $e){
             echo $e->getMessage();
         }

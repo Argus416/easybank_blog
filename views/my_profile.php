@@ -1,8 +1,6 @@
-<?php
-    // echo $user->img_profile;
-
+<?php 
+    require_once 'inc/header.php';
 ?>
-<?php require_once 'inc/header.php' ?>
 <title>Articls management</title>
 </head>
 
@@ -12,6 +10,20 @@
         <div class="dashboard_body">
             <?php require_once 'inc/dashboard_header.php' ?>
             <div class="dashboard_content my_profile">
+
+
+                <?php
+                    if(isset($_SESSION['alert'])){
+                        if($_SESSION['alert'] === 'download-logs'){
+                            echo Helpers::alertManager('success' ,'getLog'); 
+                        }elseif($_SESSION['alert'] === 'ok'){
+                            echo Helpers::alertManager('primary', 'profilModifie'); 
+                        }else{
+                            echo Helpers::alertManager('danger'); 
+                        }
+                    }
+                ?>
+
                 <div class="mb-5 d-flex align-items-center justify-content-between">
                     <h3 class="m-0"> Bienvenu <?= $user->prenom?> </h3>
 
@@ -51,7 +63,6 @@
                         <input type="date" class="form-control" name="date-de-naissance" id="date-de-naissance"
                             value="<?= $user->date_de_naissance?>" disabled>
                     </div>
-
                 </div>
 
             </div>

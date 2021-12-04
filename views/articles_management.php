@@ -9,14 +9,24 @@ require_once 'inc/header.php' ?>
         <?php require_once 'inc/dashboard_aside.php' ?>
         <div class="dashboard_body">
             <?php require_once 'inc/dashboard_header.php' ?>
+
             <div class="dashboard_content articles_management">
+
+                <?php
+                    if($_SESSION['alert'] === 'del-article'){
+                        echo Helpers::alertManager('danger' ,'articleDel'); 
+                    }elseif($_SESSION['alert'] === 'add-article'){
+                        echo Helpers::alertManager('success', 'articleAjoute'); 
+                    }{
+                        echo Helpers::alertManager(); 
+                    }
+                ?>
+
                 <div class="gestion-article-header d-flex justify-content-between mb-4 ">
                     <h3 class="m-0"> Gestion d'articles </h3>
                     <a href="<?= $urlGenerator->generate('addArticle') ?>" class="btn-secondary-cus me-4">Ajouter un
                         article</a>
                 </div>
-
-
 
                 <?php 
                     if(count($articles)):

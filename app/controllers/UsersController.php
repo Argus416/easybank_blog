@@ -23,8 +23,10 @@ class UsersController{
         $prenom = $nom = $email = $password = $dateDeNaissance = '';
         $id = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
         $user = $this->UsersModel->getUser($id)[0];
+        
         if(isset($_POST['download-logs'])){
             $this->LogSystemController->generateLogFile();
+            $_SESSION['alert'] = 'download-logs';
         }
         require_once 'views/my_profile.php';
     }
@@ -58,7 +60,6 @@ class UsersController{
             $imgAcutalExt = strtolower(end($imgExt));
             $allowedExt = array('jpg', 'jpeg', 'png');
             $imgNewName = "" ; 
-
             
             if(in_array($imgAcutalExt, $allowedExt)){
                 if($imgProfileError === 0){
@@ -79,10 +80,22 @@ class UsersController{
             }
             
             header('Location:'.$urlGenerator->generate('authorShow', ['id' =>$_SESSION['idAdmin']] ));
+            
             $_SESSION['authorPrenom'] = $prenom;
-            $_SESSION['authorImg'] = $imgNewName;
+            if($imgNewName){
+                $_SESSION['authorImg'] = $imgNewName;
+            }
+
+
             $this->LogSystemModel->addToLog($id, NULL, 'utilisateurModifiee');
             $this->UsersModel->update($id ,$nom, $prenom, $email, $password, $dateDeNaissance, $imgNewName);
+            
+            // Gestion d'alert, si la bdd est mise à jour, alert success, sinon alert danger
+            if($this->UsersModel->update($id ,$nom, $prenom, $email, $password, $dateDeNaissance, $imgNewName)){
+                $_SESSION['alert'] = 'ok';
+            }else{
+                $_SESSION['alert'] = 'err';
+            }
         }
         require_once 'views/profile-edit.php';
     }

@@ -23,6 +23,42 @@ class Helpers {
         return $imgProfile;
     }
 
+    public static function alertManager(STRING $class = 'danger', STRING $alertType = 'err'){
+        
+        if(isset($_SESSION['alert']) && strlen($_SESSION['alert'])){
+            switch($alertType){
+                case "articleAjoute": 
+                    $alertType = "Un nouveau article a été publié";
+                    break;
+                case "articleModifie": 
+                    $alertType = "L'article a été modifié";
+                    break;
+                case "articleDel": 
+                    $alertType = "L'article a été supprimé";
+                    break;
+                case "utilisateurCree": 
+                    $alertType = "Un nouveau utilisateur a été créé";
+                    break;
+                case "profilModifie":
+                    $alertType = "Le profil a été mis à jour";
+                    break;
+                case "getLog":
+                    $alertType = "Les logs ont été téléchargés";
+                    break;
+                case "err":
+                    $alertType = "Impossible de mettre à jour la base de données";
+                    break;
+            }
+    
+            $template = "<div class='alert alert-$class' role='alert'>
+                            <span>$alertType</span>
+                        </div>";
+    
+            unset($_SESSION['alert']);
+            return $template;
+        }
+    }
+
     public static function Pagination($nbElementParPage = 5 ,$nbArticles = 0, $link = "#"){
         $addPrev = false;
         $addNext = false;
@@ -54,13 +90,10 @@ class Helpers {
                     }
                 }
 
-                
-
                 $paginationTemplate .= "<li class='page-item'><a class='page-link' href=$link$i>$i</a></li>";
             }
 
             $nextPage = 2;
-
            
             if(isset($_GET['pagination'])){
                 $nextPage = intval($_GET['pagination']) + 1;
@@ -72,7 +105,6 @@ class Helpers {
                 $paginationTemplate .= "        </a>";
                 $paginationTemplate .= "     </li>";
             }
-            
        
         }else{
             $paginationTemplate .= "<li class='page-item'><a class='page-link' href=$link$1</a></li>";

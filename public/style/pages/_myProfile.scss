@@ -10,3 +10,10 @@
         margin-right: 0.4em;
     }
 }
+
+.current_photo_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

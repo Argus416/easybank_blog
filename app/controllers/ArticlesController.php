@@ -38,46 +38,22 @@ class ArticlesController{
     public function blog($param){
         $urlGenerator = $param['urlGenerator'];
         $nbArticles = 0;
-        $categoriesSelections = [];
         
-        // Si aucun catégorie n'est selectionné => afficher tous les articles
-        if(!isset($_GET['categories-selected']) || empty($_GET['categories-selected']) ){
-            
-            $articles = $this->ArticlesModel->getArticlesWithPagintation();
-            
-            // gestion de la pagination
+
+        // récuperer tous les articles de catégorie
+        $articles = $this->ArticlesModel->getArticlesWithPagintation();
+        $nbArticles = $this->ArticlesModel->getCountArticles()[0]->nbArticles;
+
+
+        if(isset($_POST['search-articles'])){
+            $search = htmlentities(trim($_POST['search-articles']));
+            $articles = $this->ArticlesModel->searchArticles($search);
+            $nbArticles = $this->ArticlesModel->getCountSearchArticles()[0]->nbArticles;
+
             if(isset($_GET['pagination']) && !empty($_GET['pagination'])){
                 $pageNumber = (intval($_GET['pagination']) - 1) * $this->nbElementParPage;
-                $articles = $this->ArticlesModel->getArticlesWithPagintation($pageNumber);
+                $articles = $this->ArticlesModel->searchArticles('sqdqsd', 1);
             }
-
-            $nbArticles = $this->ArticlesModel->getCountArticle()[0]->nbArticles;
-            unset($_GET['categories-selected']);
-        }else{
-            //si aucun catégorie est selectionne, afficher tous les articles
-            unset($_GET['categories-selected']);
-
-            // récuperer tous les id de catégories selectionnées
-            $categoriesSelections = $_GET;
-
-            // récuperer tous les articles de catégorie
-            $articles = $this->ArticlesModel->getArticlesByCategories($categoriesSelections);
-            $nbArticles = $this->ArticlesModel->getCountArticlesByCategories($categoriesSelections)[0]->nbArticles;
-
-        }
-        $categories = $this->CategoriesModel->getCategories();
-        $urlBlog = $urlGenerator->generate('blog');
-
-        $cats = '';
-        $i = 1;
-
-        foreach($categoriesSelections as $index => $cat){
-            if($i == count($categoriesSelections)){
-                $cats .="$index=$cat"; 
-            }else{
-                $cats .="$index=$cat&"; 
-            }
-            $i++;
         }
         
         $pagintation = Helpers::Pagination($this->nbElementParPage, $nbArticles, "$urlBlog?$cats&pagination=" );

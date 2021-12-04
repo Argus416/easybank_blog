@@ -1,5 +1,6 @@
 <?php
     require_once 'inc/header.php';
+    dump($_POST);
 ?>
 <title>Nos articles</title>
 
@@ -9,7 +10,15 @@
     <?php require_once 'inc/nav.php' ?>
     <main class="blogs">
         <div class="container">
-            <h1 class="page-title">Nos articles</h1>
+            <div class="header-blog">
+                <h1 class="page-title">Nos articles</h1>
+
+                <form method="POST" class="search_form">
+                    <i class="fas fa-search"></i>
+                    <input type="text" name="search-articles" placeholder="Recherer un article">
+                </form>
+
+            </div>
 
             <?php if(count($articles)): ?>
             <div class="d-flex">
@@ -29,29 +38,6 @@
                         </div>
                     </article>
                     <?php endforeach;?>
-                </div>
-
-                <div class="right">
-                    <form method="GET" class="d-flex flex-column categorie-select-form">
-                        <h4>Catégories</h4>
-                        <ul class="categorie-list">
-                            <?php 
-                                foreach($categories as $categorie):
-                                $checked = $_GET["cat-$categorie->type"] === "$categorie->id" ? 'checked' :
-                            '';
-                            ?>
-
-                            <li>
-                                <label for="cat-<?= $categorie->type ?>" class="mb-1">
-                                    <input type="checkbox" name="cat-<?= $categorie->type ?>" class="categorie"
-                                        id="cat-<?= $categorie->type ?>" value="<?= $categorie->id ?>" <?= $checked?>>
-                                    <?= $categorie->type ?>
-                                </label>
-                            </li>
-                            <?php endforeach;?>
-                        </ul>
-                        <input type="submit" name="categories-selected" class="categorie-select" hidden>
-                    </form>
                 </div>
             </div>
             <?= $pagintation ?>

@@ -65,10 +65,10 @@ class ArticlesModel{
                     LIMIT 4 OFFSET :offsetTest
                 ';
     
-            $db = $this->pdo->prepare($query);
-            $db->bindParam(':offsetTest', $offset, PDO::PARAM_INT);
-            $db->execute();
-            $articles = $db->fetchAll(PDO::FETCH_OBJ);
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(':offsetTest', $offset, PDO::PARAM_INT);
+            $stmt->execute();
+            $articles = $stmt->fetchAll(PDO::FETCH_OBJ);
             return $articles;
             
         }catch(PDOException $e){
@@ -228,6 +228,26 @@ class ArticlesModel{
         return $article;
     }
 
+    public function searchArticles(STRING $search, INT $offset = 0){
+        
+        $query="SELECT * from articles 
+                WHERE title OR body LIKE '%:search%' 
+                LIMIT 4 OFFSET :offsetTest
+                ";
+                
+        $stmt = $this->pdo->prepare($query);
+
+        $stmt->bindParam(':offsetTest', $offset, PDO::PARAM_INT);
+        $stmt->bindValue(':search', $search, PDO::PARAM_STR);
+
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $result;
+    }
+
+  
+
+
     public function addArticle(STRING $title,STRING $body, STRING $idCategorie, INT $idUser ,INT $isDeleted = 0  ){ 
         try{
             $query = 'INSERT INTO articles VALUES(NULL, :title, :body, CURRENT_TIMESTAMP ,:isDeleted,:idUser, :idCategorie)';
@@ -286,7 +306,9 @@ class ArticlesModel{
         }
     }
    
-    public function getCountArticle(){
+    // ! Count Methods
+
+    public function getCountArticles(){
         try{
             $query='SELECT count(articles.id) as nbArticles FROM articles 
                 INNER JOIN users on articles.id_user = users.id
@@ -340,5 +362,17 @@ class ArticlesModel{
        
     }
 
+    public function getCountSearchArticles(){
+        
+        $query="SELECT count(*) from articles 
+                WHERE title OR body LIKE '%:search%' 
+                ";
+                
+        $stmt = $this->pdo->prepare($query);
+
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $result;
+    }
 
 }

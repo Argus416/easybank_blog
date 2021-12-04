@@ -1,8 +1,28 @@
 main.blogs {
+    .header-blog {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .search_form {
+            position: relative;
+            .fa-search {
+                position: absolute;
+                left: 13px;
+                top: 12px;
+            }
+            input {
+                background-color: transparent;
+                margin-right: 20px;
+                padding: 7px 10px 7px 38px;
+                border: 2px solid $darkBlue;
+                width: 330px;
+            }
+        }
+    }
     .d-flex {
         justify-content: space-between;
         .left {
-            width: 74%;
+            width: 100%;
             .article {
                 margin-bottom: 1.8em;
                 border-bottom: 1px solid $LightGrayishBlue;

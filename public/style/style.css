@@ -489,6 +489,36 @@ main.contact_us .d-flex .right .btn-container .btn-submit {
   width: 70%;
 }
 
+main.blogs .header-blog {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+main.blogs .header-blog .search_form {
+  position: relative;
+}
+
+main.blogs .header-blog .search_form .fa-search {
+  position: absolute;
+  left: 13px;
+  top: 12px;
+}
+
+main.blogs .header-blog .search_form input {
+  background-color: transparent;
+  margin-right: 20px;
+  padding: 7px 10px 7px 38px;
+  border: 2px solid #2d314d;
+  width: 330px;
+}
+
 main.blogs .d-flex {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
@@ -496,7 +526,7 @@ main.blogs .d-flex {
 }
 
 main.blogs .d-flex .left {
-  width: 74%;
+  width: 100%;
 }
 
 main.blogs .d-flex .left .article {

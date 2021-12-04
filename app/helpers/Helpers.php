@@ -32,23 +32,34 @@ class Helpers {
         $paginationTemplate .= "<ul class='pagination justify-content-center'>";
      
         if($nbPages > 0){
-            
+
+            $prevPage = 1;
+           
+
             for($i = 1; $i <= $nbPages ; $i++){
                 //si la page précédente n'est page égal à 0 
 
-                if($addPrev === false){
-                    $paginationTemplate .= "    <li class='page-item'>";
-                    $paginationTemplate .= "        <a class='page-link' href='$link$i' aria-label='Previous'>";
-                    $paginationTemplate .= "            <span aria-hidden='true'>&laquo;</span>";
-                    $paginationTemplate .= "        </a>";
-                    $paginationTemplate .= "     </li>";
-                    $addPrev = true;
+                if(isset($_GET['pagination'])){
+                    $prevPage = intval($_GET['pagination']) - 1;
+                    
+                    if($_GET['pagination'] != 1){
+                        if($addPrev === false){
+                            $paginationTemplate .= "    <li class='page-item'>";
+                            $paginationTemplate .= "        <a class='page-link' href='$link$prevPage' aria-label='Previous'>";
+                            $paginationTemplate .= "            <span aria-hidden='true'>&laquo;</span>";
+                            $paginationTemplate .= "        </a>";
+                            $paginationTemplate .= "     </li>";
+                            $addPrev = true;
+                        }
+                    }
                 }
+
+                
 
                 $paginationTemplate .= "<li class='page-item'><a class='page-link' href=$link$i>$i</a></li>";
             }
 
-            $nextPage = 0;
+            $nextPage = 2;
 
            
             if(isset($_GET['pagination'])){

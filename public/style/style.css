@@ -187,6 +187,31 @@ p {
   padding-bottom: 0.5em !important;
 }
 
+.page-item.active a.page-link {
+  color: white !important;
+  background-color: #31d35c !important;
+  border: none !important;
+}
+
+.page-item a.page-link {
+  border: none !important;
+  border-radius: 0 !important;
+  color: #31d35c !important;
+  outline: none !important;
+  margin: 0px 5px !important;
+}
+
+.page-item a.page-link:focus {
+  color: #31d35c !important;
+  outline: none !important;
+}
+
+.page-item a.page-link:active {
+  outline: none !important;
+  color: #31d35c !important;
+  background-color: none !important;
+}
+
 .test {
   overflow: hidden;
 }

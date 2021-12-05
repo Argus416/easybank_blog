@@ -93,3 +93,44 @@
     padding-top: 0.5em !important;
     padding-bottom: 0.5em !important;
 }
+
+.page-item {
+    &.active a.page-link {
+        color: $White !important;
+        background-color: $LimeGreen !important;
+        border: none !important;
+    }
+
+    a.page-link {
+        border: none !important;
+        border-radius: 0 !important;
+        color: $LimeGreen !important;
+        outline: none !important;
+        margin: 0px 5px !important;
+        &:focus {
+            color: $LimeGreen !important;
+            outline: none !important;
+        }
+        &:active {
+            outline: none !important;
+            color: $LimeGreen !important;
+            background-color: none !important;
+        }
+    }
+}
+
+// .page-link {
+//     border: none !important;
+//     color: $LimeGreen !important;
+//     outline: none !important;
+
+//     &:focus {
+//         color: $LimeGreen !important;
+//         outline: none !important;
+//     }
+//     &:active {
+//         outline: none !important;
+//         color: $LimeGreen !important;
+//         background-color: none !important;
+//     }
+// }

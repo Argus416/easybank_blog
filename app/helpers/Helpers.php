@@ -66,7 +66,8 @@ class Helpers {
       
         $paginationTemplate = "<nav aria-label='Page navigation '>";
         $paginationTemplate .= "<ul class='pagination justify-content-center'>";
-     
+        $activeClass = isset($_GET['pagination']) && !empty($_GET['pagination']) ? 'active' : '';
+
         if($nbPages > 0){
 
             $prevPage = 1;
@@ -90,7 +91,11 @@ class Helpers {
                     }
                 }
 
-                $paginationTemplate .= "<li class='page-item'><a class='page-link' href=$link$i>$i</a></li>";
+                if($i == $_GET['pagination']){
+                    $paginationTemplate .= "<li class='page-item $activeClass'><a class='page-link' href=$link$i>$i</a></li>";
+                }else{
+                    $paginationTemplate .= "<li class='page-item'><a class='page-link' href=$link$i>$i</a></li>";
+                }
             }
 
             $nextPage = 2;

@@ -76,60 +76,6 @@ class ArticlesModel{
         }
     }
 
-    public function getArticlesByCategories(Array $idsCategorie, INT $offset = 0){
-        try{
-
-            // $data = [];
-            $query="SELECT
-                    articles.id as articleID,
-                    articles.title as articleTitle,
-                    articles.body as articleBody,
-                    users.id as userID,
-                    users.nom as userNom,
-                    users.prenom as userPrenom,
-                    categorie.id as categorieID,
-                    categorie.type as categorieType
-                    FROM articles 
-                    INNER JOIN users on articles.id_user = users.id
-                    INNER JOIN categorie on articles.id_categorie = categorie.id
-                    WHERE articles.is_deleted=0
-                    AND categorie.is_deleted=0
-                    ";
-            $i = 0;
-            
-            foreach($idsCategorie as $id){
-                if($i == 0){
-                    $query .= "AND articles.id_categorie = :idsCategorie$id\n";
-                }else{
-                    $query .= "OR articles.id_categorie = :idsCategorie$id\n";
-                }
-                // $data['idsCategorie'.$id] += $id;
-                $i++;
-            }
-
-            $query.="ORDER BY articles.creation_date DESC
-                    LIMIT 4 OFFSET :offsetTest
-            ";
-
-            $db = $this->pdo->prepare($query);
-
-            foreach($idsCategorie as $id){
-                $id = intval($id);
-                $db->bindValue(":idsCategorie$id", $id, PDO::PARAM_INT);
-            }
-            
-            $db->bindValue(':offsetTest', $offset, PDO::PARAM_INT);
-            $db->execute();
-            // $db->execute($data);
-            $articlesByCategories = $db->fetchAll(PDO::FETCH_OBJ);
-            return $articlesByCategories;
-        }catch(PDOException $e){
-            echo $e->getMessage();
-        }
-
-       
-    }
-
     public function getLatesetArticles(){
         $query= 'SELECT
                 articles.id as articleID,
@@ -230,23 +176,22 @@ class ArticlesModel{
 
     public function searchArticles(STRING $search, INT $offset = 0){
         
-        $query="SELECT * from articles 
-                WHERE title OR body LIKE '%:search%' 
+        $query="SELECT articles.id as articleID,
+                articles.title as articleTitle,
+                articles.body as articleBody
+                from articles 
+                WHERE articles.title LIKE :search OR articles.body LIKE :search AND articles.is_deleted = 0
                 LIMIT 4 OFFSET :offsetTest
                 ";
                 
         $stmt = $this->pdo->prepare($query);
 
-        $stmt->bindParam(':offsetTest', $offset, PDO::PARAM_INT);
-        $stmt->bindValue(':search', $search, PDO::PARAM_STR);
-
+        $stmt->bindValue(':offsetTest', $offset, PDO::PARAM_INT);
+        $stmt->bindValue(':search', "%$search%" , PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_OBJ);
         return $result;
     }
-
-  
-
 
     public function addArticle(STRING $title,STRING $body, STRING $idCategorie, INT $idUser ,INT $isDeleted = 0  ){ 
         try{
@@ -305,9 +250,8 @@ class ArticlesModel{
             echo $e;
         }
     }
-   
+    
     // ! Count Methods
-
     public function getCountArticles(){
         try{
             $query='SELECT count(articles.id) as nbArticles FROM articles 
@@ -362,13 +306,18 @@ class ArticlesModel{
        
     }
 
-    public function getCountSearchArticles(){
+    public function getCountSearchArticles(STRING $search){
         
-        $query="SELECT count(*) from articles 
-                WHERE title OR body LIKE '%:search%' 
+        $query="SELECT count(*) as nbArticles
+                from articles 
+                WHERE (articles.title LIKE :search 
+                    OR articles.body LIKE :search)
+                AND articles.is_deleted = 0
                 ";
                 
         $stmt = $this->pdo->prepare($query);
+
+        $stmt->bindValue(':search', "%$search%" , PDO::PARAM_STR);
 
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_OBJ);

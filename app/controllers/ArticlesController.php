@@ -38,28 +38,30 @@ class ArticlesController{
     public function blog($param){
         $urlGenerator = $param['urlGenerator'];
         $nbArticles = 0;
-        
+        $pageNumber = 0;
 
-        // récuperer tous les articles de catégorie
-        $articles = $this->ArticlesModel->getArticlesWithPagintation();
-        $nbArticles = $this->ArticlesModel->getCountArticles()[0]->nbArticles;
-
-
-        if(isset($_POST['search-articles'])){
-            $search = htmlentities(trim($_POST['search-articles']));
-            $articles = $this->ArticlesModel->searchArticles($search);
-            $nbArticles = $this->ArticlesModel->getCountSearchArticles()[0]->nbArticles;
-
-            if(isset($_GET['pagination']) && !empty($_GET['pagination'])){
-                $pageNumber = (intval($_GET['pagination']) - 1) * $this->nbElementParPage;
-                $articles = $this->ArticlesModel->searchArticles('sqdqsd', 1);
-            }
+        // récuperer tous les articles 
+        $articles = $this->ArticlesModel->getArticlesWithPagintation($pageNumber);
+        $nbArticles = $this->ArticlesModel->getCountArticles()[0]->nbArticles;       
+        $query = '?pagination=';
+        if(isset($_GET['pagination']) && !empty($_GET['pagination'])){
+            $pageNumber = (intval($_GET['pagination']) - 1) * $this->nbElementParPage;
+            $articles = $this->ArticlesModel->getArticlesWithPagintation($pageNumber);
+            $query = '?pagination=';
         }
         
-        $pagintation = Helpers::Pagination($this->nbElementParPage, $nbArticles, "$urlBlog?$cats&pagination=" );
+        
+        
+        if(isset($_GET['search-articles']) && !empty($_GET['search-articles'])){
+            $search = htmlentities(trim($_GET['search-articles']));
+            $articles = $this->ArticlesModel->searchArticles($search);
+            $nbArticles = filter_var($this->ArticlesModel->getCountSearchArticles($search)[0]->nbArticles, FILTER_VALIDATE_INT);
+            $query = "?search-articles=".$_GET['search-articles']."&pagination=";
+        }
+        
+        $pagintation = Helpers::Pagination($this->nbElementParPage, $nbArticles, $query );
         require_once 'views/blog.php';
     }
-
 
     public function show($param){
         $urlGenerator = $param['urlGenerator'];
@@ -118,7 +120,6 @@ class ArticlesController{
             $idArticle = filter_var($idArticle, FILTER_VALIDATE_INT);
 
             
-            $this->ArticlesModel->addArticle($title, $body, $categorie,$this->idUser );
             $this->LogSystemModel->addToLog($this->idUser, $idArticle, 'articleCree');
 
             if($this->ArticlesModel->addArticle($title, $body, $categorie,$this->idUser )){

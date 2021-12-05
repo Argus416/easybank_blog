@@ -98,7 +98,7 @@ class Helpers {
             if(isset($_GET['pagination'])){
                 $nextPage = intval($_GET['pagination']) + 1;
             }
-            if($nbPages != $_GET['pagination']){
+            if($nbPages != $_GET['pagination'] && $nbPages != 1){
                 $paginationTemplate .= "    <li class='page-item'>";
                 $paginationTemplate .= "        <a class='page-link' href='$link$nextPage' aria-label='Previous'>";
                 $paginationTemplate .= "            <span aria-hidden='true'>&raquo;</span>";

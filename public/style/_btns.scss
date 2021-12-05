@@ -74,7 +74,7 @@
     border-radius: 20px;
     transition: opacity 0.3s ease-in-out;
     color: $White !important;
-    padding: 0.5em 1.1em !important;
+    padding: 0em 1.1em !important;
     border: none;
     & > * {
         color: $White !important;
@@ -90,4 +90,6 @@
 
 .nav-item-cus-dec {
     background: $crimson;
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
 }

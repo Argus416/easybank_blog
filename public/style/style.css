@@ -163,7 +163,7 @@ p {
   -webkit-transition: opacity 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out;
   color: white !important;
-  padding: 0.5em 1.1em !important;
+  padding: 0em 1.1em !important;
   border: none;
 }
 
@@ -183,6 +183,8 @@ p {
 
 .nav-item-cus-dec {
   background: crimson;
+  padding-top: 0.5em !important;
+  padding-bottom: 0.5em !important;
 }
 
 .test {
@@ -501,17 +503,25 @@ main.blogs .header-blog {
           justify-content: space-between;
 }
 
-main.blogs .header-blog .search_form {
+main.blogs .header-blog .left .title-container {
+  margin-bottom: 2em;
+}
+
+main.blogs .header-blog .left .title-container h1 {
+  margin-bottom: 10px;
+}
+
+main.blogs .header-blog .right .search_form {
   position: relative;
 }
 
-main.blogs .header-blog .search_form .fa-search {
+main.blogs .header-blog .right .search_form .fa-search {
   position: absolute;
   left: 13px;
   top: 12px;
 }
 
-main.blogs .header-blog .search_form input {
+main.blogs .header-blog .right .search_form input {
   background-color: transparent;
   margin-right: 20px;
   padding: 7px 10px 7px 38px;

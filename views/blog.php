@@ -1,6 +1,6 @@
 <?php
     require_once 'inc/header.php';
-    dump($_POST);
+
 ?>
 <title>Nos articles</title>
 
@@ -11,16 +11,28 @@
     <main class="blogs">
         <div class="container">
             <div class="header-blog">
-                <h1 class="page-title">Nos articles</h1>
+                <div class="left">
+                    <div class="title-container">
+                        <?php if(isset($_GET['search-articles'])): ?>
+                        <h1 class="page-title">Vous avez cherché <strong><?= $_GET['search-articles'] ?></strong></h1>
+                        <small><strong> <?= $nbArticles ?> </strong> résultat ont été trouvés </small>
+                        <?php else: ?>
+                        <h1 class="page-title">Nos articles</h1>
+                        <?php endif; ?>
+                    </div>
+                </div>
 
-                <form method="POST" class="search_form">
-                    <i class="fas fa-search"></i>
-                    <input type="text" name="search-articles" placeholder="Recherer un article">
-                </form>
+                <div class="right">
+                    <form method="GET" class="search_form">
+                        <i class="fas fa-search"></i>
+                        <input type="text" name="search-articles" placeholder="Recherer un article" required>
+                    </form>
+                </div>
 
             </div>
 
             <?php if(count($articles)): ?>
+
             <div class="d-flex">
                 <div class="left">
                     <?php foreach($articles as $article):?>
@@ -28,7 +40,6 @@
                         <a href="<?= $urlGenerator->generate('article', ['id'=>$article->articleID]) ?>">
                             <h2><?= $article->articleTitle ?></h2>
                         </a>
-                        <small class="d-block mb-3"><?= $article->categorieType; ?></small>
 
                         <p> <?= substr($article->articleBody, 0, 255)."..." ?> </p>
 
@@ -41,6 +52,10 @@
                 </div>
             </div>
             <?= $pagintation ?>
+            <?php elseif(!count($articles) && isset($_GET['search-articles']) ): ?>
+            <h2 class="mb-5"> Aucun articles n'a été trouvé avec votre recherche
+                <strong><?=$_GET['search-articles']?></strong>
+            </h2>
             <?php else: ?>
             <h2 class="mb-5"> Aucun articles n'est publié </h2>
             <?php endif; ?>

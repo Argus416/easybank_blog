@@ -3,19 +3,30 @@ main.blogs {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        .search_form {
-            position: relative;
-            .fa-search {
-                position: absolute;
-                left: 13px;
-                top: 12px;
+        .left {
+            .title-container {
+                margin-bottom: 2em;
+                h1 {
+                    margin-bottom: 10px;
+                }
             }
-            input {
-                background-color: transparent;
-                margin-right: 20px;
-                padding: 7px 10px 7px 38px;
-                border: 2px solid $darkBlue;
-                width: 330px;
+        }
+
+        .right {
+            .search_form {
+                position: relative;
+                .fa-search {
+                    position: absolute;
+                    left: 13px;
+                    top: 12px;
+                }
+                input {
+                    background-color: transparent;
+                    margin-right: 20px;
+                    padding: 7px 10px 7px 38px;
+                    border: 2px solid $darkBlue;
+                    width: 330px;
+                }
             }
         }
     }

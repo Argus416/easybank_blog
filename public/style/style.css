@@ -191,6 +191,13 @@ p {
   color: white !important;
   background-color: #31d35c !important;
   border: none !important;
+  outline: none !important;
+}
+
+.page-item.active a.page-link:focus {
+  outline: none !important;
+  color: white !important;
+  border: none !important;
 }
 
 .page-item a.page-link {
@@ -202,14 +209,14 @@ p {
 }
 
 .page-item a.page-link:focus {
-  color: #31d35c !important;
   outline: none !important;
+  -webkit-box-shadow: 0px 0px 32px -8px #31d35c;
+          box-shadow: 0px 0px 32px -8px #31d35c;
+  background: rgba(49, 211, 92, 0.5) !important;
 }
 
-.page-item a.page-link:active {
-  outline: none !important;
-  color: #31d35c !important;
-  background-color: none !important;
+.page-item a.page-link:hover {
+  background: rgba(49, 211, 92, 0.5) !important;
 }
 
 .test {

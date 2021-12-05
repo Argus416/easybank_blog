@@ -99,6 +99,12 @@
         color: $White !important;
         background-color: $LimeGreen !important;
         border: none !important;
+        outline: none !important;
+        &:focus {
+            outline: none !important;
+            color: $White !important;
+            border: none !important;
+        }
     }
 
     a.page-link {
@@ -108,13 +114,12 @@
         outline: none !important;
         margin: 0px 5px !important;
         &:focus {
-            color: $LimeGreen !important;
             outline: none !important;
+            box-shadow: 0px 0px 32px -8px $LimeGreen;
+            background: rgba($color: $LimeGreen, $alpha: 0.5) !important;
         }
-        &:active {
-            outline: none !important;
-            color: $LimeGreen !important;
-            background-color: none !important;
+        &:hover {
+            background: rgba($color: $LimeGreen, $alpha: 0.5) !important;
         }
     }
 }

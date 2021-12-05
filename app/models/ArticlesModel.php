@@ -24,14 +24,10 @@ class ArticlesModel{
                     articles.body as articleBody,
                     users.id as userID,
                     users.nom as userNom,
-                    users.prenom as userPrenom,
-                    categorie.id as categorieID,
-                    categorie.type as categorieType
+                    users.prenom as userPrenom
                     FROM articles 
                     INNER JOIN users on articles.id_user = users.id
-                    INNER JOIN categorie on articles.id_categorie = categorie.id
                     WHERE articles.is_deleted=0
-                    AND categorie.is_deleted=0
                     ORDER BY articles.creation_date DESC
                 ';
     
@@ -53,14 +49,10 @@ class ArticlesModel{
                     articles.body as articleBody,
                     users.id as userID,
                     users.nom as userNom,
-                    users.prenom as userPrenom,
-                    categorie.id as categorieID,
-                    categorie.type as categorieType
+                    users.prenom as userPrenom
                     FROM articles 
                     INNER JOIN users on articles.id_user = users.id
-                    INNER JOIN categorie on articles.id_categorie = categorie.id
                     WHERE articles.is_deleted=0
-                    AND categorie.is_deleted=0
                     ORDER BY articles.creation_date DESC
                     LIMIT 4 OFFSET :offsetTest
                 ';
@@ -83,13 +75,10 @@ class ArticlesModel{
                 articles.body as articleBody,
                 users.id as userID,
                 users.nom as userNom,
-                users.prenom as userPrenom,
-                categorie.type as categorieType
+                users.prenom as userPrenom
                 FROM articles 
                 INNER JOIN users on articles.id_user = users.id
-                INNER JOIN categorie on articles.id_categorie = categorie.id
                 WHERE articles.is_deleted=0
-                AND categorie.is_deleted=0
                 ORDER BY articles.creation_date DESC
                 LIMIT 4
         ';
@@ -106,13 +95,10 @@ class ArticlesModel{
                 articles.body as articleBody,
                 users.id as userID,
                 users.nom as userNom,
-                users.prenom as userPrenom,
-                categorie.type as categorieType
+                users.prenom as userPrenom
                 FROM articles 
                 INNER JOIN users on articles.id_user = users.id
-                INNER JOIN categorie on articles.id_categorie = categorie.id
                 WHERE articles.is_deleted=0
-                AND categorie.is_deleted=0
                 ORDER BY articles.creation_date DESC
                 LIMIT 1
         ';
@@ -129,13 +115,10 @@ class ArticlesModel{
                 articles.body as articleBody,
                 users.id as userID,
                 users.nom as userNom,
-                users.prenom as userPrenom,
-                categorie.type as categorieType
+                users.prenom as userPrenom
                 FROM articles 
                 INNER JOIN users on articles.id_user = users.id
-                INNER JOIN categorie on articles.id_categorie = categorie.id
                 WHERE articles.is_deleted=0
-                AND categorie.is_deleted=0
                 AND articles.id != :id 
                 ORDER BY articles.creation_date DESC 
                 LIMIT 4
@@ -155,19 +138,14 @@ class ArticlesModel{
         $query = "SELECT
                   articles.id as articleID,
                   articles.title as articleTitle,
-                  articles.body as articleBody,
-                  categorie.id as categorieID,
-                  categorie.type as categorieType
+                  articles.body as articleBody
                   FROM articles 
-                  INNER JOIN categorie on articles.id_categorie = categorie.id
                   WHERE articles.id=:id 
-                  AND categorie.is_deleted = :isDeleted
                   "
         ;
         $db = $this->pdo->prepare($query);
         $data = [
-            ':id' => $id,
-            'isDeleted' => 0
+            ':id' => $id
         ];
         $db->execute($data);
         $article = $db->fetchAll(PDO::FETCH_OBJ);
@@ -180,7 +158,7 @@ class ArticlesModel{
                 articles.title as articleTitle,
                 articles.body as articleBody
                 from articles 
-                WHERE articles.title LIKE :search OR articles.body LIKE :search AND articles.is_deleted = 0
+                WHERE (articles.title LIKE :search OR articles.body LIKE :search) AND articles.is_deleted = 0
                 LIMIT 4 OFFSET :offsetTest
                 ";
                 
@@ -193,16 +171,15 @@ class ArticlesModel{
         return $result;
     }
 
-    public function addArticle(STRING $title,STRING $body, STRING $idCategorie, INT $idUser ,INT $isDeleted = 0  ){ 
+    public function addArticle(STRING $title,STRING $body, INT $idUser ,INT $isDeleted = 0  ){ 
         try{
-            $query = 'INSERT INTO articles VALUES(NULL, :title, :body, CURRENT_TIMESTAMP ,:isDeleted,:idUser, :idCategorie)';
+            $query = 'INSERT INTO articles VALUES(NULL, :title, :body, CURRENT_TIMESTAMP , :isDeleted, :idUser)';
             $stmt = $this->pdo->prepare($query);
             $data=[
                 ':title'=> $title,
                 ':body'=> $body,
                 ':isDeleted'=> $isDeleted,
-                ':idUser'=> $idUser,
-                ':idCategorie'=> $idCategorie
+                ':idUser'=> $idUser
             ];
 
             return $stmt->execute($data);
@@ -211,12 +188,11 @@ class ArticlesModel{
         }
     }
 
-    public function editArticle(INT $id ,STRING $title,STRING $body, $idCategorie){ 
+    public function editArticle(INT $id ,STRING $title,STRING $body){ 
         try{
             $query = 'UPDATE articles
                       SET title = :title,
-                      body = :body,
-                      id_categorie = :idCategorie
+                      body = :body
                       WHERE articles.id = :id';
                       
             $stmt = $this->pdo->prepare($query);
@@ -224,7 +200,6 @@ class ArticlesModel{
             $data=[
                 ':title'=> $title,
                 ':body'=> $body,
-                ':idCategorie'=> $idCategorie,
                 ':id' => $id
             ];
             return $stmt->execute($data);
@@ -256,9 +231,7 @@ class ArticlesModel{
         try{
             $query='SELECT count(articles.id) as nbArticles FROM articles 
                 INNER JOIN users on articles.id_user = users.id
-                INNER JOIN categorie on articles.id_categorie = categorie.id
                 WHERE articles.is_deleted=0
-                AND categorie.is_deleted=0
             ';
             $db = $this->pdo->prepare($query);
             $db->execute();
@@ -268,42 +241,6 @@ class ArticlesModel{
             echo $e->getMessage();
         }
 
-    }
-
-    public function getCountArticlesByCategories(Array $idsCategorie){
-        try{
-            $data = [];
-            $query="SELECT
-                    count(articles.id) as nbArticles
-                    FROM articles 
-                    INNER JOIN users on articles.id_user = users.id
-                    INNER JOIN categorie on articles.id_categorie = categorie.id
-                    WHERE articles.is_deleted=0
-                    AND categorie.is_deleted=0
-                    ";
-                    
-            $i = 0;
-            foreach($idsCategorie as $id){
-                if($i == 0){
-                    $query .= "AND articles.id_categorie = :idsCategorie$id\n";
-                }else{
-                    $query .= "OR articles.id_categorie = :idsCategorie$id\n";
-                }
-                
-                $data['idsCategorie'.$id] += $id;
-                $i++;
-            }
-
-            $db = $this->pdo->prepare($query);
-            
-            $db->execute($data);
-            $countArticlesByCategories = $db->fetchAll(PDO::FETCH_OBJ);
-            return $countArticlesByCategories;
-        }catch(PDOException $e){
-            echo $e->getMessage();
-        }
-
-       
     }
 
     public function getCountSearchArticles(STRING $search){

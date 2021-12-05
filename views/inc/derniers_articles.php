@@ -8,8 +8,8 @@
                 <div class="card-header-cus">
                     <img src="<?= "$domain$public"?>style/images/image-currency.jpg" class="card-img-top"
                         alt="image-currency" />
-                    <span class="categorie"><?= $article->categorieType ?></span>
                 </div>
+
                 <div class="card-body justify-content-between">
                     <small class="writer-name">Par
                         <?php echo $article->userPrenom." "; echo $article->userNom ?></small>

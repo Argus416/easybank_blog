@@ -14,13 +14,6 @@
                 <a class="nav-link" href="<?= $urlGenerator->generate('articlesManagement') ?>">Gestion d'article</a>
             </li>
 
-            <li class="nav-item">
-                <i class="fas fa-columns">
-
-                </i> <a class="nav-link" href="<?= $urlGenerator->generate('categorieManagement') ?>">Gestion de
-                    catégorie</a>
-            </li>
-
             <!-- <li class="nav-item">
                 <i class="far fa-user"></i>
                 <a class="nav-link" href="?= $urlGenerator->generate('usersManagement') ?">Gestions d'utilisateurs</a>

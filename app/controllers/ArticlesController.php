@@ -1,7 +1,6 @@
 <?php
 
 require_once 'app/models/ArticlesModel.php';
-require_once 'app/models/CategoriesModel.php';
 require_once 'app/models/UsersModel.php';
 require_once 'app/models/LogSystemModel.php';
 
@@ -20,7 +19,6 @@ class ArticlesController{
     public function __construct()
     {
         $this->ArticlesModel = new ArticlesModel;
-        $this->CategoriesModel = new CategoriesModel;
         $this->UsersModel = new UsersModel;
         $this->LogSystemModel = new LogSystemModel;
         $this->idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
@@ -81,7 +79,6 @@ class ArticlesController{
     public function articlesManagement($param){
         ConnexionController::isLoggedin();
         $urlGenerator = $param['urlGenerator'];
-        $allCategories = $this->CategoriesModel->getCategories();
         $articles = $this->ArticlesModel->getArticles();
 
         if(isset($_POST['article-del'])){
@@ -105,7 +102,6 @@ class ArticlesController{
         ConnexionController::isLoggedin();
         
         $urlGenerator = $param['urlGenerator'];
-        $allCategories = $this->CategoriesModel->getCategories();
         $title = $body = '';
         $categorie = 0;
         
@@ -113,16 +109,16 @@ class ArticlesController{
         if(isset($_POST['add-article'])){
             $bannier = filter_var($_POST['artilce-bannier'], FILTER_SANITIZE_STRING);
             $title = filter_var($_POST['artilce-title'], FILTER_SANITIZE_STRING);
-            $categorie = filter_var($_POST['artilce-categorie'], FILTER_VALIDATE_INT);
             $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
             $this->idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
+            
             $idArticle = $this->ArticlesModel->getLatesetArticle()[0]->articleID;
             $idArticle = filter_var($idArticle, FILTER_VALIDATE_INT);
 
             
             $this->LogSystemModel->addToLog($this->idUser, $idArticle, 'articleCree');
 
-            if($this->ArticlesModel->addArticle($title, $body, $categorie,$this->idUser )){
+            if($this->ArticlesModel->addArticle($title, $body, $this->idUser )){
                 $_SESSION['alert'] = 'add-article';
             }else{
                 $_SESSION['alert'] = 'err';
@@ -135,14 +131,12 @@ class ArticlesController{
 
     public function edit($param){
         ConnexionController::isLoggedin();
-        ConnexionController::isLoggedin();
+
         $urlGenerator = $param['urlGenerator'];
         $id = $param['id'];
         $title = $body = '';
-        $categorie = 0;
 
         $getArticle = $this->ArticlesModel->getArticle($id)[0];
-        $allCategories = $this->CategoriesModel->getCategories();
 
 
         if(isset($_POST['edit-article'])){
@@ -154,12 +148,12 @@ class ArticlesController{
             
             $this->LogSystemModel->addToLog($this->idUser, $id, 'articleModifie');
 
-            $this->ArticlesModel->editArticle($id ,$title, $body, $categorie );
-            if($this->ArticlesModel->editArticle($id ,$title, $body, $categorie)){
+            if($this->ArticlesModel->editArticle($id ,$title, $body)){
                 $_SESSION['alert'] = 'go';
             }else{
                 $_SESSION['alert'] = 'err';
             }
+            
             header('location:'. $urlGenerator->generate('article', ['id' => $id]));
         }
         require_once 'views/form_edit_article.php';

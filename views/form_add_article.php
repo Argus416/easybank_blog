@@ -27,15 +27,6 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="prenom" class="form-label">Catégorie</label>
-                                <select class="form-select" name="artilce-categorie">
-                                    <?php foreach($allCategories as $categorie): ?>
-                                    <option value="<?= $categorie->id?>"><?= $categorie->type?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
                                 <label for="floatingTextarea2" class="form-label">Body</label>
                                 <textarea class="form-control" name="artilce-body" rows="5"
                                     placeholder="Contenu de l'article"></textarea>

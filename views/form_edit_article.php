@@ -12,7 +12,6 @@
             <div class="dashboard_content form_article">
                 <h3> Edit Article <?=$getArticle->articleID?> </h3>
 
-                <!-- TODO REGEX input -->
                 <form method="POST">
                     <div class="row">
                         <div class="col-lg-3 blog_photo_container">
@@ -27,17 +26,6 @@
                                 <label for="title" class="form-label">Title</label>
                                 <input type="title" class="form-control" name="artilce-title"
                                     value="<?=$getArticle->articleTitle?>" id="title">
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="prenom" class="form-label">Catégorie</label>
-                                <select class="form-select" name="artilce-categorie">
-                                    <?php foreach($allCategories as $categorie): ?>
-                                    <?php $selected = $categorie->id == $getArticle->categorieID ? "selected" : "";  ?>
-                                    <option value="<?= $categorie->id?>" <?= $selected?>> <?= $categorie->type?>
-                                    </option>
-                                    <?php endforeach; ?>
-                                </select>
                             </div>
 
                             <div class="mb-3">

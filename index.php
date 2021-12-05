@@ -7,11 +7,11 @@ require_once "config/config.php";
 use App\Classes\PDOSignleton;
 use App\Helper\Helpers;
 
-use App\Controller\ArticlesController;
-use App\Controller\ContactController;
-use App\Controller\UsersController;
-use App\Controller\ConnexionController;
-use App\Controller\ErrorController;
+use App\Controllers\ArticlesController;
+use App\Controllers\ContactController;
+use App\Controllers\UsersController;
+use App\Controllers\ConnexionController;
+use App\Controllers\ErrorController;
 
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Generator\UrlGenerator;
@@ -20,8 +20,6 @@ use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
-$test = new ArticlesController;
-dd($test);
 
 if(!isset($_SESSION['isLoggedin']) || $_SESSION['isLoggedin'] != true  ){
     $_SESSION['isLoggedin'] = false;

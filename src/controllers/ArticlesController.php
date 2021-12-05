@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controllers;
 
 use App\Model\ArticlesModel;
 use App\Model\UsersModel;
 use App\Model\LogSystemModel;
+use App\Helper\Helpers;
 
 class ArticlesController{
 

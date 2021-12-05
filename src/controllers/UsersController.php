@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controllers;
 
 use App\Model\UsersModel;
 use App\Model\LogSystemModel;
-use App\Controller\LogSystemController;
+use App\Controllers\LogSystemController;
 
 
 class UsersController{

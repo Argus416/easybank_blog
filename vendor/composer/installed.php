@@ -1,22 +1,22 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
+        'pretty_version' => '1.x-dev',
+        'version' => '1.9999999.9999999.9999999-dev',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '3d4fd3259f992ef45697dcd89e6f94d2b4bf8009',
+        'reference' => '602f7c8521ec3172356e76ffe4f8a47a92ea2946',
         'name' => '__root__',
         'dev' => true,
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
+            'pretty_version' => '1.x-dev',
+            'version' => '1.9999999.9999999.9999999-dev',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '3d4fd3259f992ef45697dcd89e6f94d2b4bf8009',
+            'reference' => '602f7c8521ec3172356e76ffe4f8a47a92ea2946',
             'dev_requirement' => false,
         ),
         'symfony/config' => array(

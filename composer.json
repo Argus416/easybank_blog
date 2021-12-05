@@ -1,11 +1,23 @@
 {
+    "authors": [
+        {
+            "name": "Mohamad Al-khatib",
+            "email": "alkhatib.m804@gmail.com"
+        }
+    ],
+    "config": {
+        "optimize-autoloader": true
+    },
     "require-dev": {
         "symfony/var-dumper": "^5.3"
     },
     "autoload": {
         "psr-4": {
             "App\\": "src/"
-        }
+        },
+        "classmap": [
+            "src/"
+        ]
     },
     "require": {
         "symfony/routing": "^5.3",

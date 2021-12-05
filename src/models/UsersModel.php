@@ -2,6 +2,8 @@
 
 namespace App\Model;
 use App\Classes\PDOSignleton;
+use PDO;
+use PDOException;
 
 class UsersModel{
     

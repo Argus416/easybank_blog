@@ -35,7 +35,7 @@ class Helpers {
                     $alertType = "L'article a été modifié";
                     break;
                 case "articleDel": 
-                    $alertType = "L'article a été supprimé";
+                    $alertType = "L'article sera supprimé dans 2s";
                     break;
                 case "utilisateurCree": 
                     $alertType = "Un nouveau utilisateur a été créé";
@@ -50,7 +50,7 @@ class Helpers {
                     $alertType = "Impossible de mettre à jour la base de données";
                     break;
             }
-    
+
             $template = "<div class='alert alert-$class' role='alert'>
                             <span>$alertType</span>
                         </div>";

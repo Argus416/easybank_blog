@@ -30,32 +30,32 @@ class ArticlesController{
 
     public function index($param){
         $urlGenerator = $param['urlGenerator'];
-
-        $articles = $this->ArticlesModel->getLatesetArticles();
+        $pdoSignleton = $param['PDOSignleton'];
+        $articles = $this->ArticlesModel->getLatesetArticles($pdoSignleton);
         require_once 'views/accueil.php';
     }
 
     public function blog($param){
         $urlGenerator = $param['urlGenerator'];
+        $pdoSignleton = $param['PDOSignleton'];
+
         $nbArticles = 0;
         $pageNumber = 0;
 
         // récuperer tous les articles 
-        $articles = $this->ArticlesModel->getArticlesWithPagintation($pageNumber);
-        $nbArticles = $this->ArticlesModel->getCountArticles()[0]->nbArticles;       
+        $articles = $this->ArticlesModel->getArticlesWithPagintation($pdoSignleton, $pageNumber);
+        $nbArticles = $this->ArticlesModel->getCountArticles($pdoSignleton)[0]->nbArticles;       
         $query = '?pagination=';
         if(isset($_GET['pagination']) && !empty($_GET['pagination'])){
             $pageNumber = (intval($_GET['pagination']) - 1) * $this->nbElementParPage;
-            $articles = $this->ArticlesModel->getArticlesWithPagintation($pageNumber);
+            $articles = $this->ArticlesModel->getArticlesWithPagintation($pdoSignleton, $pageNumber);
             $query = '?pagination=';
         }
         
-        
-        
         if(isset($_GET['search-articles']) && !empty($_GET['search-articles'])){
             $search = htmlentities(trim($_GET['search-articles']));
-            $articles = $this->ArticlesModel->searchArticles($search);
-            $nbArticles = filter_var($this->ArticlesModel->getCountSearchArticles($search)[0]->nbArticles, FILTER_VALIDATE_INT);
+            $articles = $this->ArticlesModel->searchArticles($pdoSignleton, $search);
+            $nbArticles = filter_var($this->ArticlesModel->getCountSearchArticles($pdoSignleton, $search)[0]->nbArticles, FILTER_VALIDATE_INT);
             $query = "?search-articles=".$_GET['search-articles']."&pagination=";
         }
         
@@ -65,66 +65,64 @@ class ArticlesController{
 
     public function show($param){
         $urlGenerator = $param['urlGenerator'];
+        $pdoSignleton = $param['PDOSignleton'];
 
         $id = $param['id'];
-        $article = $this->ArticlesModel->getArticle($id);
-        $articles = $this->ArticlesModel->getLatesetArticlesExcept($id);
+        $article = $this->ArticlesModel->getArticle($pdoSignleton, $id);
+        $articles = $this->ArticlesModel->getLatesetArticlesExcept($pdoSignleton, $id);
         require_once 'views/article.php';
     }
-    
-    // public function stat($param){
-    //     $urlGenerator = $param['urlGenerator'];
-    
-    //     require_once 'views/dashboard.php';
-    // }
 
     public function articlesManagement($param){
-        ConnexionController::isLoggedin();
+        $ConnexionController = $param['ConnexionSignleton'];
+        $ConnexionController::isLoggedin();
+        
+        $pdoSignleton = $param['PDOSignleton'];
         $urlGenerator = $param['urlGenerator'];
-        $articles = $this->ArticlesModel->getArticles();
+        
+        $articles = $this->ArticlesModel->getArticles($pdoSignleton);
 
         if(isset($_POST['article-del'])){
             $idArticle = filter_var($_POST['article-id'], FILTER_VALIDATE_INT);
-            $this->ArticlesModel->deleteArticle($idArticle);
-           
-            if($this->ArticlesModel->deleteArticle($idArticle)){
+
+            if($this->ArticlesModel->deleteArticle($pdoSignleton, $idArticle)){
                 $_SESSION['alert'] = 'del-article';
             }else{
                 $_SESSION['alert'] = 'err';
             }
             
            // Reactualiser  la page
-           header('Refresh:1');
+           header('Refresh:2');
         }
 
         require_once 'views/articles_management.php';
     }
 
     public function add($param){
-        ConnexionController::isLoggedin();
-        
+        $ConnexionController = $param['ConnexionSignleton'];
+        $ConnexionController::isLoggedin();
+        $pdoSignleton = $param['PDOSignleton'];  
         $urlGenerator = $param['urlGenerator'];
         $title = $body = '';
         $categorie = 0;
         
-        // TODO * Si le formulaire est soumis
         if(isset($_POST['add-article'])){
             $bannier = filter_var($_POST['artilce-bannier'], FILTER_SANITIZE_STRING);
             $title = filter_var($_POST['artilce-title'], FILTER_SANITIZE_STRING);
             $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
             $this->idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
             
-            $idArticle = $this->ArticlesModel->getLatesetArticle()[0]->articleID;
+            $idArticle = $this->ArticlesModel->getLastArticle($pdoSignleton)[0]->articleID;
             $idArticle = filter_var($idArticle, FILTER_VALIDATE_INT);
 
-            
-            $this->LogSystemModel->addToLog($this->idUser, $idArticle, 'articleCree');
+            $this->LogSystemModel->addToLog($pdoSignleton, $this->idUser, $idArticle, 'articleCree');
 
-            if($this->ArticlesModel->addArticle($title, $body, $this->idUser )){
+            if($this->ArticlesModel->addArticle($pdoSignleton, $title, $body, $this->idUser)){
                 $_SESSION['alert'] = 'add-article';
-            }else{
-                $_SESSION['alert'] = 'err';
             }
+            // else{
+                // $_SESSION['alert'] = 'err';
+            // }
 
             header('Location:' . $urlGenerator->generate('articlesManagement'));
         }
@@ -132,13 +130,15 @@ class ArticlesController{
     }
 
     public function edit($param){
-        ConnexionController::isLoggedin();
-
+        $ConnexionController = $param['ConnexionSignleton'];
+        $ConnexionController::isLoggedin();
+        
+        $pdoSignleton = $param['PDOSignleton'];
         $urlGenerator = $param['urlGenerator'];
         $id = $param['id'];
         $title = $body = '';
 
-        $getArticle = $this->ArticlesModel->getArticle($id)[0];
+        $getArticle = $this->ArticlesModel->getArticle($pdoSignleton, $id)[0];
 
 
         if(isset($_POST['edit-article'])){
@@ -148,9 +148,9 @@ class ArticlesController{
             $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
 
             
-            $this->LogSystemModel->addToLog($this->idUser, $id, 'articleModifie');
+            $this->LogSystemModel->addToLog($pdoSignleton, $this->idUser, $id, 'articleModifie');
 
-            if($this->ArticlesModel->editArticle($id ,$title, $body)){
+            if($this->ArticlesModel->editArticle($pdoSignleton, $id ,$title, $body)){
                 $_SESSION['alert'] = 'go';
             }else{
                 $_SESSION['alert'] = 'err';

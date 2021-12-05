@@ -17,7 +17,7 @@ class LogSystemModel{
         $this->pdo = $this->pdosingleton::PDO_Init();
     }
 
-    public function getLog(){
+    public function getLog($pdo){
         try{
             $query="SELECT 
                     log_system.id as logID,
@@ -31,7 +31,7 @@ class LogSystemModel{
                     INNER JOIN users on log_system.id_user = users.id
                     LEFT JOIN articles on log_system.id_article = articles.id
                     ";
-            $db = $this->pdo->prepare($query);
+            $db = $pdo->prepare($query);
             $db->execute();
             $logs = $db->fetchAll(PDO::FETCH_ASSOC);
             return $logs;
@@ -40,13 +40,13 @@ class LogSystemModel{
         }
     }
 
-    public function addToLog(INT $idUser,  $idArticle , STRING $actionUtilisateur){
+    public function addToLog($pdo ,INT $idUser,  $idArticle , STRING $actionUtilisateur){
         try{
             $query="INSERT INTO log_system (id, id_user, id_article, creation_date, actionUtilisateur) 
                     VALUES (NULL, :idUser, :idArticle, CURRENT_TIMESTAMP, :actionUtilisateur) 
             ";
             
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $pdo->prepare($query);
             $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
             if($idArticle === NULL){
                 $stmt->bindValue(':idArticle', NULL, PDO::PARAM_NULL);

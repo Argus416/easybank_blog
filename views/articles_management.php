@@ -14,12 +14,14 @@
             <div class="dashboard_content articles_management">
 
                 <?php
-                    if($_SESSION['alert'] === 'del-article'){
-                        echo Helpers::alertManager('danger' ,'articleDel'); 
-                    }elseif($_SESSION['alert'] === 'add-article'){
-                        echo Helpers::alertManager('success', 'articleAjoute'); 
-                    }{
-                        echo Helpers::alertManager(); 
+                    if(isset($_SESSION['alert'])){
+                        if($_SESSION['alert'] === 'del-article'){
+                            echo Helpers::alertManager('danger' ,'articleDel'); 
+                        }elseif($_SESSION['alert'] === 'add-article'){
+                            echo Helpers::alertManager('success', 'articleAjoute'); 
+                        }else{
+                            echo Helpers::alertManager(); 
+                        }
                     }
                 ?>
 
@@ -37,7 +39,6 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Title</th>
-                            <th scope="col">Catégorie</th>
                             <th scope="col" class="col-cus">Author</th>
                             <th scope="col"></th>
                         </tr>
@@ -51,7 +52,6 @@
                         <tr>
                             <th scope="row"><?= $article->articleID?></th>
                             <td><?= $article->articleTitle?></td>
-                            <td><?= $article->categorieType?></td>
                             <td><?= $article->userNom?> <?= $article->userPrenom?></td>
                             <td>
                                 <a href="<?= $urlGenerator->generate('article', ['id' => $article->articleID]) ?>"

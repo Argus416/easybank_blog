@@ -17,6 +17,8 @@ function initMap() {
 
     locationButton.textContent = "Me géolocatliser";
     locationButton.classList.add("custom-map-control-button");
+    locationButton.classList.add("btn");
+    locationButton.classList.add("btn-third-cus");
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
 
     locationButton.addEventListener("click", () => {

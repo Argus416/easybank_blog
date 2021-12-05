@@ -16,7 +16,7 @@ class UsersModel{
         $this->pdo = $this->pdosingleton::PDO_Init();
     }
 
-    public function getUsers(){
+    public function getUsers($pdo){
         try{
             $query='SELECT 
                     users.id as authorID,
@@ -29,7 +29,7 @@ class UsersModel{
                     FROM users 
                     LEFT JOIN articles ON users.id = articles.id_user
                     GROUP  BY users.id';
-            $db = $this->pdo->prepare($query);
+            $db = $pdo->prepare($query);
             $db->execute();
             $users = $db->fetchAll(PDO::FETCH_OBJ);
             return $users;
@@ -38,9 +38,9 @@ class UsersModel{
         }
     }
     
-    public function getUser($id){
+    public function getUser($pdo, $id){
         $query = 'SELECT * FROM users WHERE id=:id';
-        $db = $this->pdo->prepare($query);
+        $db = $pdo->prepare($query);
         $data=[
             ':id' => $id
         ];
@@ -50,11 +50,11 @@ class UsersModel{
     }
     
     // public function create(
-    //     STRING $nom, STRING $prenom, STRING $email,
+    //     $pdo, STRING $nom, STRING $prenom, STRING $email,
     //     STRING $mdp
     // ){
     //     $query='INSERT INTO users VALUES (NULL ,:nom, :prenom, :email, :mdp, NULL, NULL, 0)';
-    //     $db = $this->pdo->prepare($query);
+    //     $db = $pdo->prepare($query);
 
     //     $date= [
     //         ':nom' => $nom,
@@ -67,7 +67,7 @@ class UsersModel{
 
 
     public function update(
-        INT $id, STRING $nom, STRING $prenom, STRING $email,
+        $pdo, INT $id, STRING $nom, STRING $prenom, STRING $email,
         STRING $mdp, STRING $dateDeNaissance, STRING $imgName 
     ){
         try{
@@ -87,7 +87,7 @@ class UsersModel{
 
             $query .="WHERE users.id = :id";
             
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $pdo->prepare($query);
             
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
@@ -106,12 +106,12 @@ class UsersModel{
         }
     }
 
-    public function delete($id){
+    public function delete($pdo ,$id){
         $query='UPDATE users 
                 SET is_deleted = :isDeleted 
                 WHERE users.id = :id
         ';
-        $db = $this->pdo->prepare($query);
+        $db = $pdo->prepare($query);
         
         $data = [
             ':id' => $id,

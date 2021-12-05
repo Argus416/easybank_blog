@@ -6,18 +6,9 @@ use PDO;
 use PDOException;
 
 class ArticlesModel{
-    
-    private $pdosingleton;
-    private $pdo;
 
-    public function __construct()
-    {
-        $this->pdosingleton = PDOSignleton::getSingleton();
-        $this->pdo = $this->pdosingleton::PDO_Init();
-    }
     
-
-    public function getArticles(){
+    public function getArticles($pdo){
         try{
             $query='SELECT
                     articles.id as articleID,
@@ -32,9 +23,9 @@ class ArticlesModel{
                     ORDER BY articles.creation_date DESC
                 ';
     
-            $db = $this->pdo->prepare($query);
-            $db->execute();
-            $articles = $db->fetchAll(PDO::FETCH_OBJ);
+            $stmt = $pdo->prepare($query);
+            $stmt->execute();
+            $articles = $stmt->fetchAll(PDO::FETCH_OBJ);
             return $articles;
             
         }catch(PDOException $e){
@@ -42,7 +33,7 @@ class ArticlesModel{
         }
     }
 
-    public function getArticlesWithPagintation($offset = 0){
+    public function getArticlesWithPagintation($pdo , $offset = 0){
         try{
             $query='SELECT
                     articles.id as articleID,
@@ -58,7 +49,7 @@ class ArticlesModel{
                     LIMIT 4 OFFSET :offsetTest
                 ';
     
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $pdo->prepare($query);
             $stmt->bindParam(':offsetTest', $offset, PDO::PARAM_INT);
             $stmt->execute();
             $articles = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -69,7 +60,7 @@ class ArticlesModel{
         }
     }
 
-    public function getLatesetArticles(){
+    public function getLatesetArticles($pdo){
         $query= 'SELECT
                 articles.id as articleID,
                 articles.title as articleTitle,
@@ -83,13 +74,14 @@ class ArticlesModel{
                 ORDER BY articles.creation_date DESC
                 LIMIT 4
         ';
-        $db = $this->pdo->prepare($query);
-        $db->execute();
-        $lastestArticles = $db->fetchAll(PDO::FETCH_OBJ);
+
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+        $lastestArticles = $stmt->fetchAll(PDO::FETCH_OBJ);
         return $lastestArticles;
     }
 
-    public function getLatesetArticle(){
+    public function getLastArticle($pdo){
         $query= 'SELECT
                 articles.id as articleID,
                 articles.title as articleTitle,
@@ -103,13 +95,13 @@ class ArticlesModel{
                 ORDER BY articles.creation_date DESC
                 LIMIT 1
         ';
-        $db = $this->pdo->prepare($query);
+        $db = $pdo->prepare($query);
         $db->execute();
         $lastestArticles = $db->fetchAll(PDO::FETCH_OBJ);
         return $lastestArticles;
     }
 
-    public function getLatesetArticlesExcept($id){
+    public function getLatesetArticlesExcept($pdo, $id){
         $query= 'SELECT
                 articles.id as articleID,
                 articles.title as articleTitle,
@@ -124,7 +116,8 @@ class ArticlesModel{
                 ORDER BY articles.creation_date DESC 
                 LIMIT 4
         ';
-        $db = $this->pdo->prepare($query);
+
+        $db = $pdo->prepare($query);
         
         $data = [
             ':id' => $id
@@ -135,7 +128,7 @@ class ArticlesModel{
         return $lastestArticles;
     }
 
-    public function getArticle($id){
+    public function getArticle($pdo, $id){
         $query = "SELECT
                   articles.id as articleID,
                   articles.title as articleTitle,
@@ -144,7 +137,7 @@ class ArticlesModel{
                   WHERE articles.id=:id 
                   "
         ;
-        $db = $this->pdo->prepare($query);
+        $db = $pdo->prepare($query);
         $data = [
             ':id' => $id
         ];
@@ -153,7 +146,7 @@ class ArticlesModel{
         return $article;
     }
 
-    public function searchArticles(STRING $search, INT $offset = 0){
+    public function searchArticles($pdo, STRING $search, INT $offset = 0){
         
         $query="SELECT articles.id as articleID,
                 articles.title as articleTitle,
@@ -163,7 +156,7 @@ class ArticlesModel{
                 LIMIT 4 OFFSET :offsetTest
                 ";
                 
-        $stmt = $this->pdo->prepare($query);
+        $stmt = $pdo->prepare($query);
 
         $stmt->bindValue(':offsetTest', $offset, PDO::PARAM_INT);
         $stmt->bindValue(':search', "%$search%" , PDO::PARAM_STR);
@@ -172,10 +165,10 @@ class ArticlesModel{
         return $result;
     }
 
-    public function addArticle(STRING $title,STRING $body, INT $idUser ,INT $isDeleted = 0  ){ 
+    public function addArticle($pdo, STRING $title,STRING $body, INT $idUser ,INT $isDeleted = 0  ){ 
         try{
             $query = 'INSERT INTO articles VALUES(NULL, :title, :body, CURRENT_TIMESTAMP , :isDeleted, :idUser)';
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $pdo->prepare($query);
             $data=[
                 ':title'=> $title,
                 ':body'=> $body,
@@ -189,14 +182,14 @@ class ArticlesModel{
         }
     }
 
-    public function editArticle(INT $id ,STRING $title,STRING $body){ 
+    public function editArticle($pdo ,INT $id ,STRING $title,STRING $body){ 
         try{
             $query = 'UPDATE articles
                       SET title = :title,
                       body = :body
                       WHERE articles.id = :id';
                       
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $pdo->prepare($query);
 
             $data=[
                 ':title'=> $title,
@@ -209,13 +202,13 @@ class ArticlesModel{
         }
     }
 
-    public function deleteArticle(INT $id){
+    public function deleteArticle($pdo, INT $id){
         try{
             $query = 'UPDATE articles
                       SET is_deleted = :isDeleted
                       WHERE articles.id = :id';
                       
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $pdo->prepare($query);
 
             $data=[
                 ':isDeleted'=> 1,
@@ -228,13 +221,13 @@ class ArticlesModel{
     }
     
     // ! Count Methods
-    public function getCountArticles(){
+    public function getCountArticles($pdo){
         try{
             $query='SELECT count(articles.id) as nbArticles FROM articles 
                 INNER JOIN users on articles.id_user = users.id
                 WHERE articles.is_deleted=0
             ';
-            $db = $this->pdo->prepare($query);
+            $db = $pdo->prepare($query);
             $db->execute();
             $data = $db->fetchAll(PDO::FETCH_OBJ);
             return $data;
@@ -244,7 +237,7 @@ class ArticlesModel{
 
     }
 
-    public function getCountSearchArticles(STRING $search){
+    public function getCountSearchArticles($pdo, STRING $search){
         
         $query="SELECT count(*) as nbArticles
                 from articles 
@@ -253,7 +246,7 @@ class ArticlesModel{
                 AND articles.is_deleted = 0
                 ";
                 
-        $stmt = $this->pdo->prepare($query);
+        $stmt = $pdo->prepare($query);
 
         $stmt->bindValue(':search', "%$search%" , PDO::PARAM_STR);
 

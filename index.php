@@ -5,7 +5,6 @@ require_once "config/config.php";
 
 // TODOS : Delete
 use App\Classes\PDOSignleton;
-use App\Helper\Helpers;
 
 use App\Controllers\ArticlesController;
 use App\Controllers\ContactController;
@@ -24,6 +23,9 @@ use Symfony\Component\Routing\RouteCollection;
 if(!isset($_SESSION['isLoggedin']) || $_SESSION['isLoggedin'] != true  ){
     $_SESSION['isLoggedin'] = false;
 }
+
+$PDOSignleton = PDOSignleton::getSingleton()::PDO_Init();
+$ConnexionSignleton = ConnexionController::getSingleton();
 
 
 try{
@@ -73,12 +75,6 @@ try{
     //     ]
     // ]);
 
-    // $dashboardRouteStat = new Route('/dashboard', [
-    //     'controller' => [
-    //         new ArticlesController(), 'stat'
-    //     ]
-    // ]);
-
     $dashboardRouteArticleMan = new Route('/dashboard/articles', [
         'controller' => [
             new ArticlesController(), 'articlesManagement'
@@ -99,13 +95,6 @@ try{
     ]);
 
 
-    // $dashboardRouteAuthorMan = new Route('/dashboard/authors', [
-    //     'controller' => [
-    //         new UsersController(), 'usersManagement'
-    //     ],
-    //     ['id' => "$regChiffre"],
-    // ]);
-    
     $dashboardRouteAuthorShow = new Route("/dashboard/authors/show/{id$regChiffre}", [
         'controller' => [
             new UsersController(), 'show'
@@ -133,11 +122,9 @@ try{
     $routeCollection->add('article', $articleRoute);
     $routeCollection->add('login', $loginRoute);
     // $routeCollection->add('signup', $signupRoute);
-    // $routeCollection->add('stat', $dashboardRouteStat);
     $routeCollection->add('articlesManagement', $dashboardRouteArticleMan);
     $routeCollection->add('addArticle', $dashboardRouteArticleAdd);
     $routeCollection->add('editArticle', $dashboardRouteArticleEdit);
-    // $routeCollection->add('usersManagement', $dashboardRouteAuthorMan);
     $routeCollection->add('authorShow', $dashboardRouteAuthorShow);
     $routeCollection->add('authorEdit', $dashboardRouteAuthorEdit);
     $routeCollection->add('authorCreate', $dashboardRouteAuthorCreate);
@@ -151,6 +138,8 @@ try{
     $urlGenerator = new UrlGenerator($routeCollection, new RequestContext());
     
     $currentRoute['urlGenerator'] = $urlGenerator;
+    $currentRoute['PDOSignleton'] = $PDOSignleton;
+    $currentRoute['ConnexionSignleton'] = $ConnexionSignleton;
     
     $controller = $currentRoute['controller'];
 

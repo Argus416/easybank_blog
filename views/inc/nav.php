@@ -1,5 +1,5 @@
 <?php
-use App\Controllers\ConnexionController;
+    use App\Controllers\ConnexionController;
 ?>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -32,6 +32,7 @@ use App\Controllers\ConnexionController;
 
                     <?php 
                         elseif(isset($_SESSION['isLoggedin']) && $_SESSION['isLoggedin'] == true ):
+                            
                         ConnexionController::Deconnexion();
                     ?>
                     <li class=" nav-item">

@@ -7,17 +7,28 @@ use App\Model\UsersModel;
 class ConnexionController{
 
     private $UsersModel;
+    
+    private static $_singleton;
 
     public function __construct(){
         $this->UsersModel = new UsersModel;
     }
 
+    public static function getSingleton(): ConnexionController
+    {
+        if (is_null(self::$_singleton)) {
+            self::$_singleton = new ConnexionController();
+        }
+        return self::$_singleton;
+    }
+
     public function login($param){
         $urlGenerator = $param['urlGenerator'];
+        $pdoSignleton = $param['PDOSignleton'];  
         $err = "";
         
         if($_SESSION['isLoggedin'] != true){
-            $users = $this->UsersModel->getUsers();
+            $users = $this->UsersModel->getUsers($pdoSignleton);
             $email = $password = '';
             
             if(isset($_POST['login'])){
@@ -32,7 +43,7 @@ class ConnexionController{
                     
                     // $hashed_password = password_hash($password, PASSWORD_ARGON2I);
 
-                    $admin = $this->UsersModel->getUsers()[0];
+                    $admin = $this->UsersModel->getUsers($pdoSignleton)[0];
 
                     if(
                         $email === $admin->authorEmail &&
@@ -50,7 +61,7 @@ class ConnexionController{
             }
             require_once 'views/login.php';
         }else{
-            // header('Location:'.$urlGenerator->generate('accueil'));
+            header('Location:'.$urlGenerator->generate('accueil'));
         }
 
     }

@@ -1,6 +1,8 @@
 <?php
+namespace App\Controller;
 
-require_once 'app/models/UsersModel.php';
+use App\Model\UsersModel;
+
 
 class ConnexionController{
 

@@ -1,8 +1,11 @@
 <?php
 
-require_once 'app/models/UsersModel.php';
-require_once 'app/models/LogSystemModel.php';
-require_once 'app/controllers/LogSystemController.php';
+namespace App\Controller;
+
+use App\Model\UsersModel;
+use App\Model\LogSystemModel;
+use App\Controller\LogSystemController;
+
 
 class UsersController{
 

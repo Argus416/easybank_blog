@@ -1,6 +1,7 @@
 <?php
 
-require_once 'app/classes/PDOSignleton.php';
+namespace App\Model;
+use App\Classes\PDOSignleton;
 
 class UsersModel{
     

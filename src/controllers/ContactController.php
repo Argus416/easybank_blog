@@ -1,6 +1,5 @@
 <?php
-
-require_once 'app/models/ArticlesModel.php';
+namespace App\Controller;
 
 class ContactController{
 

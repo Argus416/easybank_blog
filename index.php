@@ -1,5 +1,18 @@
 <?php
 session_start();
+require __DIR__ . "/vendor/autoload.php";
+require_once "config/config.php";
+
+// TODOS : Delete
+use App\Classes\PDOSignleton;
+use App\Helper\Helpers;
+
+use App\Controller\ArticlesController;
+use App\Controller\ContactController;
+use App\Controller\UsersController;
+use App\Controller\ConnexionController;
+use App\Controller\ErrorController;
+
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
@@ -7,16 +20,8 @@ use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
-require __DIR__ . "/vendor/autoload.php";
-require_once "app/classes/PDOSignleton.php";
-require_once "config/config.php";
-require_once "app/helpers/Helpers.php";
-
-require_once 'app/controllers/ArticlesController.php';
-require_once 'app/controllers/ContactController.php';
-require_once 'app/controllers/UsersController.php';
-require_once 'app/controllers/ConnexionController.php';
-require_once 'app/controllers/ErrorController.php';
+$test = new ArticlesController;
+dd($test);
 
 if(!isset($_SESSION['isLoggedin']) || $_SESSION['isLoggedin'] != true  ){
     $_SESSION['isLoggedin'] = false;

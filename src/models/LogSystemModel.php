@@ -1,8 +1,8 @@
 <?php
 
-use function PHPSTORM_META\type;
+namespace App\Model;
+use App\Classes\PDOSignleton;
 
-require_once 'app/classes/PDOSignleton.php';
 
 class LogSystemModel{
     

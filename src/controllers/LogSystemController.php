@@ -1,6 +1,8 @@
 <?php
 
-require_once 'app/models/LogSystemModel.php';
+namespace App\Controller;
+use App\Model\LogSystemModel;
+
 
 class LogSystemController{
 

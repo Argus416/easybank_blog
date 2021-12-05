@@ -1,10 +1,10 @@
 <?php
 
+namespace App\Controller;
 
-require_once 'app/models/ArticlesModel.php';
-require_once 'app/models/UsersModel.php';
-require_once 'app/models/LogSystemModel.php';
-
+use App\Model\ArticlesModel;
+use App\Model\UsersModel;
+use App\Model\LogSystemModel;
 
 class ArticlesController{
 

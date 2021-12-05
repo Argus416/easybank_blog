@@ -76,13 +76,16 @@ class UsersModel{
                     SET nom = :nom, 
                     prenom = :prenom, 
                     email = :email, 
-                    mdp = :mdp,
                     date_de_naissance = :dateDeNaissance
             ';
     
             if(strlen($imgName)){
                 $query .=", img_profile = :imgName \n";
                 // $data[':imgURL'] = $imgName;
+            }
+
+            if(strlen($mdp)){
+                $query .= ",mdp = :mdp ";
             }
 
             $query .="WHERE users.id = :id";
@@ -93,13 +96,13 @@ class UsersModel{
             $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
             $stmt->bindParam(':prenom', $prenom, PDO::PARAM_STR);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':dateDeNaissance', $dateDeNaissance, PDO::PARAM_STR);
+
             if($mdp != Null){
                 $stmt->bindParam(':mdp', $mdp, PDO::PARAM_STR);
             }
-            $stmt->bindParam(':dateDeNaissance', $dateDeNaissance, PDO::PARAM_STR);
-
+            
             if(strlen($imgName)){
-                dump($imgName);
                 $stmt->bindValue(':imgName', $imgName, PDO::PARAM_STR);
             }
             return $stmt->execute();

@@ -145,14 +145,13 @@ class ArticlesController{
         $getArticle = $this->ArticlesModel->getArticle($pdoSignleton, $id)[0];
 
         if(isset($_POST['edit-article'])){
-            $bannier = filter_var($_POST['artilce-bannier'], FILTER_SANITIZE_STRING);
-
+            $imgArticle = Helpers::uploadPhoto('imgArticle', 'public/upload/post-img');
             $title = Helpers::sanitizeInput($_POST['artilce-title']);
             $body = Helpers::sanitizeInput($_POST['artilce-body']);
 
             $this->LogSystemModel->addToLog($pdoSignleton, $this->idUser, $id, 'articleModifie');
 
-            if($this->ArticlesModel->editArticle($pdoSignleton, $id ,$title, $body)){
+            if($this->ArticlesModel->editArticle($pdoSignleton, $id ,$title, $body, $imgArticle)){
                 $_SESSION['alert'] = 'go';
             }else{
                 $_SESSION['alert'] = 'err';

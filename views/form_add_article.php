@@ -1,4 +1,7 @@
-<?php require_once 'inc/header.php' ?>
+<?php
+    use App\Helper\Helpers;
+    require_once 'inc/header.php'; 
+?>
 <title>Articls management</title>
 </head>
 
@@ -14,8 +17,9 @@
                 <form method="POST">
                     <div class="row">
                         <div class="col-lg-3 blog_photo_container">
-                            <img class="article_banner" src="<?= "$domain$public"?>style/images/image-currency.jpg"
-                                alt="article_banner">
+
+                            <img src="<?= Helpers::imgToInsert('imgArticle', Null) ?>" class="card-img-top"
+                                alt="image-currency" />
                             <input class="form-control article_banner_input" type="file" name="artilce-bannier"
                                 accept="image/png, image/gif, image/jpeg" />
                         </div>

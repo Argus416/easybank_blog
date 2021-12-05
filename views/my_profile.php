@@ -46,7 +46,8 @@
 
 
                 <div class="current_photo_container mb-3">
-                    <img class="current_photo" src="<?= Helpers::imgProfile() ?>" alt="photo profil">
+                    <img class="current_photo" src="<?= Helpers::imgToInsert('photoProfil', $_SESSION['authorImg']) ?>"
+                        alt="photo profil">
                 </div>
 
                 <div class="row w-75 m-auto">

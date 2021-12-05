@@ -66,3 +66,46 @@ p {
         object-fit: cover;
     }
 }
+
+.page-item {
+    &.active a.page-link {
+        color: $White !important;
+        background-color: $LimeGreen !important;
+        border: none !important;
+        outline: none !important;
+        &:focus {
+            outline: none !important;
+            color: $White !important;
+            border: none !important;
+        }
+    }
+
+    a.page-link {
+        border: none !important;
+        border-radius: 0 !important;
+        color: $LimeGreen !important;
+        outline: none !important;
+        margin: 0px 5px !important;
+        &:focus {
+            outline: none !important;
+            box-shadow: $boxShadow;
+            background: rgba($color: $LimeGreen, $alpha: 0.5) !important;
+        }
+        &:hover {
+            background: rgba($color: $LimeGreen, $alpha: 0.5) !important;
+        }
+    }
+}
+
+input[type="text"],
+input[type="date"],
+input[type="password"],
+input[type="email"],
+input[type="file"],
+textarea {
+    border-radius: 0 !important;
+    &:focus {
+        box-shadow: $boxShadow !important;
+        border: 1px solid $LimeGreen !important;
+    }
+}

@@ -1,3 +1,6 @@
+<?php
+    use App\Helper\Helpers;
+?>
 <section class="section-main latest-articles">
     <div class="container">
         <h2>Derniers Articles</h2>
@@ -6,7 +9,7 @@
             <?php foreach($articles as $article):?>
             <a href="<?= $urlGenerator->generate('article', ['id'=>$article->articleID]) ?>" class="card-cus">
                 <div class="card-header-cus">
-                    <img src="<?= "$domain$public"?>style/images/image-currency.jpg" class="card-img-top"
+                    <img src="<?= Helpers::imgToInsert('imgArticle', $article->articleImg) ?>" class="card-img-top"
                         alt="image-currency" />
                 </div>
 

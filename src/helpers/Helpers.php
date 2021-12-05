@@ -1,5 +1,6 @@
 <?php
 namespace App\Helper;
+use Exception;
 
 class Helpers {
 
@@ -10,22 +11,75 @@ class Helpers {
         echo "</pre>";
     }
 
-    public static function imgProfile(){
+    public static function imgToInsert($toCheck, $imgName){
         $imgProfile = "";
         $domain = $_ENV['DOMAIN'];
         $public = $_ENV['PUBLIC'];
+        $url = '';
+        $checkImg = '';
+        $placeHolderImg = '';
+
+        switch($toCheck){
+            case "photoProfil":
+                $checkImg = $_SERVER['DOCUMENT_ROOT']."/public/upload/images/". $imgName;
+                $url = "$domain$public"."upload/images/".$imgName;
+                $placeHolderImg = "$domain$public"."style/images/photoprofilplaceholder.jpg";
+                break;
+            case 'imgArticle':
+                $checkImg = $_SERVER['DOCUMENT_ROOT']."/public/upload/post-img/". $imgName;
+                $url = "$domain$public"."upload/post-img/". $imgName;
+                $placeHolderImg = "$domain$public"."style/images/image-currency.jpg";
+                break;
+        }
         
-        if(file_exists($_SERVER['DOCUMENT_ROOT']."/public/uploaded/images/".$_SESSION['authorImg'])){
-            $imgProfile = "$domain$public"."uploaded/images/".$_SESSION['authorImg'];
+        if(file_exists($checkImg) && $imgName != null){
+            $imgProfile = $url;
         }else{
-            $imgProfile = "$domain$public"."style/images/photoprofilplaceholder.jpg";
+            $imgProfile = $placeHolderImg;
         }
 
         return $imgProfile;
     }
+
+    
+    
     public static function sanitizeInput($input){
         $input = htmlentities(trim($input), ENT_QUOTES);
         return $input;
+    }
+
+    // TODO Change $maxImgSize
+    public static function uploadPhoto(STRING $photoInput, STRING $destination, INT $maxImgSize = 300000){
+
+        $imgProfileName = $_FILES[$photoInput]['name'];
+        $imgProfileType = $_FILES[$photoInput]['type'];
+        $imgProfileTmpName = $_FILES[$photoInput]['tmp_name'];
+        $imgProfileError = $_FILES[$photoInput]['error'];
+        $imgProfileSize = $_FILES[$photoInput]['size'];
+        
+        $imgExt = explode('.', $imgProfileName);
+        $imgAcutalExt = strtolower(end($imgExt));
+        $allowedExt = array('jpg', 'jpeg', 'png');
+        $imgNewName = "" ; 
+        
+        if(in_array($imgAcutalExt, $allowedExt)){
+            if($imgProfileError === 0){
+                if($imgProfileSize < $maxImgSize){
+                    $imgNewName = str_replace('.','', uniqid('', true) ) . '.' . $imgAcutalExt;
+                    $path = "$destination/$imgNewName";
+
+                    try{
+                        move_uploaded_file($imgProfileTmpName, $path);
+                    }catch(Exception $e){
+                        echo $e->getMessage();
+                    }
+                   
+                }else{
+                    echo "l'image est trop grande, il ne faut pas qu'elle dépasse 3mb";
+                }
+            }
+        }
+        return $imgNewName;
     }
 
     public static function alertManager(STRING $class = 'danger', STRING $alertType = 'err'){

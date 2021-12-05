@@ -12,19 +12,20 @@
             <div class="dashboard_content form_article">
                 <h3> Edit Article <?=$getArticle->articleID?> </h3>
 
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-3 blog_photo_container">
-                            <img class="article_banner" src="<?= "$domain$public"?>style/images/image-currency.jpg"
+                            <img class="article_banner"
+                                src="<?= "$domain$public"."upload/post-img/".$getArticle->articleImg ?>"
                                 alt="article_banner">
-                            <input class="form-control article_banner_input" type="file" name="artilce-bannier"
+                            <input class="form-control article_banner_input" type="file" name="imgArticle"
                                 accept="image/png, image/gif, image/jpeg" />
                         </div>
 
                         <div class="row col-lg-9">
                             <div class="mb-3">
                                 <label for="title" class="form-label">Title</label>
-                                <input type="title" class="form-control" name="artilce-title"
+                                <input type="text" class="form-control" name="artilce-title"
                                     value="<?=$getArticle->articleTitle?>" id="title">
                             </div>
 

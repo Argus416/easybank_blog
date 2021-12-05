@@ -2,4 +2,4 @@
 *.xd
 *.fig
 .DS_Store
-public/uploaded/images
+# public/uploaded/images

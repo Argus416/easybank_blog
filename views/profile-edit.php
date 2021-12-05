@@ -1,6 +1,6 @@
 <?php 
     use App\Helper\Helpers;
-    require_once 'inc/header.php'
+    require_once 'inc/header.php';
 ?>
 <title>Articls management</title>
 </head>
@@ -17,7 +17,8 @@
                 <form method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-2 current_photo_container">
-                            <img class="current_photo" src="<?= Helpers::imgProfile() ?>" alt="photo profil">
+                            <img class="current_photo"
+                                src="<?= Helpers::imgToInsert('photoProfil', $user->img_profile) ?>" alt="photo profil">
                             <input class="form-control" type="file" name="photo_profile"
                                 accept="image/png, image/jpeg, image/jpg" />
 

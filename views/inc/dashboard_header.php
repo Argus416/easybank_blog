@@ -14,7 +14,7 @@
             <input type="search" placeholder="Recherer un article">
         </form> -->
         <div class="profile">
-            <img src="<?= Helpers::imgProfile() ?>" alt="photo profil">
+            <img src="<?= Helpers::imgToInsert('photoProfil', $_SESSION['authorImg']) ?>" alt="photo profil">
             <a href="<?= $urlGenerator->generate('authorShow', ['id' =>$_SESSION['idAdmin']])?>"
                 class="current_user"><?=$_SESSION['authorPrenom']?></a>
         </div>

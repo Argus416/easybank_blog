@@ -65,6 +65,7 @@ class ArticlesModel{
                 articles.id as articleID,
                 articles.title as articleTitle,
                 articles.body as articleBody,
+                articles.imgArticle as articleImg,
                 users.id as userID,
                 users.nom as userNom,
                 users.prenom as userPrenom
@@ -86,6 +87,7 @@ class ArticlesModel{
                 articles.id as articleID,
                 articles.title as articleTitle,
                 articles.body as articleBody,
+                articles.imgArticle as articleImg,
                 users.id as userID,
                 users.nom as userNom,
                 users.prenom as userPrenom
@@ -132,7 +134,8 @@ class ArticlesModel{
         $query = "SELECT
                   articles.id as articleID,
                   articles.title as articleTitle,
-                  articles.body as articleBody
+                  articles.body as articleBody,
+                  articles.imgArticle as articleImg
                   FROM articles 
                   WHERE articles.id=:id 
                   "
@@ -182,21 +185,30 @@ class ArticlesModel{
         }
     }
 
-    public function editArticle($pdo ,INT $id ,STRING $title,STRING $body){ 
+    public function editArticle($pdo ,INT $id ,STRING $title,STRING $body, $imgArticle = ''){ 
         try{
             $query = 'UPDATE articles
-                      SET title = :title,
+                      SET 
+                      title = :title,
                       body = :body
-                      WHERE articles.id = :id';
+                      ';
                       
+            if(strlen($imgArticle)){
+                $query .= " , imgArticle = :imgArticle ";
+            }
+            
+            $query .=" WHERE articles.id = :id";
             $stmt = $pdo->prepare($query);
 
-            $data=[
-                ':title'=> $title,
-                ':body'=> $body,
-                ':id' => $id
-            ];
-            return $stmt->execute($data);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+            $stmt->bindParam(':body', $body, PDO::PARAM_STR);
+            
+            if(strlen($imgArticle)){
+                $stmt->bindParam(':imgArticle', $imgArticle, PDO::PARAM_STR);
+            }
+            
+            return $stmt->execute();
         }catch(PDOException $e){
             echo $e;
         }

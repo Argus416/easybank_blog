@@ -75,6 +75,58 @@ p {
      object-fit: cover;
 }
 
+.page-item.active a.page-link {
+  color: white !important;
+  background-color: #31d35c !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.page-item.active a.page-link:focus {
+  outline: none !important;
+  color: white !important;
+  border: none !important;
+}
+
+.page-item a.page-link {
+  border: none !important;
+  border-radius: 0 !important;
+  color: #31d35c !important;
+  outline: none !important;
+  margin: 0px 5px !important;
+}
+
+.page-item a.page-link:focus {
+  outline: none !important;
+  -webkit-box-shadow: 0px 0px 32px -8px #31d35c;
+          box-shadow: 0px 0px 32px -8px #31d35c;
+  background: rgba(49, 211, 92, 0.5) !important;
+}
+
+.page-item a.page-link:hover {
+  background: rgba(49, 211, 92, 0.5) !important;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="password"],
+input[type="email"],
+input[type="file"],
+textarea {
+  border-radius: 0 !important;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="file"]:focus,
+textarea:focus {
+  -webkit-box-shadow: 0px 0px 32px -8px #31d35c !important;
+          box-shadow: 0px 0px 32px -8px #31d35c !important;
+  border: 1px solid #31d35c !important;
+}
+
 .btn-primary-cus {
   text-decoration: none;
   background: -webkit-gradient(linear, left top, right top, from(#31d35c), to(#28bace));
@@ -623,38 +675,6 @@ main.blogs .d-flex .right .categorie-list {
 
 main.blogs .d-flex .right .categorie-list li input {
   margin-right: 5px;
-}
-
-.page-item.active a.page-link {
-  color: white !important;
-  background-color: #31d35c !important;
-  border: none !important;
-  outline: none !important;
-}
-
-.page-item.active a.page-link:focus {
-  outline: none !important;
-  color: white !important;
-  border: none !important;
-}
-
-.page-item a.page-link {
-  border: none !important;
-  border-radius: 0 !important;
-  color: #31d35c !important;
-  outline: none !important;
-  margin: 0px 5px !important;
-}
-
-.page-item a.page-link:focus {
-  outline: none !important;
-  -webkit-box-shadow: 0px 0px 32px -8px #31d35c;
-          box-shadow: 0px 0px 32px -8px #31d35c;
-  background: rgba(49, 211, 92, 0.5) !important;
-}
-
-.page-item a.page-link:hover {
-  background: rgba(49, 211, 92, 0.5) !important;
 }
 
 .logo {

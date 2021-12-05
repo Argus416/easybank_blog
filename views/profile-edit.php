@@ -49,8 +49,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Mot de passe</label>
-                                <input type="password" class="form-control" name="password" id="password"
-                                    value="<?= $user->mdp?>">
+                                <input type="password" class="form-control" name="password" id="password">
                             </div>
                         </div>
                         <div class="btn-container">

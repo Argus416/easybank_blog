@@ -1,16 +1,10 @@
 <?php
+
+// $argon2i$v=19$m=65536,t=4,p=1$b1VCWjhqRDBYLkJzNmk0SA$LRHTN5zQLUXAnOw1I6VOGZ4G2ZJOIQDmxSGW8d2s/EU
+
 session_start();
 require __DIR__ . "/vendor/autoload.php";
 require_once "config/config.php";
-
-// TODOS : Delete
-use App\Classes\PDOSignleton;
-
-use App\Controllers\ArticlesController;
-use App\Controllers\ContactController;
-use App\Controllers\UsersController;
-use App\Controllers\ConnexionController;
-use App\Controllers\ErrorController;
 
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Generator\UrlGenerator;
@@ -19,6 +13,13 @@ use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
+use App\Classes\PDOSignleton;
+
+use App\Controllers\ArticlesController;
+use App\Controllers\ContactController;
+use App\Controllers\UsersController;
+use App\Controllers\ConnexionController;
+use App\Controllers\ErrorController;
 
 if(!isset($_SESSION['isLoggedin']) || $_SESSION['isLoggedin'] != true  ){
     $_SESSION['isLoggedin'] = false;

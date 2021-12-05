@@ -87,12 +87,13 @@ class ArticlesController{
 
             if($this->ArticlesModel->deleteArticle($pdoSignleton, $idArticle)){
                 $_SESSION['alert'] = 'del-article';
-            }else{
-                $_SESSION['alert'] = 'err';
             }
+            // else{
+                // $_SESSION['alert'] = 'err';
+            // }
             
            // Reactualiser  la page
-           header('Refresh:2');
+           header('Refresh:1');
         }
 
         require_once 'views/articles_management.php';
@@ -101,15 +102,19 @@ class ArticlesController{
     public function add($param){
         $ConnexionController = $param['ConnexionSignleton'];
         $ConnexionController::isLoggedin();
+        
         $pdoSignleton = $param['PDOSignleton'];  
         $urlGenerator = $param['urlGenerator'];
         $title = $body = '';
         $categorie = 0;
         
         if(isset($_POST['add-article'])){
+            
             $bannier = filter_var($_POST['artilce-bannier'], FILTER_SANITIZE_STRING);
-            $title = filter_var($_POST['artilce-title'], FILTER_SANITIZE_STRING);
-            $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
+
+            $title = Helpers::sanitizeInput($_POST['artilce-title']);
+            $body = Helpers::sanitizeInput($_POST['artilce-body']);
+
             $this->idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
             
             $idArticle = $this->ArticlesModel->getLastArticle($pdoSignleton)[0]->articleID;
@@ -123,7 +128,6 @@ class ArticlesController{
             // else{
                 // $_SESSION['alert'] = 'err';
             // }
-
             header('Location:' . $urlGenerator->generate('articlesManagement'));
         }
         require_once 'views/form_add_article.php';
@@ -140,14 +144,12 @@ class ArticlesController{
 
         $getArticle = $this->ArticlesModel->getArticle($pdoSignleton, $id)[0];
 
-
         if(isset($_POST['edit-article'])){
             $bannier = filter_var($_POST['artilce-bannier'], FILTER_SANITIZE_STRING);
-            $title = filter_var($_POST['artilce-title'], FILTER_SANITIZE_STRING);
-            $categorie = filter_var($_POST['artilce-categorie'], FILTER_VALIDATE_INT);
-            $body = filter_var($_POST['artilce-body'], FILTER_SANITIZE_STRING);
 
-            
+            $title = Helpers::sanitizeInput($_POST['artilce-title']);
+            $body = Helpers::sanitizeInput($_POST['artilce-body']);
+
             $this->LogSystemModel->addToLog($pdoSignleton, $this->idUser, $id, 'articleModifie');
 
             if($this->ArticlesModel->editArticle($pdoSignleton, $id ,$title, $body)){

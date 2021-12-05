@@ -68,7 +68,7 @@ class UsersModel{
 
     public function update(
         $pdo, INT $id, STRING $nom, STRING $prenom, STRING $email,
-        STRING $mdp, STRING $dateDeNaissance, STRING $imgName 
+        $mdp, STRING $dateDeNaissance, STRING $imgName 
     ){
         try{
            
@@ -93,7 +93,9 @@ class UsersModel{
             $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
             $stmt->bindParam(':prenom', $prenom, PDO::PARAM_STR);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-            $stmt->bindParam(':mdp', $mdp, PDO::PARAM_STR);
+            if($mdp != Null){
+                $stmt->bindParam(':mdp', $mdp, PDO::PARAM_STR);
+            }
             $stmt->bindParam(':dateDeNaissance', $dateDeNaissance, PDO::PARAM_STR);
 
             if(strlen($imgName)){

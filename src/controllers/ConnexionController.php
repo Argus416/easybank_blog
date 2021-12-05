@@ -2,7 +2,7 @@
 namespace App\Controllers;
 
 use App\Model\UsersModel;
-
+use App\Helper\Helpers;
 
 class ConnexionController{
 
@@ -14,8 +14,7 @@ class ConnexionController{
         $this->UsersModel = new UsersModel;
     }
 
-    public static function getSingleton(): ConnexionController
-    {
+    public static function getSingleton(): ConnexionController {
         if (is_null(self::$_singleton)) {
             self::$_singleton = new ConnexionController();
         }
@@ -38,9 +37,9 @@ class ConnexionController{
                     isset($_POST['password-login']) &&
                     !empty($_POST['password-login'])
                 ){
-                    $email = filter_var($_POST['email-login']);
-                    $password = filter_var($_POST['password-login']);
-                    
+            
+                    $email = Helpers::sanitizeInput($_POST['email-login']);
+                    $password = Helpers::sanitizeInput($_POST['password-login']);
                     // $hashed_password = password_hash($password, PASSWORD_ARGON2I);
 
                     $admin = $this->UsersModel->getUsers($pdoSignleton)[0];
@@ -93,10 +92,10 @@ class ConnexionController{
     //             isset($_POST['email-signup']) && 
     //             isset($_POST['password-signup'])
     //         ){
-    //             $prenom = filter_var($_POST['prenom-signup'], FILTER_SANITIZE_STRING);
-    //             $nom = filter_var($_POST['nom-signup'], FILTER_SANITIZE_STRING);
-    //             $email = filter_var($_POST['email-signup'], FILTER_SANITIZE_STRING);
-    //             $password = filter_var($_POST['password-signup'], FILTER_SANITIZE_STRING);
+    //             $prenom = Helpers::sanitizeInput($_POST['prenom-signup']);
+    //             $nom = Helpers::sanitizeInput($_POST['nom-signup']);
+    //             $email = Helpers::sanitizeInput($_POST['email-signup']);
+    //             $password = Helpers::sanitizeInput($_POST['password-login']);
     //             $password = password_hash($password, PASSWORD_ARGON2I);
 
     //             $this->UsersModel->create($nom, $prenom, $email, $password);

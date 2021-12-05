@@ -23,6 +23,10 @@ class Helpers {
 
         return $imgProfile;
     }
+    public static function sanitizeInput($input){
+        $input = htmlentities(trim($input), ENT_QUOTES);
+        return $input;
+    }
 
     public static function alertManager(STRING $class = 'danger', STRING $alertType = 'err'){
         
@@ -35,7 +39,7 @@ class Helpers {
                     $alertType = "L'article a été modifié";
                     break;
                 case "articleDel": 
-                    $alertType = "L'article sera supprimé dans 2s";
+                    $alertType = "L'article sera supprimé dans 1s";
                     break;
                 case "utilisateurCree": 
                     $alertType = "Un nouveau utilisateur a été créé";

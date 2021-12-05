@@ -26,7 +26,6 @@ class UsersController{
         $prenom = $nom = $email = $password = $dateDeNaissance = '';
         $id = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
         $user = $this->UsersModel->getUser($id)[0];
-        
         if(isset($_POST['download-logs'])){
             $this->LogSystemController->generateLogFile();
             $_SESSION['alert'] = 'download-logs';

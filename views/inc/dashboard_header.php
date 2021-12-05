@@ -1,4 +1,6 @@
 <?php
+    use App\Helper\Helpers;
+
     $domain = $_ENV['DOMAIN'];
     $public = $_ENV['PUBLIC'];
 

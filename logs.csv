@@ -1,8 +1,4 @@
 logID,userID,userIden,articleID,articleTitle,actionDate,actionUtilisateur
-2,8,"Al-khatib Mohamad",35,poaopdk,"2021-12-03 00:42:40","bla bla bla
-"
-4,8,"Al-khatib Mohamad",43,"Qu&#39;est-ce que le Lorem Ipsum?","2021-12-03 12:15:21",rrrr
-5,8,"Al-khatib Mohamad",43,"Qu&#39;est-ce que le Lorem Ipsum?","2021-12-03 12:15:29",rrrr
 8,8,"Al-khatib Mohamad",63,fffd,"2021-12-03 12:31:00",qzdqsdqzdqsd
 9,8,"Al-khatib Mohamad",63,fffd,"2021-12-03 12:31:14",test
 10,8,"Al-khatib Mohamad",63,fffd,"2021-12-03 16:49:10","action non trouvé"
@@ -133,9 +129,6 @@ logID,userID,userIden,articleID,articleTitle,actionDate,actionUtilisateur
 137,8,"Al-khatib Mohamad",,,"2021-12-03 19:03:30","l'utilisateur a été modifié"
 138,8,"Al-khatib Mohamad",,,"2021-12-03 19:03:54","l'utilisateur a été modifié"
 139,8,"Al-khatib Mohamad",,,"2021-12-03 19:04:13","l'utilisateur a été modifié"
-140,8,"Al-khatib Mohamad",51,"Pourquoi l&#39;utiliser?","2021-12-03 19:06:01","l'article a été modifié"
-141,8,"Al-khatib Mohamad",51,"Pourquoi l&#39;utiliser?","2021-12-03 19:06:03","l'article a été modifié"
-142,8,"Al-khatib Mohamad",51,"Pourquoi l&#39;utiliser?","2021-12-03 19:06:06","l'article a été modifié"
 143,8,"Al-khatib Mohamad",,,"2021-12-03 19:15:30","l'utilisateur a été modifié"
 144,8,"Al-khatib Mohamad",,,"2021-12-03 19:16:33","l'utilisateur a été modifié"
 145,8,"Al-khatib Mohamad",,,"2021-12-03 19:16:38","l'utilisateur a été modifié"
@@ -356,4 +349,19 @@ logID,userID,userIden,articleID,articleTitle,actionDate,actionUtilisateur
 360,8,"Al-khatib Mohamad",74,dzdd,"2021-12-04 18:40:04","l'article a été modifié"
 361,8,"Al-khatib Mohamad",74,dzdd,"2021-12-04 18:42:50","un nouveau article a été créé"
 362,8,"Al-khatib Mohamad",,,"2021-12-04 18:43:57","l'utilisateur a été mis à jour"
-363,8,"Al-khatib Mohamad",75,poaopdk,"2021-12-04 18:44:06","l'article a été modifié"
+363,8,"Al-khatib Mohamad",75,alert,"2021-12-04 18:44:06","l'article a été modifié"
+364,8,"Al-khatib Mohamad",75,alert,"2021-12-05 00:28:10","l'article a été modifié"
+365,8,"Al-khatib Mohamad",76,poaopdk,"2021-12-05 01:19:12","un nouveau article a été créé"
+366,8,"Al-khatib Mohamad",78,qsd,"2021-12-05 01:19:16","un nouveau article a été créé"
+367,8,"Al-khatib Mohamad",82,,"2021-12-05 01:26:04","un nouveau article a été créé"
+368,8,"Al-khatib Mohamad",79,qsdzqdsqd,"2021-12-05 14:43:23","l'article a été modifié"
+369,8,"Al-khatib Mohamad",79,qsdzqdsqd,"2021-12-05 14:43:52","l'article a été modifié"
+370,8,"Al-khatib Mohamad",79,qsdzqdsqd,"2021-12-05 14:43:54","l'article a été modifié"
+371,8,"Al-khatib Mohamad",84,qz,"2021-12-05 14:48:30","un nouveau article a été créé"
+372,8,"Al-khatib Mohamad",85,poaopdkdddd,"2021-12-05 14:49:38","l'article a été modifié"
+373,8,"Al-khatib Mohamad",85,poaopdkdddd,"2021-12-05 17:31:39","l'article a été modifié"
+374,8,"Al-khatib Mohamad",85,poaopdkdddd,"2021-12-05 17:32:17","l'article a été modifié"
+375,8,"Al-khatib Mohamad",85,poaopdkdddd,"2021-12-05 17:32:24","un nouveau article a été créé"
+376,8,"Al-khatib Mohamad",,,"2021-12-05 17:33:18","l'utilisateur a été mis à jour"
+377,8,"Al-khatib Mohamad",85,poaopdkdddd,"2021-12-05 18:40:01","l'article a été modifié"
+378,8,"Al-khatib Mohamad",85,poaopdkdddd,"2021-12-05 18:40:37","l'article a été modifié"

@@ -1,4 +1,5 @@
 <?php 
+    use App\Helper\Helpers;
     require_once 'inc/header.php';
 ?>
 <title>Articls management</title>
@@ -13,7 +14,7 @@
 
 
                 <?php
-                    if(isset($_SESSION['alert'])){
+                    if(isset($_SESSION['alert']) && isset($_POST['download-logs']) ){
                         if($_SESSION['alert'] === 'download-logs'){
                             echo Helpers::alertManager('success' ,'getLog'); 
                         }elseif($_SESSION['alert'] === 'ok'){
@@ -30,10 +31,16 @@
                     <div class="btns-my-profile">
                         <a class="btn btn-third-cus"
                             href="<?= $urlGenerator->generate('authorEdit', ['id' =>$_SESSION['idAdmin']])?>">Modifier</a>
-                        <form method="POST">
-                            <input type="submit" name="download-logs" class="btn-forth-cus"
-                                value="Télécharger les logs">
+                        <?php if(!isset($_POST['download-logs'])):?>
+                        <form method="POST" class="form-download-logs">
+                            <input type="submit" name="download-logs" class="btn-forth-cus" value="Génerer les logs">
                         </form>
+                        <?php 
+                            else: ?>
+                        <a href="/logs.csv" class="btn btn-secondary-cus btn-see-me" download>Téléchargers les logs</a>
+                        <?php endif;?>
+
+
                     </div>
                 </div>
 

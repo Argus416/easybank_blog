@@ -19,11 +19,8 @@ window.addEventListener("load", () => {
             });
         });
     }
-});
 
-// Alert Manager
-
-$(document).ready(function () {
+    // Alert Manager
     setTimeout(function () {
         if ($(".alert")) {
             $(".alert").animate(
@@ -38,4 +35,12 @@ $(document).ready(function () {
             );
         }
     }, 1000);
+
+    if ($(".btn-see-me")) {
+        $(".btn-see-me").click(function () {
+            if ($(this).hasClass("btn-see-me")) {
+                $(this).removeClass("btn-see-me");
+            }
+        });
+    }
 });

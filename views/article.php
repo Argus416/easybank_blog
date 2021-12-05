@@ -1,4 +1,6 @@
 <?php 
+    use App\Helper\Helpers;
+
     require_once 'inc/header.php';
 ?>
 <title><?= $article[0]->articleTitle ?></title>

@@ -1,4 +1,7 @@
-<?php require_once 'inc/header.php' ?>
+<?php 
+    use App\Helper\Helpers;
+    require_once 'inc/header.php'
+?>
 <title>Articls management</title>
 </head>
 

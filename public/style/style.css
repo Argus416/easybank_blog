@@ -102,6 +102,8 @@ p {
   border: none;
   -webkit-transition: opacity 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out;
+  position: relative;
+  z-index: 10;
 }
 
 .btn-secondary-cus:hover {
@@ -187,36 +189,50 @@ p {
   padding-bottom: 0.5em !important;
 }
 
-.page-item.active a.page-link {
-  color: white !important;
-  background-color: #31d35c !important;
-  border: none !important;
-  outline: none !important;
+.btn-see-me {
+  background-color: #31d35c;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
 }
 
-.page-item.active a.page-link:focus {
-  outline: none !important;
-  color: white !important;
-  border: none !important;
+.btn-see-me::after {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  background-color: #31d35c;
+  -webkit-animation: pulse 1.2s infinite;
+          animation: pulse 1.2s infinite;
 }
 
-.page-item a.page-link {
-  border: none !important;
-  border-radius: 0 !important;
-  color: #31d35c !important;
-  outline: none !important;
-  margin: 0px 5px !important;
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 0.75;
+  }
+  100% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+    opacity: 0;
+  }
 }
 
-.page-item a.page-link:focus {
-  outline: none !important;
-  -webkit-box-shadow: 0px 0px 32px -8px #31d35c;
-          box-shadow: 0px 0px 32px -8px #31d35c;
-  background: rgba(49, 211, 92, 0.5) !important;
-}
-
-.page-item a.page-link:hover {
-  background: rgba(49, 211, 92, 0.5) !important;
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 0.75;
+  }
+  100% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+    opacity: 0;
+  }
 }
 
 .test {
@@ -607,6 +623,38 @@ main.blogs .d-flex .right .categorie-list {
 
 main.blogs .d-flex .right .categorie-list li input {
   margin-right: 5px;
+}
+
+.page-item.active a.page-link {
+  color: white !important;
+  background-color: #31d35c !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.page-item.active a.page-link:focus {
+  outline: none !important;
+  color: white !important;
+  border: none !important;
+}
+
+.page-item a.page-link {
+  border: none !important;
+  border-radius: 0 !important;
+  color: #31d35c !important;
+  outline: none !important;
+  margin: 0px 5px !important;
+}
+
+.page-item a.page-link:focus {
+  outline: none !important;
+  -webkit-box-shadow: 0px 0px 32px -8px #31d35c;
+          box-shadow: 0px 0px 32px -8px #31d35c;
+  background: rgba(49, 211, 92, 0.5) !important;
+}
+
+.page-item a.page-link:hover {
+  background: rgba(49, 211, 92, 0.5) !important;
 }
 
 .logo {

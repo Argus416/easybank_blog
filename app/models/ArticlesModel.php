@@ -1,6 +1,5 @@
 <?php
 
-use function PHPSTORM_META\type;
 
 require_once 'app/classes/PDOSignleton.php';
 

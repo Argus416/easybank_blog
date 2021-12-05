@@ -33,7 +33,7 @@
 
                 <div class="right">
                     <form method="POST">
-                        <p>Laisser nous un message !</p>
+                        <p>Laissez-nous un message !</p>
                         <input type="text" name="name" placeholder="Nom">
                         <input type="text" name="email" placeholder="Email">
                         <textarea name="message" placeholder="Votre message"></textarea>

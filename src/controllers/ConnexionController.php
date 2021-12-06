@@ -88,7 +88,7 @@ class ConnexionController{
         }
 
         $token = Helpers::tokenGenerator();
-        $tokenInput = filter_var($_POST['token-login'], FILTER_SANITIZE_STRING);
+        $tokenInput = filter_var($_POST['token-signup'], FILTER_SANITIZE_STRING);
           
         
         if(isset($_POST['create-account']) && $_SERVER['REQUEST_METHOD'] === 'POST'){

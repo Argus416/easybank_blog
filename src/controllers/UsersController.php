@@ -11,13 +11,12 @@ use Exception;
 class UsersController{
 
     private $UsersModel;
-    private $LogSystemModel;
     private $LogSystemController;
-
+    private $LogSystemModel;
     public function __construct(){
         $this->UsersModel = new UsersModel;
-        $this->LogSystemModel = new LogSystemModel;
         $this->LogSystemController = new LogSystemController;
+        $this->LogSystemModel = new LogSystemModel;
     }
 
    
@@ -78,7 +77,7 @@ class UsersController{
             
 
             $_SESSION['authorPrenom'] = $prenom;
-            $this->LogSystemModel->addToLog($pdoSignleton, $id, NULL, 'utilisateurModifiee');
+            $this->LogSystemModel->addToLog($pdoSignleton, $id, NULL, 'utilisateurModifie');
 
             // Gestion de changement de mot de passe
             $updateUser = $this->UsersModel->update($pdoSignleton, $id ,$nom, $prenom, $email, '', $dateDeNaissance, $imgNewName);
@@ -89,7 +88,6 @@ class UsersController{
                 // session_destroy();
                 
                 // affichage alert vous êtes déconnectés
-                session_start();
                 $_SESSION['alert'] = 'ok';
             }
             

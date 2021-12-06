@@ -102,7 +102,7 @@ class Helpers {
                     $alertType = "Le profil a été mis à jour";
                     break;
                 case "getLog":
-                    $alertType = "Les logs ont été téléchargés";
+                    $alertType = "Les logs ont été générés, veuillez les <strong>télécharger</strong>";
                     break;
                 case "err":
                     $alertType = "Impossible de mettre à jour la base de données";

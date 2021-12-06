@@ -50,6 +50,7 @@ class LogSystemModel{
             $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
             if($idArticle === NULL){
                 $stmt->bindValue(':idArticle', NULL, PDO::PARAM_NULL);
+
             }else{
                 $stmt->bindValue(':idArticle', $idArticle, PDO::PARAM_INT);
             }
@@ -64,18 +65,12 @@ class LogSystemModel{
                 case "utilisateurCree": 
                     $actionUtilisateur = "un nouveau utilisateur a été créé";
                     break;
-                case "utilisateurModifiee": 
+                case "utilisateurModifie": 
                     $actionUtilisateur = "l'utilisateur a été mis à jour";
                     break;
                 default:
                     $actionUtilisateur = "action non trouvé";
             }
-
-            $data = [
-                ':idUser' => $idUser,
-                ':idArticle' => $idArticle,
-                ':actionUtilisateur' => $actionUtilisateur
-            ];
             
             $stmt->bindParam(':actionUtilisateur', $actionUtilisateur, PDO::PARAM_STR);
             return $stmt->execute();

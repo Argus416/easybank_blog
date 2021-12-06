@@ -10,7 +10,6 @@ use App\Helper\Helpers;
 class ArticlesController{
 
     private $ArticlesModel;
-    private $CategoriesModel;
     private $UsersModel;
     private $LogSystemModel;
     

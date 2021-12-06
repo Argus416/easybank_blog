@@ -5,10 +5,6 @@ namespace App\Controllers;
 class ErrorController{
 
 
-    public function __construct()
-    {
-    }
-
     public function err404($param){
         $urlGenerator = $param['urlGenerator'];
 

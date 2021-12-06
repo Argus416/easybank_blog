@@ -1,7 +1,6 @@
 <?php
 
 // $argon2i$v=19$m=65536,t=4,p=1$dTFFWkhpUi5qQVFMeDlxVA$y92QBP1TcYkYTKmqgC69LEQofI0c+hOaxkVw/H30YFU
-
 session_start();
 require __DIR__ . "/vendor/autoload.php";
 require_once "config/config.php";
@@ -19,6 +18,7 @@ use App\Controllers\ContactController;
 use App\Controllers\UsersController;
 use App\Controllers\ConnexionController;
 use App\Controllers\ErrorController;
+use Symfony\Config\FrameworkConfig;
 
 $PDOSignleton = PDOSignleton::getSingleton()::PDO_Init();
 $ConnexionSignleton = ConnexionController::getSingleton();
@@ -26,6 +26,7 @@ $ConnexionSignleton = ConnexionController::getSingleton();
 if(!isset($_SESSION['isLoggedin']) || $_SESSION['isLoggedin'] != true  ){
     $_SESSION['isLoggedin'] = false;
 }
+
 
 try{
     $regChiffre = '<\d+>';

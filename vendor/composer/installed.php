@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '602f7c8521ec3172356e76ffe4f8a47a92ea2946',
+        'reference' => '360652d71eb04d916ac7353e477810ba350a9951',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '602f7c8521ec3172356e76ffe4f8a47a92ea2946',
+            'reference' => '360652d71eb04d916ac7353e477810ba350a9951',
             'dev_requirement' => false,
         ),
         'symfony/config' => array(

@@ -45,12 +45,22 @@ class Helpers {
         $input = htmlentities(trim($input), ENT_QUOTES);
         return $input;
     }
+
+    public static function tokenGenerator(STRING $tokenSessionName = 'token'){
+        if (empty($_SESSION[$tokenSessionName])) {
+            $_SESSION[$tokenSessionName] = bin2hex(random_bytes(32));
+        }
+
+        $token = $_SESSION[$tokenSessionName];
+        return $token;
+    }
     
     // Première connexion sur le site
     // Note : il n'est pas néssaiseare d'utiliser cette méthod si la méthod $ConnexionController::isLoggedin() est appelée
     public static function VerifyIfUserExist($nb, $urlGenerator){
         if($nb === 0){
             header('Location:'.$urlGenerator->generate('signup'));
+            session_destroy();
         }else{
             $_SESSION['userExist'] = true;
         }

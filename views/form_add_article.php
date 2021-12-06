@@ -28,13 +28,13 @@
                         <div class="row col-lg-9">
                             <div class="mb-3">
                                 <label for="title" class="form-label">Title</label>
-                                <input type="title" class="form-control" name="artilce-title" id="title">
+                                <input type="text" class="form-control" name="artilce-title" id="title">
                             </div>
 
                             <div class="mb-3">
-                                <label for="floatingTextarea2" class="form-label">Body</label>
+                                <label for="body" class="form-label">Body</label>
                                 <textarea class="form-control" name="artilce-body" rows="5"
-                                    placeholder="Contenu de l'article"></textarea>
+                                    placeholder="Contenu de l'article" id="body"></textarea>
                             </div>
 
                         </div>
@@ -44,6 +44,7 @@
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
     </main>

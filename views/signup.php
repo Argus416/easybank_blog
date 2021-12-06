@@ -16,7 +16,7 @@
                     Veuillez créer un compte pour que le site soit utilisable
                 </p>
                 <form method="POST">
-
+                    <input type="hidden" name="token-signup" value="<?= $token ?>">
                     <div class="label prenom-signup-container">
                         <div class="input-parent">
                             <input type="text" name="prenom-signup" id="prenom-signup" placeholder="Prénom">

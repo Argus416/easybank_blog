@@ -84,6 +84,7 @@
                                                 <form method="POST">
                                                     <input type="hidden" name="article-id"
                                                         value="<?= $article->articleID?>">
+                                                    <input type="hidden" name="article-del-token" value="<?= $token ?>">
                                                     <button type="submit" name="article-del"
                                                         class="btn btn-danger">Supprimer</button>
                                                 </form>

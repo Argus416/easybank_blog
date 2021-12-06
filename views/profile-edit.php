@@ -15,6 +15,7 @@
 
 
                 <form method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="token-edit-profile" value="<?= $token ?>">
                     <div class="row">
                         <div class="col-lg-2 current_photo_container">
                             <img class="current_photo"

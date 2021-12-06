@@ -30,38 +30,44 @@ class ConnexionController{
         $pdoSignleton = $param['PDOSignleton'];  
         Helpers::VerifyIfUserExist($this->nbUtilisateur, $urlGenerator);
         
+        $token = Helpers::tokenGenerator();
+        $tokenInput = filter_var($_POST['token-login'], FILTER_SANITIZE_STRING);
+         
         $err = "";
         
         if($_SESSION['isLoggedin'] != true){
             $users = $this->UsersModel->getUsers($pdoSignleton);
             $email = $password = '';
             
-            if(isset($_POST['login'])){
-                if(
-                    isset($_POST['email-login']) && 
-                    !empty($_POST['email-login']) &&
-                    isset($_POST['password-login']) &&
-                    !empty($_POST['password-login'])
-                ){
-            
-                    $email = Helpers::sanitizeInput($_POST['email-login']);
-                    $password = Helpers::sanitizeInput($_POST['password-login']);
-                    // $hashed_password = password_hash($password, PASSWORD_ARGON2I);
-
-                    $admin = $this->UsersModel->getUsers($pdoSignleton)[0];
-
+            if(isset($_POST['login']) && $_SERVER['REQUEST_METHOD'] === 'POST'){
+                if (hash_equals($_SESSION['token'], $tokenInput)) {
                     if(
-                        $email === $admin->authorEmail &&
-                        password_verify($password, $admin->authorMDP)
+                            isset($_POST['email-login']) && 
+                            !empty($_POST['email-login']) &&
+                            isset($_POST['password-login']) &&
+                            !empty($_POST['password-login'])
                     ){
-                        $_SESSION['isLoggedin'] = true;
-                        $_SESSION['idAdmin'] = $admin->authorID;
-                        $_SESSION['authorPrenom'] = $admin->authorPrenom;
-                        $_SESSION['authorImg'] = $admin->authorImg;
-                        header('Location:'.$urlGenerator->generate('accueil'));
-                    }else{
-                        $err = "<p class='text-danger err-text'>Votre email ou mot de passe n'est pas correct</p>";
+                        $email = Helpers::sanitizeInput($_POST['email-login']);
+                        $password = Helpers::sanitizeInput($_POST['password-login']);
+                        // $hashed_password = password_hash($password, PASSWORD_ARGON2I);
+
+                        $admin = $this->UsersModel->getUsers($pdoSignleton)[0];
+
+                        if(
+                            $email === $admin->authorEmail &&
+                            password_verify($password, $admin->authorMDP)
+                        ){
+                            $_SESSION['isLoggedin'] = true;
+                            $_SESSION['idAdmin'] = $admin->authorID;
+                            $_SESSION['authorPrenom'] = $admin->authorPrenom;
+                            $_SESSION['authorImg'] = $admin->authorImg;
+                            header('Location:'.$urlGenerator->generate('accueil'));
+                        }else{
+                            $err = "<p class='text-danger err-text'>Votre email ou mot de passe n'est pas correct</p>";
+                        }
                     }
+                }else {
+                    header('Location:' . $urlGenerator->generate('err405'));
                 }
             }
             require_once 'views/login.php';
@@ -76,33 +82,38 @@ class ConnexionController{
         $pdoSignleton = $param['PDOSignleton'];  
         $prenom = $nom = $email = $password = '';
 
-        
         // si un utilisateur est déjà créé
          if($this->nbUtilisateur === 1){
             header('Location:'.$urlGenerator->generate('accueil'));
         }
-      
 
+        $token = Helpers::tokenGenerator();
+        $tokenInput = filter_var($_POST['token-login'], FILTER_SANITIZE_STRING);
+          
         
-        if(isset($_POST['create-account'])){
-            if(
-                isset($_POST['prenom-signup']) &&
-                isset($_POST['nom-signup']) &&
-                isset($_POST['email-signup']) && 
-                isset($_POST['password-signup'])
-            ){
-                $prenom = Helpers::sanitizeInput($_POST['prenom-signup']);
-                $nom = Helpers::sanitizeInput($_POST['nom-signup']);
-                $email = Helpers::sanitizeInput($_POST['email-signup']);
-                $password = Helpers::sanitizeInput($_POST['password-signup']);
-                $password = password_hash($password, PASSWORD_ARGON2I);
-                
-                if($this->UsersModel->create($pdoSignleton, $nom, $prenom, $email, $password)){
-                    // TODO create Alert
-                    // Helpers::alertManager();
-                    $_SESSION['userExist'] = true;
+        if(isset($_POST['create-account']) && $_SERVER['REQUEST_METHOD'] === 'POST'){
+            if (hash_equals($_SESSION['token'], $tokenInput)) {
+                if(
+                    isset($_POST['prenom-signup']) &&
+                    isset($_POST['nom-signup']) &&
+                    isset($_POST['email-signup']) && 
+                    isset($_POST['password-signup'])
+                ){
+                    $prenom = Helpers::sanitizeInput($_POST['prenom-signup']);
+                    $nom = Helpers::sanitizeInput($_POST['nom-signup']);
+                    $email = Helpers::sanitizeInput($_POST['email-signup']);
+                    $password = Helpers::sanitizeInput($_POST['password-signup']);
+                    $password = password_hash($password, PASSWORD_ARGON2I);
+                    
+                    if($this->UsersModel->create($pdoSignleton, $nom, $prenom, $email, $password)){
+                        // TODO create Alert
+                        // Helpers::alertManager();
+                        $_SESSION['userExist'] = true;
+                    }
+                    header('Location:'.$urlGenerator->generate('accueil'));
                 }
-                header('Location:'.$urlGenerator->generate('accueil'));
+            }else{
+                header('Location:'.$urlGenerator->generate('err405'));
             }
         }
         require_once 'views/signup.php';

@@ -14,6 +14,8 @@
                 <h3> Edit Article <?=$getArticle->articleID?> </h3>
 
                 <form method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="token-edit-article" value="<?= $token ?>">
+
                     <div class="row">
                         <div class="col-lg-3 blog_photo_container">
                             <img class="article_banner"

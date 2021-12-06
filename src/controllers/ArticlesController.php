@@ -19,6 +19,7 @@ class ArticlesController{
 
     private $idUser;
 
+
     public function __construct(){
         $this->ArticlesModel = new ArticlesModel;
         $this->UsersModel = new UsersModel;
@@ -40,6 +41,7 @@ class ArticlesController{
         
         
         Helpers::VerifyIfUserExist($this->nbUtilisateur, $urlGenerator);
+        
         $articles = $this->ArticlesModel->getLatesetArticles($pdoSignleton);
         require_once 'views/accueil.php';
     }
@@ -94,16 +96,24 @@ class ArticlesController{
         $urlGenerator = $param['urlGenerator'];
         
         $articles = $this->ArticlesModel->getArticles($pdoSignleton);
+        
+        $token = Helpers::tokenGenerator();
+        $tokenInput = filter_var($_POST['article-del-token'], FILTER_SANITIZE_STRING);
 
-        if(isset($_POST['article-del'])){
+        if(isset($_POST['article-del']) && $_SERVER['REQUEST_METHOD'] === 'POST'){
+
             $idArticle = filter_var($_POST['article-id'], FILTER_VALIDATE_INT);
-
-            if($this->ArticlesModel->deleteArticle($pdoSignleton, $idArticle)){
-                $_SESSION['alert'] = 'del-article';
+            if (hash_equals($_SESSION['token'], $tokenInput)) {
+                if($this->ArticlesModel->deleteArticle($pdoSignleton, $idArticle)){
+                    $_SESSION['alert'] = 'del-article';
+                }// else{
+                 // $_SESSION['alert'] = 'err';
+                // }
+                unset($_SESSION['token']);
+            }else{
+                header('Location:' . $urlGenerator->generate('err405'));
             }
-            // else{
-                // $_SESSION['alert'] = 'err';
-            // }
+            
             
            // Reactualiser  la page
            header('Refresh:1');
@@ -117,42 +127,40 @@ class ArticlesController{
         $ConnexionController::isLoggedin();
         $pdoSignleton = $param['PDOSignleton'];  
         $urlGenerator = $param['urlGenerator'];
-        $token = bin2hex(random_bytes(35));
-        $_SESSION['token'] = $token;
+        $title = $body = '';        
+       
+        $token = Helpers::tokenGenerator();
+        $tokenInput = filter_var($_POST['token-add-article'], FILTER_SANITIZE_STRING);
         
-        $title = $body = '';
         if(isset($_POST['add-article']) && $_SERVER['REQUEST_METHOD'] === 'POST'){
-            
-            
-            $tokenInput = filter_input(INPUT_POST, 'token-add-article', FILTER_SANITIZE_STRING);
             
             $imgArticle = Helpers::uploadPhoto('imgArticle', 'public/upload/post-img');
             $title = Helpers::sanitizeInput($_POST['artilce-title']);
             $body = Helpers::sanitizeInput($_POST['artilce-body']);
 
             // Protection contre CSRF
-            if($tokenInput === $token){
-                if(isset($_SESSION['idAdmin'])){
-                    $this->idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
+            if (!empty($_POST['token-add-article'])) {
+                if (hash_equals($_SESSION['token'], $tokenInput)) {
+                        echo "yes";
+                        if(isset($_SESSION['idAdmin'])){
+                            $this->idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
+                        }
+                        $idArticle = $this->ArticlesModel->getLastArticle($pdoSignleton)[0]->articleID;
+                        $idArticle = filter_var($idArticle, FILTER_VALIDATE_INT);
+        
+                        $this->LogSystemModel->addToLog($pdoSignleton, $this->idUser, $idArticle, 'articleCree');
+        
+                        if($this->ArticlesModel->addArticle($pdoSignleton, $title, $body, $this->idUser, $imgArticle)){
+                            $_SESSION['alert'] = 'add-article';
+                        }
+                        // else{
+                        //     $_SESSION['alert'] = 'err';
+                        // }
+                        unset($_SESSION['token']);
+                        header('Location:' . $urlGenerator->generate('articlesManagement'));
+                } else {
+                    header('Location:' . $urlGenerator->generate('err405'));
                 }
-                
-                $idArticle = $this->ArticlesModel->getLastArticle($pdoSignleton)[0]->articleID;
-                $idArticle = filter_var($idArticle, FILTER_VALIDATE_INT);
-
-                $this->LogSystemModel->addToLog($pdoSignleton, $this->idUser, $idArticle, 'articleCree');
-
-                if($this->ArticlesModel->addArticle($pdoSignleton, $title, $body, $this->idUser, $imgArticle)){
-                    $_SESSION['alert'] = 'add-article';
-                }
-                // else{
-                //     $_SESSION['alert'] = 'err';
-                // }
-                header('Location:' . $urlGenerator->generate('articlesManagement'));
-            }else{
-                echo "err";
-                dump($tokenInput, 'token : '. $token);
-                // header('Location:'.$urlGenerator->generate('err405'));
-              
             }
         }
         
@@ -171,20 +179,29 @@ class ArticlesController{
 
         $getArticle = $this->ArticlesModel->getArticle($pdoSignleton, $id)[0];
 
-        if(isset($_POST['edit-article'])){
-            $imgArticle = Helpers::uploadPhoto('imgArticle', 'public/upload/post-img');
-            $title = Helpers::sanitizeInput($_POST['artilce-title']);
-            $body = Helpers::sanitizeInput($_POST['artilce-body']);
+        $token = Helpers::tokenGenerator();
+        $tokenInput = filter_var($_POST['token-edit-article'], FILTER_SANITIZE_STRING);
+        
 
-            $this->LogSystemModel->addToLog($pdoSignleton, $this->idUser, $id, 'articleModifie');
+        if(isset($_POST['edit-article']) && $_SERVER['REQUEST_METHOD'] === 'POST'){
+            if (hash_equals($_SESSION['token'], $tokenInput)) {
 
-            if($this->ArticlesModel->editArticle($pdoSignleton, $id ,$title, $body, $imgArticle)){
-                $_SESSION['alert'] = 'go';
-            }else{
-                $_SESSION['alert'] = 'err';
+                $imgArticle = Helpers::uploadPhoto('imgArticle', 'public/upload/post-img');
+                $title = Helpers::sanitizeInput($_POST['artilce-title']);
+                $body = Helpers::sanitizeInput($_POST['artilce-body']);
+
+                $this->LogSystemModel->addToLog($pdoSignleton, $this->idUser, $id, 'articleModifie');
+
+                if($this->ArticlesModel->editArticle($pdoSignleton, $id ,$title, $body, $imgArticle)){
+                    $_SESSION['alert'] = 'go';
+                }else{
+                    $_SESSION['alert'] = 'err';
+                }
+                
+                header('location:'. $urlGenerator->generate('article', ['id' => $id]));
+            }else {
+                header('Location:' . $urlGenerator->generate('err405'));
             }
-            
-            header('location:'. $urlGenerator->generate('article', ['id' => $id]));
         }
         require_once 'views/form_edit_article.php';
     }

@@ -12,6 +12,7 @@
                     <img src="<?= "$domain$public"?>style/images/logo.svg" class="logo" alt="logo">
                 </a>
                 <form method="POST">
+                    <input type="hidden" name="token-login" value="<?= $token ?>">
                     <div class="label email-parent">
                         <label for="email-login">Email</label>
                         <div class="input-parent email-parent">

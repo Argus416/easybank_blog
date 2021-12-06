@@ -14,6 +14,8 @@ class UsersModel{
     {
         $this->pdosingleton = PDOSignleton::getSingleton();
         $this->pdo = $this->pdosingleton::PDO_Init();
+
+
     }
 
     public function getUsers($pdo){
@@ -53,8 +55,8 @@ class UsersModel{
         $pdo, STRING $nom, STRING $prenom, STRING $email,
         STRING $mdp
     ){
-        $query='INSERT INTO users VALUES (NULL ,:nom, :prenom, :email, :mdp, NULL, NULL, 0)';
-        $db = $pdo->prepare($query);
+        $query='INSERT INTO users VALUES (NULL ,:nom, :prenom, :email, :mdp, NULL, NULL)';
+        $stmt = $pdo->prepare($query);
 
         $date= [
             ':nom' => $nom,
@@ -62,7 +64,7 @@ class UsersModel{
             ':email'=> $email,
             ':mdp' => $mdp
         ];
-        $db->execute($date);
+        return $stmt->execute($date);
     }
 
 
@@ -124,6 +126,16 @@ class UsersModel{
         ];
         $db->execute($data);
     }
-
+ public function getCountUsers($pdo){
+        try{
+            $query='SELECT count(*) as nbUsers  FROM users ';
+            $db = $pdo->prepare($query);
+            $db->execute();
+            $users = $db->fetchAll(PDO::FETCH_OBJ);
+            return $users;
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    
 
 }

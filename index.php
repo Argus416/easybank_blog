@@ -1,6 +1,6 @@
 <?php
 
-// $argon2i$v=19$m=65536,t=4,p=1$b1VCWjhqRDBYLkJzNmk0SA$LRHTN5zQLUXAnOw1I6VOGZ4G2ZJOIQDmxSGW8d2s/EU
+// $argon2i$v=19$m=65536,t=4,p=1$dTFFWkhpUi5qQVFMeDlxVA$y92QBP1TcYkYTKmqgC69LEQofI0c+hOaxkVw/H30YFU
 
 session_start();
 require __DIR__ . "/vendor/autoload.php";
@@ -20,6 +20,8 @@ use App\Controllers\ContactController;
 use App\Controllers\UsersController;
 use App\Controllers\ConnexionController;
 use App\Controllers\ErrorController;
+
+dump($_SESSION);
 
 if(!isset($_SESSION['isLoggedin']) || $_SESSION['isLoggedin'] != true  ){
     $_SESSION['isLoggedin'] = false;

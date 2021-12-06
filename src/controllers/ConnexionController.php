@@ -80,10 +80,16 @@ class ConnexionController{
                 $prenom = Helpers::sanitizeInput($_POST['prenom-signup']);
                 $nom = Helpers::sanitizeInput($_POST['nom-signup']);
                 $email = Helpers::sanitizeInput($_POST['email-signup']);
-                $password = Helpers::sanitizeInput($_POST['password-login']);
+                $password = Helpers::sanitizeInput($_POST['password-signup']);
                 $password = password_hash($password, PASSWORD_ARGON2I);
+                
+                if($this->UsersModel->create($pdoSignleton, $nom, $prenom, $email, $password)){
+                    // TODO create Alert
+                    // Helpers::alertManager();
+                    $_SESSION['userExist'] = true;
+                }
 
-                $this->UsersModel->create($pdoSignleton, $nom, $prenom, $email, $password);
+                header('Location:'.$urlGenerator->generate('accueil'));
             }
             
         }

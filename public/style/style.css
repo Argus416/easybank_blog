@@ -241,6 +241,10 @@ textarea:focus {
   padding-bottom: 0.5em !important;
 }
 
+.signup-btn {
+  padding: 0.5em 1.1em !important;
+}
+
 .btn-see-me {
   background-color: #31d35c;
   display: -ms-grid;

@@ -24,12 +24,12 @@
                             <a class="nav-link" href="<?= $urlGenerator->generate('contact') ?>">Nous Contacter</a>
                     </li>
 
-                    <?php if(isset($_SESSION['isLoggedin']) && $_SESSION['isLoggedin'] != true ):?>
+                    <?php if(isset($_SESSION['isLoggedin']) && $_SESSION['isLoggedin'] != true  && isset($_SESSION['userExist'])):
+                    ?>
                     <li class=" nav-item-cus">
                         <a class="nav-link " href="<?= $urlGenerator->generate('login') ?>">Me
                             connecter</a>
                     </li>
-
                     <?php 
                         elseif(isset($_SESSION['isLoggedin']) && $_SESSION['isLoggedin'] == true ):
                         ConnexionController::Deconnexion();
@@ -44,6 +44,15 @@
                         </form>
                     </li>
                     <?php endif;?>
+                    <?php if(!isset($_SESSION['userExist']) ):?>
+                    <li class=" nav-item">
+                        <a class="nav-link btn-third-cus signup-btn"
+                            href="<?= $urlGenerator->generate('signup') ?>">Créer un
+                            compte</a>
+                    </li>
+                    <?php endif;?>
+
+
 
                 </ul>
             </div>

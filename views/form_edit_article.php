@@ -1,5 +1,6 @@
 <?php 
     require_once 'inc/header.php';
+    use App\Helper\Helpers;
 ?>
 <title>Articls management</title>
 </head>
@@ -16,7 +17,7 @@
                     <div class="row">
                         <div class="col-lg-3 blog_photo_container">
                             <img class="article_banner"
-                                src="<?= "$domain$public"."upload/post-img/".$getArticle->articleImg ?>"
+                                src="<?= Helpers::imgToInsert('imgArticle', $getArticle->articleImg) ?>"
                                 alt="article_banner">
                             <input class="form-control article_banner_input" type="file" name="imgArticle"
                                 accept="image/png, image/gif, image/jpeg" />

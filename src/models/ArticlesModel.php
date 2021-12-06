@@ -174,23 +174,15 @@ class ArticlesModel{
 
     public function addArticle($pdo, STRING $title,STRING $body, INT $idUser , $imgArticle = '', INT $isDeleted = 0  ){ 
         try{
-            $query = 'INSERT INTO articles VALUES(NULL, :title, :body, CURRENT_TIMESTAMP ,';
+            $query = 'INSERT INTO articles VALUES(NULL, :title, :body, CURRENT_TIMESTAMP, :imgArticle, :isDeleted, :idUser)';
             
-            if(strlen($imgArticle)){
-                $query .= ' :imgArticle, ';
-            }
-
-            $query .= ':isDeleted, :idUser)';
             $stmt = $pdo->prepare($query);
 
             $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
             $stmt->bindParam(':isDeleted', $isDeleted, PDO::PARAM_INT);
             $stmt->bindParam(':title', $title, PDO::PARAM_STR);
             $stmt->bindParam(':body', $body, PDO::PARAM_STR);
-
-            if(strlen($imgArticle)){
-                $stmt->bindParam(':imgArticle', $imgArticle, PDO::PARAM_STR);
-            }
+            $stmt->bindParam(':imgArticle', $imgArticle, PDO::PARAM_STR);
             
             return $stmt->execute();
         }catch(PDOException $e){

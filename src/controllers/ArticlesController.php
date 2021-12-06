@@ -135,15 +135,17 @@ class ArticlesController{
             $idArticle = $this->ArticlesModel->getLastArticle($pdoSignleton)[0]->articleID;
             $idArticle = filter_var($idArticle, FILTER_VALIDATE_INT);
 
-            $this->LogSystemModel->addToLog($pdoSignleton, $this->idUser, $idArticle, 'articleCree');
+            // $this->LogSystemModel->addToLog($pdoSignleton, $this->idUser, $idArticle, 'articleCree');
 
             if($this->ArticlesModel->addArticle($pdoSignleton, $title, $body, $this->idUser, $imgArticle)){
                 $_SESSION['alert'] = 'add-article';
             }
-            else{
-                $_SESSION['alert'] = 'err';
-            }
-            header('Location:' . $urlGenerator->generate('articlesManagement'));
+            
+            // else{
+            //     $_SESSION['alert'] = 'err';
+            // }
+
+            // header('Location:' . $urlGenerator->generate('articlesManagement'));
         }
         require_once 'views/form_add_article.php';
     }

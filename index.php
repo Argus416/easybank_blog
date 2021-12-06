@@ -70,11 +70,11 @@ try{
         ]
     ]);
 
-    // $signupRoute = new Route('/signup', [
-    //     'controller' => [
-    //         new UsersController(), 'signup'
-    //     ]
-    // ]);
+    $signupRoute = new Route('/signup', [
+        'controller' => [
+            new ConnexionController(), 'signup'
+        ]
+    ]);
 
     $dashboardRouteArticleMan = new Route('/dashboard/articles', [
         'controller' => [
@@ -122,7 +122,7 @@ try{
     $routeCollection->add('blog', $blogRoute);
     $routeCollection->add('article', $articleRoute);
     $routeCollection->add('login', $loginRoute);
-    // $routeCollection->add('signup', $signupRoute);
+    $routeCollection->add('signup', $signupRoute);
     $routeCollection->add('articlesManagement', $dashboardRouteArticleMan);
     $routeCollection->add('addArticle', $dashboardRouteArticleAdd);
     $routeCollection->add('editArticle', $dashboardRouteArticleEdit);

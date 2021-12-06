@@ -440,6 +440,26 @@ main.loginForm .form-container form .label.password-parent .input-parent::before
   content: "\f023";
 }
 
+main.signUpForm .form-container form .label.prenom-signup-container .input-parent::before,
+main.loginForm .form-container form .label.prenom-signup-container .input-parent::before {
+  content: "\f007";
+}
+
+main.signUpForm .form-container form .label.nom-signup-container .input-parent::before,
+main.loginForm .form-container form .label.nom-signup-container .input-parent::before {
+  content: "\f007";
+}
+
+main.signUpForm .form-container form .label.email-signup-container .input-parent::before,
+main.loginForm .form-container form .label.email-signup-container .input-parent::before {
+  content: "\f0e0";
+}
+
+main.signUpForm .form-container form .label.password-signup-container .input-parent::before,
+main.loginForm .form-container form .label.password-signup-container .input-parent::before {
+  content: "\f023";
+}
+
 main.signUpForm .form-container form .label .input-parent,
 main.loginForm .form-container form .label .input-parent {
   margin-bottom: 1.5em;
@@ -493,6 +513,18 @@ main.loginForm .form-container form .nickname-signup-container .input-parent::be
 
 main.signUpForm .form-container .logo {
   margin-bottom: 0;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="file"]:focus,
+textarea:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  border: none !important;
+  border-bottom: 1px solid #9698a6 !important;
 }
 
 @-webkit-keyframes backgroundAnimation {

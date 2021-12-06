@@ -53,6 +53,34 @@ main.loginForm {
                         }
                     }
                 }
+                &.prenom-signup-container {
+                    .input-parent {
+                        &::before {
+                            content: "\f007";
+                        }
+                    }
+                }
+                &.nom-signup-container {
+                    .input-parent {
+                        &::before {
+                            content: "\f007";
+                        }
+                    }
+                }
+                &.email-signup-container {
+                    .input-parent {
+                        &::before {
+                            content: "\f0e0";
+                        }
+                    }
+                }
+                &.password-signup-container {
+                    .input-parent {
+                        &::before {
+                            content: "\f023";
+                        }
+                    }
+                }
 
                 .input-parent {
                     margin-bottom: 1.5em;
@@ -103,6 +131,19 @@ main.signUpForm {
         .logo {
             margin-bottom: 0;
         }
+    }
+}
+
+input[type="text"],
+input[type="date"],
+input[type="password"],
+input[type="email"],
+input[type="file"],
+textarea {
+    &:focus {
+        box-shadow: none !important;
+        border: none !important;
+        border-bottom: 1px solid $GrayishBlue !important;
     }
 }
 

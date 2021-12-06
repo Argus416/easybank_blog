@@ -32,9 +32,9 @@
 
                     <?php 
                         elseif(isset($_SESSION['isLoggedin']) && $_SESSION['isLoggedin'] == true ):
-                            
                         ConnexionController::Deconnexion();
                     ?>
+
                     <li class=" nav-item">
                         <a class="nav-link" href="<?= $urlGenerator->generate('articlesManagement') ?>">Dashboard</a>
                     </li>

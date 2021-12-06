@@ -14,28 +14,24 @@
                 <form method="POST">
 
                     <div class="label prenom-signup-container">
-                        <label for="prenom-signup">Prénom</label>
-                        <div class="input-parent ">
+                        <div class="input-parent">
                             <input type="text" name="prenom-signup" id="prenom-signup" placeholder="Prénom">
                         </div>
                     </div>
 
-                    <div class="label">
-                        <label for="nom-signup">Nom</label>
+                    <div class="label nom-signup-container">
                         <div class="input-parent">
                             <input type="text" name="nom-signup" id="nom-signup" placeholder="Nom">
                         </div>
                     </div>
 
-                    <div class="label">
-                        <label for="email-signup">Email</label>
+                    <div class="label email-signup-container">
                         <div class="input-parent">
                             <input type="text" name="email-signup" id="email-signup" placeholder="Email">
                         </div>
                     </div>
 
-                    <div class="label">
-                        <label for="password-signup">Mot de passe</label>
+                    <div class="label password-signup-container">
                         <div class="input-parent">
                             <input type="password" name="password-signup" id="password-signup"
                                 placeholder="Mot de passe">

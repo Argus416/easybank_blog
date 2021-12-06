@@ -49,21 +49,21 @@ class UsersModel{
         return $user;
     }
     
-    // public function create(
-    //     $pdo, STRING $nom, STRING $prenom, STRING $email,
-    //     STRING $mdp
-    // ){
-    //     $query='INSERT INTO users VALUES (NULL ,:nom, :prenom, :email, :mdp, NULL, NULL, 0)';
-    //     $db = $pdo->prepare($query);
+    public function create(
+        $pdo, STRING $nom, STRING $prenom, STRING $email,
+        STRING $mdp
+    ){
+        $query='INSERT INTO users VALUES (NULL ,:nom, :prenom, :email, :mdp, NULL, NULL, 0)';
+        $db = $pdo->prepare($query);
 
-    //     $date= [
-    //         ':nom' => $nom,
-    //         ':prenom' => $prenom,
-    //         ':email'=> $email,
-    //         ':mdp' => $mdp
-    //     ];
-    //     $db->execute($date);
-    // }
+        $date= [
+            ':nom' => $nom,
+            ':prenom' => $prenom,
+            ':email'=> $email,
+            ':mdp' => $mdp
+        ];
+        $db->execute($date);
+    }
 
 
     public function update(

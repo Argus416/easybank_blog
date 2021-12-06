@@ -41,14 +41,21 @@ class Helpers {
         return $imgProfile;
     }
 
-    
-    
     public static function sanitizeInput($input){
         $input = htmlentities(trim($input), ENT_QUOTES);
         return $input;
     }
+    
+    // Première connexion sur le site
+    // Note : il n'est pas néssaiseare d'utiliser cette méthod si la méthod $ConnexionController::isLoggedin() est appelée
+    public static function VerifyIfUserExist($nb, $urlGenerator){
+        if($nb === 0){
+            header('Location:'.$urlGenerator->generate('signup'));
+        }else{
+            $_SESSION['userExist'] = true;
+        }
+    }
 
-    // TODO Change $maxImgSize
     public static function uploadPhoto(STRING $photoInput, STRING $destination, INT $maxImgSize = 300000){
 
         $imgProfileName = $_FILES[$photoInput]['name'];

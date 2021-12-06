@@ -6,6 +6,7 @@ use App\Model\ArticlesModel;
 use App\Model\UsersModel;
 use App\Model\LogSystemModel;
 use App\Helper\Helpers;
+use App\Classes\PDOSignleton;
 
 class ArticlesController{
 
@@ -14,23 +15,31 @@ class ArticlesController{
     private $LogSystemModel;
     
     private $nbElementParPage;
+    private $nbUtilisateur;
 
     private $idUser;
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->ArticlesModel = new ArticlesModel;
         $this->UsersModel = new UsersModel;
         $this->LogSystemModel = new LogSystemModel;
+        
         if(isset($_SESSION['idAdmin'])){
             $this->idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
         }
+        
         $this->nbElementParPage = 4;
+
+        $this->nbUtilisateur = $this->UsersModel->getCountUsers(PDOSignleton::getSingleton()::PDO_Init());
+        $this->nbUtilisateur = filter_var($this->nbUtilisateur[0]->nbUsers, FILTER_VALIDATE_INT); 
     }
 
     public function index($param){
         $urlGenerator = $param['urlGenerator'];
         $pdoSignleton = $param['PDOSignleton'];
+        
+        
+        Helpers::VerifyIfUserExist($this->nbUtilisateur, $urlGenerator);
         $articles = $this->ArticlesModel->getLatesetArticles($pdoSignleton);
         require_once 'views/accueil.php';
     }
@@ -38,6 +47,8 @@ class ArticlesController{
     public function blog($param){
         $urlGenerator = $param['urlGenerator'];
         $pdoSignleton = $param['PDOSignleton'];
+        
+        Helpers::VerifyIfUserExist($this->nbUtilisateur, $urlGenerator);
 
         $nbArticles = 0;
         $pageNumber = 0;
@@ -66,6 +77,8 @@ class ArticlesController{
     public function show($param){
         $urlGenerator = $param['urlGenerator'];
         $pdoSignleton = $param['PDOSignleton'];
+      
+        Helpers::VerifyIfUserExist($this->nbUtilisateur, $urlGenerator);
 
         $id = $param['id'];
         $article = $this->ArticlesModel->getArticle($pdoSignleton, $id);
@@ -105,6 +118,7 @@ class ArticlesController{
         
         $pdoSignleton = $param['PDOSignleton'];  
         $urlGenerator = $param['urlGenerator'];
+
         $title = $body = '';
         $categorie = 0;
         
@@ -140,6 +154,7 @@ class ArticlesController{
         
         $pdoSignleton = $param['PDOSignleton'];
         $urlGenerator = $param['urlGenerator'];
+
         $id = $param['id'];
         $title = $body = '';
 

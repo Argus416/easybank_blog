@@ -3,15 +3,19 @@ namespace App\Controllers;
 
 use App\Model\UsersModel;
 use App\Helper\Helpers;
+use App\Classes\PDOSignleton;
 
 class ConnexionController{
 
     private $UsersModel;
-    
+    private $nbUtilisateur;
     private static $_singleton;
 
     public function __construct(){
         $this->UsersModel = new UsersModel;
+
+        $this->nbUtilisateur = $this->UsersModel->getCountUsers(PDOSignleton::getSingleton()::PDO_Init());
+        $this->nbUtilisateur = filter_var($this->nbUtilisateur[0]->nbUsers, FILTER_VALIDATE_INT); 
     }
 
     public static function getSingleton(): ConnexionController {
@@ -24,6 +28,8 @@ class ConnexionController{
     public function login($param){
         $urlGenerator = $param['urlGenerator'];
         $pdoSignleton = $param['PDOSignleton'];  
+        Helpers::VerifyIfUserExist($this->nbUtilisateur, $urlGenerator);
+        
         $err = "";
         
         if($_SESSION['isLoggedin'] != true){
@@ -69,6 +75,12 @@ class ConnexionController{
         $urlGenerator = $param['urlGenerator'];
         $pdoSignleton = $param['PDOSignleton'];  
         $prenom = $nom = $email = $password = '';
+
+         // Première connexion sur le site
+      
+        // if($this->nbUtilisateur === 1){
+        //     header('Location:'.$urlGenerator->generate('accueil'));
+        // }
         
         if(isset($_POST['create-account'])){
             if(
@@ -88,12 +100,9 @@ class ConnexionController{
                     // Helpers::alertManager();
                     $_SESSION['userExist'] = true;
                 }
-
                 header('Location:'.$urlGenerator->generate('accueil'));
             }
-            
         }
-        
         require_once 'views/signup.php';
     }
 

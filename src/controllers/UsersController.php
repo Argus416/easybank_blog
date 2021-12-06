@@ -19,7 +19,6 @@ class UsersController{
         $this->LogSystemModel = new LogSystemModel;
     }
 
-   
     public function show($param){
         $ConnexionController = $param['ConnexionSignleton'];
         $ConnexionController::isLoggedin();
@@ -38,7 +37,6 @@ class UsersController{
         }
         require_once 'views/my_profile.php';
     }
-
 
     public function edit($param){
         $ConnexionController = $param['ConnexionSignleton'];
@@ -103,5 +101,4 @@ class UsersController{
         require_once 'views/profile-edit.php';
     }
 
-   
 }

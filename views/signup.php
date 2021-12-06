@@ -11,6 +11,10 @@
                 <a href="/">
                     <img src="<?= "$domain$public"?>style/images/logo.svg" class="logo" alt="logo">
                 </a>
+                <p>
+                    Il semble que c'est votre premier fois d'utiliser le site. <br>
+                    Veuillez créer un compte pour que le site soit utilisable
+                </p>
                 <form method="POST">
 
                     <div class="label prenom-signup-container">
@@ -27,7 +31,7 @@
 
                     <div class="label email-signup-container">
                         <div class="input-parent">
-                            <input type="text" name="email-signup" id="email-signup" placeholder="Email">
+                            <input type="email" name="email-signup" id="email-signup" placeholder="Email">
                         </div>
                     </div>
 
@@ -42,11 +46,6 @@
                             value="Créer un compte">
                     </div>
                 </form>
-                <div class="link-parent">
-                    <a href="<?= $urlGenerator->generate('login') ?>" class="link">
-                        Me connecter
-                    </a>
-                </div>
             </div>
         </div>
     </main>

@@ -15,7 +15,6 @@ class UsersModel{
         $this->pdosingleton = PDOSignleton::getSingleton();
         $this->pdo = $this->pdosingleton::PDO_Init();
 
-
     }
 
     public function getUsers($pdo){
@@ -126,7 +125,10 @@ class UsersModel{
         ];
         $db->execute($data);
     }
- public function getCountUsers($pdo){
+
+    // ! Count Methods
+
+     public function getCountUsers($pdo){
         try{
             $query='SELECT count(*) as nbUsers  FROM users ';
             $db = $pdo->prepare($query);
@@ -137,5 +139,6 @@ class UsersModel{
             echo $e->getMessage();
         }
     
+    }
 
 }

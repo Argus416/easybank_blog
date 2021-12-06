@@ -55,7 +55,7 @@ class ArticlesController{
         
         if(isset($_GET['search-articles']) && !empty($_GET['search-articles'])){
             $search = htmlentities(trim($_GET['search-articles']));
-            $articles = $this->ArticlesModel->searchArticles($pdoSignleton, $search);
+            $articles = $this->ArticlesModel->searchArticles($pdoSignleton, $search, $pageNumber);
             $nbArticles = filter_var($this->ArticlesModel->getCountSearchArticles($pdoSignleton, $search)[0]->nbArticles, FILTER_VALIDATE_INT);
             $query = "?search-articles=".$_GET['search-articles']."&pagination=";
         }

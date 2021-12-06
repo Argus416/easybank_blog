@@ -156,7 +156,8 @@ class ArticlesModel{
         
         $query="SELECT articles.id as articleID,
                 articles.title as articleTitle,
-                articles.body as articleBody
+                articles.body as articleBody,
+                articles.imgArticle as articleImg
                 from articles 
                 WHERE (articles.title LIKE :search OR articles.body LIKE :search) AND articles.is_deleted = 0
                 LIMIT 4 OFFSET :offsetTest

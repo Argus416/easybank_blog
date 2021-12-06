@@ -76,11 +76,13 @@ class ConnexionController{
         $pdoSignleton = $param['PDOSignleton'];  
         $prenom = $nom = $email = $password = '';
 
-         // Première connexion sur le site
+        
+        // si un utilisateur est déjà créé
+         if($this->nbUtilisateur === 1){
+            header('Location:'.$urlGenerator->generate('accueil'));
+        }
       
-        // if($this->nbUtilisateur === 1){
-        //     header('Location:'.$urlGenerator->generate('accueil'));
-        // }
+
         
         if(isset($_POST['create-account'])){
             if(

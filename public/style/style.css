@@ -515,16 +515,20 @@ main.loginForm .form-container form .nickname-signup-container .input-parent::be
   content: "\f507" !important;
 }
 
+main.signUpForm .form-container {
+  min-height: 700px;
+}
+
 main.signUpForm .form-container .logo {
   margin-bottom: 0;
 }
 
-input[type="text"]:focus,
-input[type="date"]:focus,
-input[type="password"]:focus,
-input[type="email"]:focus,
-input[type="file"]:focus,
-textarea:focus {
+#prenom-signup:focus,
+#nom-signup:focus,
+#email-signup:focus,
+#password-signup:focus,
+#email-login:focus,
+#password-login:focus {
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
   border: none !important;

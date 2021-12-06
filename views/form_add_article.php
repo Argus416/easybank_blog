@@ -15,6 +15,7 @@
 
                 <!-- TODO REGEX input -->
                 <form method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="token-add-article" value="<?= $token ?>">
                     <div class="row">
                         <div class="col-lg-3 blog_photo_container">
 

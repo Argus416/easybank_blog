@@ -115,38 +115,47 @@ class ArticlesController{
     public function add($param){
         $ConnexionController = $param['ConnexionSignleton'];
         $ConnexionController::isLoggedin();
-        
         $pdoSignleton = $param['PDOSignleton'];  
         $urlGenerator = $param['urlGenerator'];
-
-        $title = $body = '';
-        $categorie = 0;
+        $token = bin2hex(random_bytes(35));
+        $_SESSION['token'] = $token;
         
-        if(isset($_POST['add-article'])){
+        $title = $body = '';
+        if(isset($_POST['add-article']) && $_SERVER['REQUEST_METHOD'] === 'POST'){
+            
+            
+            $tokenInput = filter_input(INPUT_POST, 'token-add-article', FILTER_SANITIZE_STRING);
             
             $imgArticle = Helpers::uploadPhoto('imgArticle', 'public/upload/post-img');
             $title = Helpers::sanitizeInput($_POST['artilce-title']);
             $body = Helpers::sanitizeInput($_POST['artilce-body']);
-       
-            if(isset($_SESSION['idAdmin'])){
-                $this->idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
+
+            // Protection contre CSRF
+            if($tokenInput === $token){
+                if(isset($_SESSION['idAdmin'])){
+                    $this->idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
+                }
+                
+                $idArticle = $this->ArticlesModel->getLastArticle($pdoSignleton)[0]->articleID;
+                $idArticle = filter_var($idArticle, FILTER_VALIDATE_INT);
+
+                $this->LogSystemModel->addToLog($pdoSignleton, $this->idUser, $idArticle, 'articleCree');
+
+                if($this->ArticlesModel->addArticle($pdoSignleton, $title, $body, $this->idUser, $imgArticle)){
+                    $_SESSION['alert'] = 'add-article';
+                }
+                // else{
+                //     $_SESSION['alert'] = 'err';
+                // }
+                header('Location:' . $urlGenerator->generate('articlesManagement'));
+            }else{
+                echo "err";
+                dump($tokenInput, 'token : '. $token);
+                // header('Location:'.$urlGenerator->generate('err405'));
+              
             }
-            
-            $idArticle = $this->ArticlesModel->getLastArticle($pdoSignleton)[0]->articleID;
-            $idArticle = filter_var($idArticle, FILTER_VALIDATE_INT);
-
-            // $this->LogSystemModel->addToLog($pdoSignleton, $this->idUser, $idArticle, 'articleCree');
-
-            if($this->ArticlesModel->addArticle($pdoSignleton, $title, $body, $this->idUser, $imgArticle)){
-                $_SESSION['alert'] = 'add-article';
-            }
-            
-            // else{
-            //     $_SESSION['alert'] = 'err';
-            // }
-
-            // header('Location:' . $urlGenerator->generate('articlesManagement'));
         }
+        
         require_once 'views/form_add_article.php';
     }
 

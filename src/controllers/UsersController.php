@@ -31,6 +31,7 @@ class UsersController{
             $id = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
         }
         $user = $this->UsersModel->getUser($pdoSignleton ,$id)[0];
+        dump($user);
         if(isset($_POST['download-logs'])){
             $this->LogSystemController->generateLogFile($pdoSignleton);
             $_SESSION['alert'] = 'download-logs';

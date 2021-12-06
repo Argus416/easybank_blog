@@ -62,6 +62,12 @@ try{
         ]
     ]);
 
+    $err405Route = new Route('/err/405', [
+        'controller' => [
+            new ErrorController(), 'err405'
+        ]
+    ]);
+
     $loginRoute = new Route('/login', [
         'controller' => [
             new ConnexionController(), 'login'
@@ -128,6 +134,7 @@ try{
     $routeCollection->add('authorEdit', $dashboardRouteAuthorEdit);
     $routeCollection->add('authorCreate', $dashboardRouteAuthorCreate);
     $routeCollection->add('err404', $err404Route);
+    $routeCollection->add('err405', $err405Route);
 
 
     $pathInfo = $_SERVER['PATH_INFO'] ?? "/";

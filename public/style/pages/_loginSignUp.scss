@@ -128,18 +128,19 @@ main.loginForm {
 
 main.signUpForm {
     .form-container {
+        min-height: 700px;
         .logo {
             margin-bottom: 0;
         }
     }
 }
 
-input[type="text"],
-input[type="date"],
-input[type="password"],
-input[type="email"],
-input[type="file"],
-textarea {
+#prenom-signup,
+#nom-signup,
+#email-signup,
+#password-signup,
+#email-login,
+#password-login {
     &:focus {
         box-shadow: none !important;
         border: none !important;

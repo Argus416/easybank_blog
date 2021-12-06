@@ -29,7 +29,9 @@ class UsersController{
         $pdoSignleton = $param['PDOSignleton'];  
 
         $prenom = $nom = $email = $password = $dateDeNaissance = '';
-        $id = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
+        if(isset($_SESSION['idAdmin'])){
+            $id = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
+        }
         $user = $this->UsersModel->getUser($pdoSignleton ,$id)[0];
         if(isset($_POST['download-logs'])){
             $this->LogSystemController->generateLogFile($pdoSignleton);
@@ -47,8 +49,9 @@ class UsersController{
         $pdoSignleton = $param['PDOSignleton'];  
         
         $prenom = $nom = $email = $password = $imgProfile = $dateDeNaissance = '';
-        $id = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
-
+        if(isset($_SESSION['idAdmin'])){
+            $id = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
+        }
         $user = $this->UsersModel->getUser($pdoSignleton, $id)[0];
         $domain = $_ENV['DOMAIN'];
         $public = $_ENV['PUBLIC'];

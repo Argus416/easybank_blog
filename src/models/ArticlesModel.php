@@ -14,6 +14,7 @@ class ArticlesModel{
                     articles.id as articleID,
                     articles.title as articleTitle,
                     articles.body as articleBody,
+                    articles.imgArticle as articleImg,
                     users.id as userID,
                     users.nom as userNom,
                     users.prenom as userPrenom
@@ -39,6 +40,7 @@ class ArticlesModel{
                     articles.id as articleID,
                     articles.title as articleTitle,
                     articles.body as articleBody,
+                    articles.imgArticle as articleImg,
                     users.id as userID,
                     users.nom as userNom,
                     users.prenom as userPrenom
@@ -108,6 +110,7 @@ class ArticlesModel{
                 articles.id as articleID,
                 articles.title as articleTitle,
                 articles.body as articleBody,
+                articles.imgArticle as articleImg,
                 users.id as userID,
                 users.nom as userNom,
                 users.prenom as userPrenom
@@ -168,18 +171,27 @@ class ArticlesModel{
         return $result;
     }
 
-    public function addArticle($pdo, STRING $title,STRING $body, INT $idUser ,INT $isDeleted = 0  ){ 
+    public function addArticle($pdo, STRING $title,STRING $body, INT $idUser , $imgArticle = '', INT $isDeleted = 0  ){ 
         try{
-            $query = 'INSERT INTO articles VALUES(NULL, :title, :body, CURRENT_TIMESTAMP , :isDeleted, :idUser)';
-            $stmt = $pdo->prepare($query);
-            $data=[
-                ':title'=> $title,
-                ':body'=> $body,
-                ':isDeleted'=> $isDeleted,
-                ':idUser'=> $idUser
-            ];
+            $query = 'INSERT INTO articles VALUES(NULL, :title, :body, CURRENT_TIMESTAMP ,';
+            
+            if(strlen($imgArticle)){
+                $query .= ' :imgArticle, ';
+            }
 
-            return $stmt->execute($data);
+            $query .= ':isDeleted, :idUser)';
+            $stmt = $pdo->prepare($query);
+
+            $stmt->bindParam(':idUser', $idUser, PDO::PARAM_INT);
+            $stmt->bindParam(':isDeleted', $isDeleted, PDO::PARAM_INT);
+            $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+            $stmt->bindParam(':body', $body, PDO::PARAM_STR);
+
+            if(strlen($imgArticle)){
+                $stmt->bindParam(':imgArticle', $imgArticle, PDO::PARAM_STR);
+            }
+            
+            return $stmt->execute();
         }catch(PDOException $e){
             echo $e;
         }

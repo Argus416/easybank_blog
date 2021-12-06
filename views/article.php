@@ -2,7 +2,6 @@
     use App\Helper\Helpers;
 
     require_once 'inc/header.php';
-    dump($article);
 ?>
 <title><?= $article[0]->articleTitle ?></title>
 </head>
@@ -28,7 +27,6 @@
                 }    
             ?>
             <article class="mb-5">
-                <img src="<?= Helpers::imgToInsert('imgArticle', $article[0]->articleImg) ?>">
                 <div class="header-article mb-4">
                     <h1><?= $article[0]->articleTitle ?></h1>
 
@@ -37,8 +35,12 @@
                         class="btn btn-warning">Editer l'article</a>
                     <?php endif;?>
                 </div>
+                <div class="img-container">
+                    <img src="<?= Helpers::imgToInsert('imgArticle', $article[0]->articleImg) ?>">
+                </div>
 
                 <p><?= $article[0]->articleBody ?></p>
+
             </article>
 
             <?php 

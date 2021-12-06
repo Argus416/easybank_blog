@@ -1,6 +1,8 @@
 <?php
-    require_once 'inc/header.php';
 
+use App\Helper\Helpers;
+
+require_once 'inc/header.php';
 ?>
 <title>Nos articles</title>
 
@@ -33,20 +35,29 @@
 
             <?php if(count($articles)): ?>
 
-            <div class="d-flex">
+            <div class="articles-container d-flex">
                 <div class="left">
                     <?php foreach($articles as $article):?>
                     <article class="article">
-                        <a href="<?= $urlGenerator->generate('article', ['id'=>$article->articleID]) ?>">
-                            <h2><?= $article->articleTitle ?></h2>
-                        </a>
-
-                        <p> <?= substr($article->articleBody, 0, 255)."..." ?> </p>
-
-                        <div class="text-center view-more-container">
-                            <a href="<?= $urlGenerator->generate('article', ['id'=>$article->articleID]) ?>"
-                                class="btn-third-outline-cus">Voir plus</a>
+                        <div class="left">
+                            <img src="<?= Helpers::imgToInsert('imgArticle', $article->articleImg) ?>" alt="">
                         </div>
+
+                        <div class="right">
+                            <div class="article-content">
+                                <a href="<?= $urlGenerator->generate('article', ['id'=>$article->articleID]) ?>">
+                                    <h2><?= $article->articleTitle ?></h2>
+                                </a>
+
+                                <p> <?= substr($article->articleBody, 0, 255)."..." ?> </p>
+                            </div>
+                            <div class="text-center view-more-container">
+                                <a href="<?= $urlGenerator->generate('article', ['id'=>$article->articleID]) ?>"
+                                    class="btn-third-outline-cus">Voir plus</a>
+                            </div>
+                        </div>
+
+
                     </article>
                     <?php endforeach;?>
                 </div>

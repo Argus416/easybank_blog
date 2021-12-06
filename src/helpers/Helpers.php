@@ -125,8 +125,8 @@ class Helpers {
       
         $paginationTemplate = "<nav aria-label='Page navigation '>";
         $paginationTemplate .= "<ul class='pagination justify-content-center'>";
-        $activeClass = isset($_GET['pagination']) && !empty($_GET['pagination']) ? 'active' : '';
-
+        $activeClass = isset($_GET['pagination']) && !empty($_GET['pagination']) ? 'active disabled' : '';
+        $currentPageNumber = 0;
         if($nbPages > 0){
 
             $prevPage = 1;
@@ -137,7 +137,7 @@ class Helpers {
 
                 if(isset($_GET['pagination'])){
                     $prevPage = intval($_GET['pagination']) - 1;
-                    
+                    $currentPageNumber = $_GET['pagination'];
                     if($_GET['pagination'] != 1){
                         if($addPrev === false){
                             $paginationTemplate .= "    <li class='page-item'>";
@@ -150,7 +150,7 @@ class Helpers {
                     }
                 }
 
-                if($i == $_GET['pagination']){
+                if($i == $currentPageNumber){
                     $paginationTemplate .= "<li class='page-item $activeClass'><a class='page-link' href=$link$i>$i</a></li>";
                 }else{
                     $paginationTemplate .= "<li class='page-item'><a class='page-link' href=$link$i>$i</a></li>";
@@ -162,7 +162,7 @@ class Helpers {
             if(isset($_GET['pagination'])){
                 $nextPage = intval($_GET['pagination']) + 1;
             }
-            if($nbPages != $_GET['pagination'] && $nbPages != 1){
+            if($nbPages != $currentPageNumber && $nbPages != 1){
                 $paginationTemplate .= "    <li class='page-item'>";
                 $paginationTemplate .= "        <a class='page-link' href='$link$nextPage' aria-label='Previous'>";
                 $paginationTemplate .= "            <span aria-hidden='true'>&raquo;</span>";

@@ -23,8 +23,9 @@ class ArticlesController{
         $this->ArticlesModel = new ArticlesModel;
         $this->UsersModel = new UsersModel;
         $this->LogSystemModel = new LogSystemModel;
-        $this->idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
-        
+        if(isset($_SESSION['idAdmin'])){
+            $this->idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
+        }
         $this->nbElementParPage = 4;
     }
 
@@ -110,24 +111,25 @@ class ArticlesController{
         
         if(isset($_POST['add-article'])){
             
-            $bannier = filter_var($_POST['artilce-bannier'], FILTER_SANITIZE_STRING);
-
+            $imgArticle = Helpers::uploadPhoto('imgArticle', 'public/upload/post-img');
             $title = Helpers::sanitizeInput($_POST['artilce-title']);
             $body = Helpers::sanitizeInput($_POST['artilce-body']);
-
-            $this->idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
+       
+            if(isset($_SESSION['idAdmin'])){
+                $this->idUser = filter_var($_SESSION['idAdmin'], FILTER_VALIDATE_INT);
+            }
             
             $idArticle = $this->ArticlesModel->getLastArticle($pdoSignleton)[0]->articleID;
             $idArticle = filter_var($idArticle, FILTER_VALIDATE_INT);
 
             $this->LogSystemModel->addToLog($pdoSignleton, $this->idUser, $idArticle, 'articleCree');
 
-            if($this->ArticlesModel->addArticle($pdoSignleton, $title, $body, $this->idUser)){
+            if($this->ArticlesModel->addArticle($pdoSignleton, $title, $body, $this->idUser, $imgArticle)){
                 $_SESSION['alert'] = 'add-article';
             }
-            // else{
-                // $_SESSION['alert'] = 'err';
-            // }
+            else{
+                $_SESSION['alert'] = 'err';
+            }
             header('Location:' . $urlGenerator->generate('articlesManagement'));
         }
         require_once 'views/form_add_article.php';

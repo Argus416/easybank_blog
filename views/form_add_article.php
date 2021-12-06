@@ -14,13 +14,13 @@
                 <h3> Bienvenu Mohamad </h3>
 
                 <!-- TODO REGEX input -->
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-lg-3 blog_photo_container">
 
                             <img src="<?= Helpers::imgToInsert('imgArticle', Null) ?>" class="card-img-top"
                                 alt="image-currency" />
-                            <input class="form-control article_banner_input" type="file" name="artilce-bannier"
+                            <input class="form-control article_banner_input" type="file" name="imgArticle"
                                 accept="image/png, image/gif, image/jpeg" />
                         </div>
 

@@ -30,13 +30,30 @@ main.blogs {
             }
         }
     }
-    .d-flex {
+
+    .articles-container {
         justify-content: space-between;
         .left {
             width: 100%;
             .article {
                 margin-bottom: 1.8em;
                 border-bottom: 1px solid $LightGrayishBlue;
+                display: flex;
+
+                .left {
+                    width: 25%;
+                    margin-right: 15px;
+                    img {
+                        width: 100%;
+                        object-fit: contain;
+                    }
+                }
+                .right {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    justify-content: space-between;
+                }
                 &:last-child {
                     border-bottom: 1px solid transparent;
                 }

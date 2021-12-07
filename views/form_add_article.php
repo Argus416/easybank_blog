@@ -13,8 +13,7 @@
             <div class="dashboard_content form_article">
                 <h3> Bienvenu Mohamad </h3>
 
-                <!-- TODO REGEX input -->
-                <form method="POST" enctype="multipart/form-data">
+                <form method="POST" id="add-article" enctype="multipart/form-data">
                     <input type="hidden" name="token-add-article" value="<?= $token ?>">
                     <div class="row">
                         <div class="col-lg-3 blog_photo_container">
@@ -28,13 +27,16 @@
                         <div class="row col-lg-9">
                             <div class="mb-3">
                                 <label for="title" class="form-label">Title</label>
-                                <input type="text" class="form-control" name="artilce-title" id="title">
+                                <input type="text" class="form-control" name="artilce-title" id="title-article-add">
+                                <p class="text-danger err-text mt-1 mb-1 d-none">Veuillez remplir le champs</p>
+
                             </div>
 
                             <div class="mb-3">
                                 <label for="body" class="form-label">Body</label>
                                 <textarea class="form-control" name="artilce-body" rows="5"
-                                    placeholder="Contenu de l'article" id="body"></textarea>
+                                    placeholder="Contenu de l'article" id="body-article-add"></textarea>
+                                <p class="text-danger err-text mt-1 mb-1 d-none">Veuillez remplir le champs</p>
                             </div>
 
                         </div>

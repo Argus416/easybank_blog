@@ -77,7 +77,7 @@ footer {
     animation-iteration-count: 3;
     animation-direction: alternate;
     font-size: 13px;
-    margin-bottom: 2em !important;
+    margin-bottom: 2em;
 }
 
 @keyframes errAnim {
@@ -92,5 +92,70 @@ footer {
     }
     100% {
         transform: translateX(5px);
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .articles {
+        .card-cus {
+            &:last-child {
+                display: none;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    nav {
+        padding: 1em 0 !important;
+        img {
+            width: 11em;
+        }
+
+        .navbar-nav {
+            .nav-item {
+                margin: 0;
+                padding: 0;
+                &:first-child {
+                    margin-top: 0.6em;
+                }
+            }
+            & > .nav-link {
+                padding: 0 !important;
+                margin: 0 !important;
+                .form-deconnexion {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+    .articles {
+        .card-cus {
+            &:nth-child(3) {
+                display: none;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    h2 {
+        margin-bottom: 1em;
+        font-size: 2.2em;
+    }
+    section.why-us {
+        .cards {
+            text-align: center;
+        }
+    }
+    .latest-articles {
+        .articles {
+            .card-cus {
+                width: 100% !important;
+                &:nth-child(3) {
+                    display: block;
+                }
+            }
+        }
     }
 }

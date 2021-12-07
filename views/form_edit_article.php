@@ -13,7 +13,7 @@
             <div class="dashboard_content form_article">
                 <h3> Edit Article <?=$getArticle->articleID?> </h3>
 
-                <form method="POST" enctype="multipart/form-data">
+                <form method="POST" id="edit-article" enctype="multipart/form-data">
                     <input type="hidden" name="token-edit-article" value="<?= $token ?>">
 
                     <div class="row">
@@ -23,19 +23,22 @@
                                 alt="article_banner">
                             <input class="form-control article_banner_input" type="file" name="imgArticle"
                                 accept="image/png, image/gif, image/jpeg" />
+                            <p class="text-danger err-text mt-1 mb-1 d-none">Veuillez remplir le champs</p>
                         </div>
 
                         <div class="row col-lg-9">
                             <div class="mb-3">
                                 <label for="title" class="form-label">Title</label>
                                 <input type="text" class="form-control" name="artilce-title"
-                                    value="<?=$getArticle->articleTitle?>" id="title">
+                                    value="<?=$getArticle->articleTitle?>" id="title-article-edit">
+                                <p class="text-danger err-text mt-1 mb-1 d-none">Veuillez remplir le champs</p>
                             </div>
 
                             <div class="mb-3">
                                 <label for="floatingTextarea2" class="form-label">Body</label>
-                                <textarea class="form-control" name="artilce-body" rows="5"
+                                <textarea class="form-control" id="body-article-edit" name="artilce-body" rows="5"
                                     placeholder="Contenu de l'article"><?=$getArticle->articleBody?></textarea>
+                                <p class="text-danger err-text mt-1 mb-1 d-none">Veuillez remplir le champs</p>
                             </div>
 
                         </div>

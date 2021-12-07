@@ -14,7 +14,7 @@
                 <h3> Bienvenu Mohamad </h3>
 
 
-                <form method="POST" enctype="multipart/form-data">
+                <form method="POST" id="edit-profile" enctype="multipart/form-data">
                     <input type="hidden" name="token-edit-profile" value="<?= $token ?>">
                     <div class="row">
                         <div class="col-lg-2 current_photo_container">
@@ -29,19 +29,22 @@
                             <div class="row">
                                 <div class="mb-3 col-lg-6">
                                     <label for="nom" class="form-label">Votre nom</label>
-                                    <input type="text" class="form-control" name="nom" id="nom"
+                                    <input type="text" class="form-control" name="nom" id="nom-profil"
                                         value="<?= $user->nom?>">
+                                    <p class="text-danger err-text mt-1 mb-1 d-none">Veuillez remplir le champs</p>
                                 </div>
                                 <div class="mb-3 col-lg-6">
                                     <label for="prenom" class="form-label">Votre prenom</label>
-                                    <input type="text" class="form-control" name="prenom" id="prenom"
+                                    <input type="text" class="form-control" name="prenom" id="prenom-profil"
                                         value="<?= $user->prenom?>">
+                                    <p class="text-danger err-text mt-1 mb-1 d-none">Veuillez remplir le champs</p>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" name="email" id="email"
+                                <input type="email" class="form-control" name="email" id="email-profil"
                                     value="<?= $user->email?>">
+                                <p class="text-danger err-text mt-1 mb-1 d-none">Veuillez remplir le champs</p>
                             </div>
 
                             <div class="mb-3">

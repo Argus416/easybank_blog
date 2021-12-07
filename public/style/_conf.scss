@@ -65,6 +65,10 @@ p {
         height: 230px;
         object-fit: cover;
     }
+
+    .card-text {
+        overflow: hidden;
+    }
 }
 
 .page-item {

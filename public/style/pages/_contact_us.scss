@@ -57,3 +57,25 @@ main.contact_us {
         }
     }
 }
+
+@media only screen and (max-width: 991px) {
+    main.contact_us {
+        .d-flex {
+            flex-direction: column-reverse;
+            .left,
+            .right {
+                width: 100%;
+            }
+            .left {
+                display: flex;
+                flex-direction: column-reverse;
+                .icons {
+                    margin-top: 1em;
+                }
+            }
+            .right {
+                margin-bottom: 4em;
+            }
+        }
+    }
+}

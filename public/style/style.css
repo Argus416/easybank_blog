@@ -75,6 +75,10 @@ p {
      object-fit: cover;
 }
 
+.card-cus .card-text {
+  overflow: hidden;
+}
+
 .page-item.active a.page-link {
   color: white !important;
   background-color: #31d35c !important;
@@ -439,6 +443,17 @@ main.loginForm .form-container form .label.email-parent .input-parent::before {
   content: "\f0e0";
 }
 
+main.signUpForm .form-container form .label.password-parent,
+main.loginForm .form-container form .label.password-parent {
+  margin-top: 20px;
+}
+
+main.signUpForm .form-container form .label.password-parent label,
+main.loginForm .form-container form .label.password-parent label {
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+
 main.signUpForm .form-container form .label.password-parent .input-parent::before,
 main.loginForm .form-container form .label.password-parent .input-parent::before {
   content: "\f023";
@@ -464,26 +479,20 @@ main.loginForm .form-container form .label.password-signup-container .input-pare
   content: "\f023";
 }
 
-main.signUpForm .form-container form .label .input-parent,
-main.loginForm .form-container form .label .input-parent {
-  margin-bottom: 1.5em;
-}
-
-main.signUpForm .form-container form .label .input-parent::before,
-main.loginForm .form-container form .label .input-parent::before {
-  font-family: "Helvetica", FontAwesome, sans-serif;
-  font-size: 1.2em;
-  margin-left: 10px;
-  color: #9698a6;
-}
-
 main.signUpForm .form-container form .label label,
 main.loginForm .form-container form .label label {
   display: block;
 }
 
+main.signUpForm .form-container form .label .err-text,
+main.loginForm .form-container form .label .err-text {
+  margin-top: 0.9em !important;
+  margin-bottom: 1em !important;
+}
+
 main.signUpForm .form-container form .label .input-parent,
 main.loginForm .form-container form .label .input-parent {
+  margin-bottom: 1em;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -496,6 +505,10 @@ main.loginForm .form-container form .label .input-parent {
 main.signUpForm .form-container form .label .input-parent::before,
 main.loginForm .form-container form .label .input-parent::before {
   position: absolute;
+  font-family: "Helvetica", FontAwesome, sans-serif;
+  font-size: 1.2em;
+  margin-left: 10px;
+  color: #9698a6;
 }
 
 main.signUpForm .form-container form .label .input-parent input[type="text"],
@@ -513,6 +526,10 @@ main.loginForm .form-container form .label .input-parent input[type="password"] 
 main.signUpForm .form-container form .nickname-signup-container .input-parent::before,
 main.loginForm .form-container form .nickname-signup-container .input-parent::before {
   content: "\f507" !important;
+}
+
+input[type="submit"] {
+  margin-top: 0.6em;
 }
 
 main.signUpForm .form-container {
@@ -629,6 +646,34 @@ main.contact_us .d-flex .right .btn-container {
 
 main.contact_us .d-flex .right .btn-container .btn-submit {
   width: 70%;
+}
+
+@media only screen and (max-width: 991px) {
+  main.contact_us .d-flex {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+  main.contact_us .d-flex .left,
+  main.contact_us .d-flex .right {
+    width: 100%;
+  }
+  main.contact_us .d-flex .left {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+  main.contact_us .d-flex .left .icons {
+    margin-top: 1em;
+  }
+  main.contact_us .d-flex .right {
+    margin-bottom: 4em;
+  }
 }
 
 main.blogs .header-blog {
@@ -1067,7 +1112,7 @@ footer .third-col {
   -webkit-animation-direction: alternate;
           animation-direction: alternate;
   font-size: 13px;
-  margin-bottom: 2em !important;
+  margin-bottom: 2em;
 }
 
 @-webkit-keyframes errAnim {
@@ -1105,6 +1150,54 @@ footer .third-col {
   100% {
     -webkit-transform: translateX(5px);
             transform: translateX(5px);
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .articles .card-cus:last-child {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  nav {
+    padding: 1em 0 !important;
+  }
+  nav img {
+    width: 11em;
+  }
+  nav .navbar-nav .nav-item {
+    margin: 0;
+    padding: 0;
+  }
+  nav .navbar-nav .nav-item:first-child {
+    margin-top: 0.6em;
+  }
+  nav .navbar-nav > .nav-link {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  nav .navbar-nav > .nav-link .form-deconnexion {
+    margin-top: 0;
+  }
+  .articles .card-cus:nth-child(3) {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  h2 {
+    margin-bottom: 1em;
+    font-size: 2.2em;
+  }
+  section.why-us .cards {
+    text-align: center;
+  }
+  .latest-articles .articles .card-cus {
+    width: 100% !important;
+  }
+  .latest-articles .articles .card-cus:nth-child(3) {
+    display: block;
   }
 }
 /*# sourceMappingURL=style.css.map */

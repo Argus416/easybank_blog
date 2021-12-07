@@ -11,24 +11,26 @@
                 <a href="index.php">
                     <img src="<?= "$domain$public"?>style/images/logo.svg" class="logo" alt="logo">
                 </a>
-                <form method="POST">
+
+                <form method="POST" class="form-login">
                     <input type="hidden" name="token-login" value="<?= $token ?>">
                     <div class="label email-parent">
                         <label for="email-login">Email</label>
                         <div class="input-parent email-parent">
-                            <input type="email" name="email-login" id="email-login" placeholder="Email" required>
+                            <input type="text" name="email-login" id="email-login" placeholder="Email">
                         </div>
+                        <p class="text-danger err-text d-none">Veuillez remplir le champs</p>
                     </div>
 
                     <div class="label password-parent">
                         <label for="password-login">Mot de passe</label>
                         <div class="input-parent">
-                            <input type="password" name="password-login" id="password-login" placeholder="Mot de passe"
-                                required>
+                            <input type="password" name="password-login" id="password-login" placeholder="Mot de passe">
                         </div>
+                        <p class="text-danger err-text d-none">Veuillez remplir le champs</p>
                     </div>
 
-                    <div class="label password-parent">
+                    <div class="label">
                         <?= $err; ?>
                     </div>
 

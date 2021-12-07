@@ -5,7 +5,7 @@
     <div class="container">
         <h2>Derniers Articles</h2>
 
-        <div class="d-flex">
+        <div class="d-flex articles">
             <?php foreach($articles as $article):?>
             <a href="<?= $urlGenerator->generate('article', ['id'=>$article->articleID]) ?>" class="card-cus">
                 <div class="card-header-cus">

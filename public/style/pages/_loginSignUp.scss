@@ -47,6 +47,11 @@ main.loginForm {
                     }
                 }
                 &.password-parent {
+                    margin-top: 20px;
+                    label {
+                        margin-top: 10px;
+                        margin-bottom: 4px;
+                    }
                     .input-parent {
                         &::before {
                             content: "\f023";
@@ -82,28 +87,26 @@ main.loginForm {
                     }
                 }
 
-                .input-parent {
-                    margin-bottom: 1.5em;
-
-                    &::before {
-                        font-family: "Helvetica", FontAwesome, sans-serif;
-                        font-size: 1.2em;
-                        margin-left: 10px;
-                        color: $GrayishBlue;
-                    }
-                }
-
                 label {
                     display: block;
                 }
+                .err-text {
+                    margin-top: 0.9em !important;
+                    margin-bottom: 1em !important;
+                }
+
                 .input-parent {
+                    margin-bottom: 1em;
                     position: relative;
                     display: flex;
                     align-items: center;
                     &::before {
                         position: absolute;
+                        font-family: "Helvetica", FontAwesome, sans-serif;
+                        font-size: 1.2em;
+                        margin-left: 10px;
+                        color: $GrayishBlue;
                     }
-
                     input[type="text"],
                     input[type="email"],
                     input[type="password"] {
@@ -124,6 +127,10 @@ main.loginForm {
             }
         }
     }
+}
+
+input[type="submit"] {
+    margin-top: 0.6em;
 }
 
 main.signUpForm {

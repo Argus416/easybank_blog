@@ -109,7 +109,6 @@ class ArticlesController{
                 }// else{
                  // $_SESSION['alert'] = 'err';
                 // }
-                unset($_SESSION['token']);
             }else{
                 header('Location:' . $urlGenerator->generate('err405'));
             }
@@ -156,7 +155,6 @@ class ArticlesController{
                         // else{
                         //     $_SESSION['alert'] = 'err';
                         // }
-                        unset($_SESSION['token']);
                         header('Location:' . $urlGenerator->generate('articlesManagement'));
                 } else {
                     header('Location:' . $urlGenerator->generate('err405'));

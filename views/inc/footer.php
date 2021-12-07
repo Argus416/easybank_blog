@@ -23,7 +23,7 @@
             </div>
 
             <div class="third-col col-lg-4 col-md-6 col-sm-12">
-                <p>© Easybank. All Rights Reserved</p>
+                <p>© Mohamad Al-khatib. All Rights Reserved</p>
             </div>
         </div>
     </div>

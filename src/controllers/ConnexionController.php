@@ -63,10 +63,9 @@ class ConnexionController{
                             $_SESSION['authorImg'] = $admin->authorImg;
                             header('Location:'.$urlGenerator->generate('accueil'));
                         }else{
-                            $err = "<p class='text-danger err-text'>Votre email ou mot de passe n'est pas correct</p>";
+                            $err = "<p class='text err-text'>Votre email ou mot de passe n'est pas correct</p>";
                         }
                     }
-                    unset($_SESSION['token']);
                 }else {
                     header('Location:' . $urlGenerator->generate('err405'));
                 }

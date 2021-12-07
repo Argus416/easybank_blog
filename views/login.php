@@ -12,14 +12,13 @@
                     <img src="<?= "$domain$public"?>style/images/logo.svg" class="logo" alt="logo">
                 </a>
 
-                <form method="POST" class="form-login">
+                <form method="POST" id="form-login">
                     <input type="hidden" name="token-login" value="<?= $token ?>">
                     <div class="label email-parent">
                         <label for="email-login">Email</label>
                         <div class="input-parent email-parent">
-                            <input type="text" name="email-login" id="email-login" placeholder="Email">
+                            <input type="email" name="email-login" id="email-login" placeholder="Email">
                         </div>
-                        <p class="text-danger err-text d-none">Veuillez remplir le champs</p>
                     </div>
 
                     <div class="label password-parent">

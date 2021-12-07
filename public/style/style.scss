@@ -27,7 +27,10 @@ header {
         }
     }
     .form-deconnexion {
-        margin: 0;
+        margin: 0 !important;
+        .nav-item-cus-dec {
+            margin: 0;
+        }
     }
 }
 
@@ -95,6 +98,18 @@ footer {
     }
 }
 
+@keyframes backgroundAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 @media only screen and (max-width: 1400px) {
     .articles {
         .card-cus {
@@ -120,15 +135,9 @@ footer {
                     margin-top: 0.6em;
                 }
             }
-            & > .nav-link {
-                padding: 0 !important;
-                margin: 0 !important;
-                .form-deconnexion {
-                    margin-top: 0;
-                }
-            }
         }
     }
+
     .articles {
         .card-cus {
             &:nth-child(3) {

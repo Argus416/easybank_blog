@@ -15,7 +15,7 @@
                     Il semble que c'est votre premier fois d'utiliser le site. <br>
                     Veuillez créer un compte pour que le site soit utilisable
                 </p>
-                <form method="POST">
+                <form method="POST" id="form-signup">
                     <input type="hidden" name="token-signup" value="<?= $token ?>">
                     <div class="label prenom-signup-container">
                         <div class="input-parent">

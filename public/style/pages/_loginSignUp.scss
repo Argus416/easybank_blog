@@ -129,7 +129,7 @@ main.loginForm {
     }
 }
 
-input[type="submit"] {
+.btn-submit {
     margin-top: 0.6em;
 }
 
@@ -155,14 +155,12 @@ main.signUpForm {
     }
 }
 
-@keyframes backgroundAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+.err-input {
+    animation-name: errAnim;
+    animation-duration: 0.1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 3;
+    animation-direction: alternate;
+
+    border-bottom: 1px solid crimson !important;
 }

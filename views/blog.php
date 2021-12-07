@@ -64,11 +64,11 @@ require_once 'inc/header.php';
             </div>
             <?= $pagintation ?>
             <?php elseif(!count($articles) && isset($_GET['search-articles']) ): ?>
-            <h2 class="mb-5"> Aucun articles n'a été trouvé avec votre recherche
+            <h2 class="mb-5 err-search"> Aucun articles n'a été trouvé avec votre recherche
                 <strong><?=$_GET['search-articles']?></strong>
             </h2>
             <?php else: ?>
-            <h2 class="mb-5"> Aucun articles n'est publié </h2>
+            <h2 class="mb-5 err-search"> Aucun articles n'est publié </h2>
             <?php endif; ?>
 
         </div>

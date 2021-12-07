@@ -22,17 +22,37 @@ function showErrMessageTextarea(textarea, errMassage) {
     return errMassage.hasClass("d-none");
 }
 
+function existAndlengthValidation(input) {
+    const condition = input.val().length && input.val().length <= 255;
+    return condition;
+}
+
+function loginSignUpalidator(input) {
+    if (!existAndlengthValidation(input)) {
+        if (!$(input).hasClass("err-input")) {
+            $(input).addClass("err-input");
+        }
+    } else {
+        if ($(input).hasClass("err-input")) {
+            $(input).removeClass("err-input");
+        }
+    }
+
+    return input.hasClass("err-input");
+}
+
 window.addEventListener("load", () => {
     const currentURL = window.location.href;
-    let navPage = document.querySelectorAll(".nav-link");
 
+    // * Active navbar
+    let navPage = document.querySelectorAll(".nav-link");
     for (i = 0; i < navPage.length; i++) {
         if (location.href === navPage[i].href) {
             navPage[i].className += " active";
         }
     }
 
-    // Fonctionne uniquement sur la page "blog"
+    // * Fonctionne uniquement sur la page "blog"
     if (document.querySelector(".categorie-select-form")) {
         const categorieSelectForm = document.querySelector(".categorie-select-form");
         const categories = Array.from(document.querySelectorAll(".categorie"));
@@ -44,7 +64,7 @@ window.addEventListener("load", () => {
         });
     }
 
-    // Alert Manager
+    // * Alert Manager
     setTimeout(function () {
         if ($(".alert")) {
             $(".alert").animate(
@@ -60,21 +80,12 @@ window.addEventListener("load", () => {
         }
     }, 1000);
 
-    // l'effet btn télécharger les logs
+    // * l'effet btn télécharger les logs
     if ($(".btn-see-me")) {
         $(".btn-see-me").click(function () {
             if ($(this).hasClass("btn-see-me")) {
                 $(this).removeClass("btn-see-me");
             }
-        });
-    }
-
-    // TODO : regex
-    if ($(".form-login")) {
-        $(".form-login").submit(function (e) {
-            // e.preventDefault();
-            const emailLength = $("#email-login").val().length;
-            const password = $("#password-login").val().length;
         });
     }
 
@@ -109,11 +120,9 @@ window.addEventListener("load", () => {
             if (!showErrMessageInput(titleArticleEdit, errMassageTitle)) {
                 send = false;
             }
-
             if (!showErrMessageTextarea(bodyArticleEdit, errMassageBody)) {
                 send = false;
             }
-
             return send;
         });
     }
@@ -141,6 +150,47 @@ window.addEventListener("load", () => {
                 send = false;
             }
 
+            return send;
+        });
+    }
+
+    if ($("#form-signup")) {
+        $("#form-signup").submit(function () {
+            const prenomSignup = $("#prenom-signup");
+            const nomSignup = $("#nom-signup");
+            const emailSignup = $("#email-signup");
+            const passwordSignup = $("#password-signup");
+            let send = true;
+
+            if (loginSignUpalidator(prenomSignup)) {
+                send = false;
+            }
+            if (loginSignUpalidator(nomSignup)) {
+                send = false;
+            }
+            if (loginSignUpalidator(emailSignup)) {
+                send = false;
+            }
+            if (loginSignUpalidator(passwordSignup)) {
+                send = false;
+            }
+            return send;
+        });
+    }
+
+    if ($("#form-login")) {
+        $("#form-login").submit(function () {
+            // e.preventDefault();
+            const emailLogin = $("#email-login");
+            const passwordLogin = $("#password-login");
+            let send = true;
+
+            if (loginSignUpalidator(emailLogin)) {
+                send = false;
+            }
+            if (loginSignUpalidator(passwordLogin)) {
+                send = false;
+            }
             return send;
         });
     }

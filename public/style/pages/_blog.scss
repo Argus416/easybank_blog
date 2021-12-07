@@ -39,7 +39,8 @@ main.blogs {
                 margin-bottom: 1.8em;
                 border-bottom: 1px solid $LightGrayishBlue;
                 display: flex;
-
+                overflow: hidden;
+                word-break: break-all;
                 .left {
                     width: 25%;
                     margin-right: 15px;
@@ -82,6 +83,26 @@ main.blogs {
                     }
                 }
             }
+        }
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    h1 {
+        font-size: 2.8em;
+    }
+    h2.err-search {
+        font-size: 1.7em;
+    }
+    .header-blog {
+        flex-direction: column;
+        align-items: flex-start !important;
+        margin-bottom: 3em;
+    }
+    .article {
+        .left {
+            min-width: 220px;
+            width: 50% !important;
         }
     }
 }

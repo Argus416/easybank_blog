@@ -25,6 +25,7 @@
                         echo Helpers::alertManager(); 
                     }
                 }    
+                unset($_SESSION['alert']);
             ?>
             <article class="mb-5">
                 <div class="header-article mb-4">

@@ -18,10 +18,10 @@ use App\Controllers\ContactController;
 use App\Controllers\UsersController;
 use App\Controllers\ConnexionController;
 use App\Controllers\ErrorController;
-use Symfony\Config\FrameworkConfig;
 
 $PDOSignleton = PDOSignleton::getSingleton()::PDO_Init();
 $ConnexionSignleton = ConnexionController::getSingleton();
+
 
 if(!isset($_SESSION['isLoggedin']) || $_SESSION['isLoggedin'] != true  ){
     $_SESSION['isLoggedin'] = false;

@@ -23,6 +23,7 @@
                             echo Helpers::alertManager('danger'); 
                         }
                     }
+                    unset($_SESSION['alert']);
                 ?>
 
                 <div class="mb-5 d-flex align-items-center justify-content-between">

@@ -23,6 +23,7 @@
                             echo Helpers::alertManager(); 
                         }
                     }
+                    unset($_SESSION['alert']);
                 ?>
 
                 <div class="gestion-article-header d-flex justify-content-between mb-4 ">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 07, 2021 at 01:44 PM
+-- Generation Time: Dec 07, 2021 at 08:34 PM
 -- Server version: 8.0.27-0ubuntu0.21.10.1
 -- PHP Version: 8.0.8
 
@@ -68,13 +68,6 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `nom`, `prenom`, `email`, `mdp`, `date_de_naissance`, `img_profile`) VALUES
-(31, 'Al-khatib', 'Mohamad', 'mohamad@localhost.com', '$argon2i$v=19$m=65536,t=4,p=1$SW5NV2YxVTB6dHlNWEtMZw$rC0476BDhLnSIjKaZXPnNQEnH5oDCx37/HupydtKz0s', NULL, NULL);
-
---
 -- Indexes for dumped tables
 --
 
@@ -107,19 +100,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT for table `log_system`
 --
 ALTER TABLE `log_system`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Constraints for dumped tables

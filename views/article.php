@@ -50,8 +50,9 @@
         </div>
 
         <?php
-        
-        require_once 'inc/derniers_articles.php'; 
+        if(count($articles)){
+            require_once 'inc/derniers_articles.php';
+        }
         ?>
 
     </main>

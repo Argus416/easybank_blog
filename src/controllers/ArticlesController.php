@@ -106,9 +106,10 @@ class ArticlesController{
             if (hash_equals($_SESSION['token'], $tokenInput)) {
                 if($this->ArticlesModel->deleteArticle($pdoSignleton, $idArticle)){
                     $_SESSION['alert'] = 'del-article';
-                }// else{
-                 // $_SESSION['alert'] = 'err';
-                // }
+                }
+                else{
+                    $_SESSION['alert'] = 'err';
+                }
             }else{
                 header('Location:' . $urlGenerator->generate('err405'));
             }
@@ -147,14 +148,14 @@ class ArticlesController{
                         $idArticle = $this->ArticlesModel->getLastArticle($pdoSignleton)[0]->articleID;
                         $idArticle = filter_var($idArticle, FILTER_VALIDATE_INT);
         
-                        $this->LogSystemModel->addToLog($pdoSignleton, $this->idUser, $idArticle, 'articleCree');
         
                         if($this->ArticlesModel->addArticle($pdoSignleton, $title, $body, $this->idUser, $imgArticle)){
                             $_SESSION['alert'] = 'add-article';
+                            $this->LogSystemModel->addToLog($pdoSignleton, $this->idUser, $idArticle, 'articleCree');
                         }
-                        // else{
-                        //     $_SESSION['alert'] = 'err';
-                        // }
+                        else{
+                            $_SESSION['alert'] = 'err';
+                        }
                         header('Location:' . $urlGenerator->generate('articlesManagement'));
                 } else {
                     header('Location:' . $urlGenerator->generate('err405'));
@@ -175,7 +176,7 @@ class ArticlesController{
         $id = $param['id'];
         $title = $body = '';
 
-        $getArticle = $this->ArticlesModel->getArticle($pdoSignleton, $id)[0];
+        $getArticle = $this->ArticlesModel->getArticle($pdoSignleton, $id);
 
         $token = Helpers::tokenGenerator();
         $tokenInput = filter_var($_POST['token-edit-article'], FILTER_SANITIZE_STRING);
